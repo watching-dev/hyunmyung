@@ -12,3 +12,31 @@
   background-color: blue;
   width: 275px;
 }
+
+.fixed {
+  display: flex;
+  position: fixed;
+  background-color: cadetblue;
+  width: inherit;
+  height: inherit;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixed nav {
+  display: flex;
+  background-color: coral;
+  flex: 1;
+}
+
+.fixed li {
+  list-style-type: none;
+}
