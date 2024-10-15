@@ -1,16 +1,16 @@
 import styles from "./homeLeftSection.module.css";
+import LeftSectionLogo from "./homeLeftSection/leftSectionLogo";
+import LeftSectionMenu from "./homeLeftSection/leftSectionNavMenu";
 
 export default function HomeLeftSection() {
   return (
     <div className={styles.leftSectionWrapper}>
       <div className={styles.leftSection}>
         <div className={styles.fixed}>
-          <div className={styles.logo}>로고</div>
+          <LeftSectionLogo />
           <nav>
             <ul>
-              <li>홈</li>
-              <li>프로필</li>
-              <li>탐색하기</li>
+              <LeftSectionMenu />
             </ul>
           </nav>
         </div>
