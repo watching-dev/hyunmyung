@@ -2,6 +2,7 @@ import styles from "./homeLeftSection.module.css";
 import LeftSectionLogo from "./homeLeftSection/leftSectionLogo";
 import LeftSectionMenu from "./homeLeftSection/leftSectionNavMenu";
 
+
 export default function HomeLeftSection() {
   return (
     <div className={styles.leftSectionWrapper}>
