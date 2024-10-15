@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  background-color: yellow;
+  height: 100dvh;
+}
+
+.leftSectionWrapper {
+  display: flex;
+  flex-grow: 1;
+  background-color: orange;
+  height: inherit;
+  justify-content: flex-end;
+}
+
+.leftSection {
+  display: flex;
+  height: inherit;
+  background-color: blue;
+  width: 275px;
+}
+
+.rightSectionWrapper {
+  display: flex;
+  background-color: green;
+  flex-grow: 1;
+}
+
+.rightSectionInner {
+  display: flex;
+  background-color: pink;
+  justify-content: space-between;
+  width: 990px;
+}
+
+.mainSection {
+  width: 600px;
+  background-color: aquamarine;
+}
+
+.rightSection {
+  width: 350px;
+  background-color: blueviolet;
+}
