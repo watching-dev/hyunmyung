@@ -1,0 +1,14 @@
+.leftSectionWrapper {
+  display: flex;
+  flex-grow: 1;
+  background-color: orange;
+  height: inherit;
+  justify-content: flex-end;
+}
+
+.leftSection {
+  display: flex;
+  height: inherit;
+  background-color: blue;
+  width: 275px;
+}
