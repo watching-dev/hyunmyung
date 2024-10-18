@@ -1,7 +1,6 @@
 import styles from "./homeLeftSection.module.css";
-import LeftSectionLogo from "./homeLeftSection/leftSectionLogo";
-import LeftSectionMenu from "./homeLeftSection/leftSectionNavMenu";
-
+import LeftSectionLogo from "./homeLeftSection/LeftSectionLogo";
+import LeftSectionMenu from "./homeLeftSection/LeftSectionNavMenu";
 
 export default function HomeLeftSection() {
   return (

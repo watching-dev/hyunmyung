@@ -1,4 +1,5 @@
 import styles from "./homeRightSection.module.css";
+import RightSectionRecommend from "./homeRightSection/RightSectionRecommend";
 import RightSectionSearch from "./homeRightSection/RightSectionSearch";
 
 export default function HomeRightSection() {
@@ -8,6 +9,7 @@ export default function HomeRightSection() {
         <div className={styles.mainSection}></div>
         <div className={styles.rightSection}>
           <RightSectionSearch />
+          <RightSectionRecommend />
         </div>
       </div>
     </div>
