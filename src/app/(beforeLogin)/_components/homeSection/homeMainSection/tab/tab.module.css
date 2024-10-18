@@ -1,0 +1,54 @@
+.tabFixed {
+  position: fixed;
+  z-index: 1;
+  width: 598px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-color: rgb(239, 243, 244);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tabFixed {
+    background-color: rgba(0, 0, 0, 0.65);
+    border-color: rgb(47, 51, 54);
+  }
+}
+
+.title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  padding: 12px 16px;
+}
+
+.tab {
+  height: 53px;
+  display: flex;
+}
+
+.tab > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.tab a:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+}
+
+.tabIndicator {
+  height: 4px;
+  align-self: center;
+  background-color: rgb(29, 155, 240);
+  min-width: 56px;
+  width: 56px;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 9999px;
+}
