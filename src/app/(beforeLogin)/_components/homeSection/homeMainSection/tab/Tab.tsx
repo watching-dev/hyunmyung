@@ -19,11 +19,11 @@ export default function Tab() {
       <div className={styles.title}>홈</div>
       <div className={styles.tab}>
         <div onClick={onClickRec}>
-          추천
+          전체
           <div className={styles.tabIndicator} hidden={tab === "fol"}></div>
         </div>
         <div onClick={onClickFol}>
-          팔로우
+          추천
           <div className={styles.tabIndicator} hidden={tab === "rec"}></div>
         </div>
       </div>

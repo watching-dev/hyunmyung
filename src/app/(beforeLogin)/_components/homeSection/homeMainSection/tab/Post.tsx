@@ -11,11 +11,11 @@ export default function Post() {
   const data = {
     postID: 1,
     User: {
-      id: "elon",
-      nickname: "musk",
+      id: "@hm",
+      nickname: "HM",
       image: "",
     },
-    content: "어려워어려워",
+    content: "어려워어려워 여기에 내용 출력함",
     createAt: new Date(),
     Images: [] as any,
   };

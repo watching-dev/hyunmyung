@@ -7,7 +7,7 @@ export default function PostForm() {
         <div className={styles.postUserImage}></div>
       </div>
       <div className={styles.postInputSection}>
-        <textarea placeholder="무슨일이 일어나고 있나요?" />
+        <textarea placeholder="아무거나 작성해 보세요!" />
         <div className={styles.postButtonSection}>
           <div className={styles.footerButtons}>
             <div className={styles.footerButtonLeft}></div>
