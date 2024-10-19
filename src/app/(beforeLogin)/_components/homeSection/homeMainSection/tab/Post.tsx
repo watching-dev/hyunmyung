@@ -1,5 +1,11 @@
 import { faker } from "@faker-js/faker";
 import styles from "./post.module.css";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.locale("ko");
+dayjs.extend(relativeTime);
 
 export default function Post() {
   const data = {
@@ -26,7 +32,9 @@ export default function Post() {
             &nbsp;
             <div className={styles.postUserId}>{data.User.id}</div>
             &nbsp; · &nbsp;
-            <div className={styles.postDate}>date</div>
+            <div className={styles.postDate}>
+              {dayjs(data.createAt).fromNow(true)}
+            </div>
           </div>
           <div>{data.content}</div>
           <div className={styles.postImageSection}>
