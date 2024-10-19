@@ -22,13 +22,13 @@ export default function Post() {
         <div className={styles.postUserSection}>post</div>
         <div className={styles.postBody}>
           <div className={styles.postMeta}>
-            <div className={styles.postUserName}>userName</div>
+            <div className={styles.postUserName}>{data.User.nickname}</div>
             &nbsp;
-            <div className={styles.postUserId}>userId</div>
+            <div className={styles.postUserId}>{data.User.id}</div>
             &nbsp; · &nbsp;
             <div className={styles.postDate}>date</div>
           </div>
-          <div>content</div>
+          <div>{data.content}</div>
           <div className={styles.postImageSection}>
             {data.Images && data.Images.length > 0 && (
               <img src={data.Images[0]?.link} alt="" />
