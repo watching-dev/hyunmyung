@@ -67,9 +67,9 @@
 .postDate {
   color: rgb(83, 100, 113);
 }
-.postDate:hover {
+/* .postDate:hover {
   text-decoration: underline;
-}
+} */
 
 .postImageSection {
 }
@@ -89,6 +89,36 @@
 }
 
 .postImageSection img {
+  margin-top: 12px;
+  width: 517px;
+  height: 360px;
+  border-radius: 16px;
+}
+
+.afterImageSection {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.afterImageSectionInner {
+  background-color: gray;
+  position: absolute;
+  margin-top: 12px;
+  width: 517px;
+  height: 360px;
+  border-radius: 16px;
+  opacity: 0.6;
+}
+
+.afterImageSection > span {
+  position: absolute;
+  color: white;
+  font-size: 30px;
+}
+
+.afterImageSection > img {
   margin-top: 12px;
   width: 517px;
   height: 360px;

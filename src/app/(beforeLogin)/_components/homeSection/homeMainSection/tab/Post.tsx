@@ -19,9 +19,12 @@ export default function Post() {
     createAt: new Date(),
     Images: [] as any,
   };
+  let noImage: boolean = true;
   if (Math.random() > 0.5) {
     data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
+    noImage = Math.random() < 0.5;
   }
+
   return (
     <article className={styles.post}>
       <div className={styles.postWrapper}>
@@ -36,12 +39,27 @@ export default function Post() {
               {dayjs(data.createAt).fromNow(true)}
             </div>
           </div>
-          <div>{data.content}</div>
-          <div className={styles.postImageSection}>
-            {data.Images && data.Images.length > 0 && (
-              <img src={data.Images[0]?.link} alt="" />
+          {/* <div>{data.content}</div> */}
+          <div>
+            {noImage ? (
+              <div>{data.content}</div>
+            ) : (
+              <div className={styles.afterImageSection}>
+                {data.Images && data.Images.length > 0 && (
+                  <>
+                    <div className={styles.afterImageSectionInner} />
+                    <span>{data.content}</span>
+                    <img src={data.Images[0]?.link} alt="" />
+                  </>
+                )}
+              </div>
             )}
           </div>
+          {/*    <div className={styles.postImageSection}>
+             {data.Images && data.Images.length > 0 && (
+               <img src={data.Images[0]?.link} alt="" />
+             )}
+           </div> */}
         </div>
       </div>
     </article>
