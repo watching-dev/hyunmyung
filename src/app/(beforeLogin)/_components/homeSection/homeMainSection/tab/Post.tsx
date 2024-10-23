@@ -47,7 +47,7 @@ export default function Post() {
               <div className={styles.afterImageSection}>
                 {data.Images && data.Images.length > 0 && (
                   <>
-                    <div className={styles.afterImageSectionInner} />
+                    <div className={styles.afterImageSectionCover} />
                     <span>{data.content}</span>
                     <img src={data.Images[0]?.link} alt="" />
                   </>

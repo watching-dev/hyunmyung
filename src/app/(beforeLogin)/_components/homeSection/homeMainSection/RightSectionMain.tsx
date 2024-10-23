@@ -10,6 +10,7 @@ export default function RightSectionMain() {
       <TabProvider>
         <Tab />
         <PostForm />
+        {/* <Banner /> */}
         <Post />
         <Post />
         <Post />

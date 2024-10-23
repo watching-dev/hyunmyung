@@ -102,20 +102,21 @@
   align-items: center;
 }
 
-.afterImageSectionInner {
+.afterImageSectionCover {
   background-color: gray;
   position: absolute;
   margin-top: 12px;
   width: 517px;
   height: 360px;
   border-radius: 16px;
-  opacity: 0.6;
+  opacity: 0.25;
 }
 
 .afterImageSection > span {
   position: absolute;
   color: white;
   font-size: 30px;
+  font-weight: bold;
 }
 
 .afterImageSection > img {
