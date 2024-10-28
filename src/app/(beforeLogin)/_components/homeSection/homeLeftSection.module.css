@@ -1,7 +1,7 @@
 .leftSectionWrapper {
   display: flex;
   flex-grow: 1;
-  background-color: orange;
+  /* background-color: orange; */
   height: inherit;
   justify-content: flex-end;
 }
@@ -9,14 +9,14 @@
 .leftSection {
   display: flex;
   height: inherit;
-  background-color: blue;
+  /* background-color: blue; */
   width: 275px;
 }
 
 .fixed {
   display: flex;
   position: fixed;
-  background-color: cadetblue;
+  /* background-color: cadetblue; */
   width: inherit;
   height: inherit;
   flex-direction: column;
@@ -24,7 +24,7 @@
 
 .fixed nav {
   display: flex;
-  background-color: coral;
+  /* background-color: coral; */
   flex: 1;
 }
 
