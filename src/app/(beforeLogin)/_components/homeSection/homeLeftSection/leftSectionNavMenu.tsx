@@ -8,7 +8,8 @@ export default function LeftSectionMenu() {
   const segment = useSelectedLayoutSegment();
   console.log(segment);
   const profile = {
-    id: "hyunmyung",
+    // id: "hyunmyung",
+    id: "profile",
   };
   return (
     <>
