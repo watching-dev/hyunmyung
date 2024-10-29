@@ -14,23 +14,42 @@ export default function HomeRightSection({
   children: ReactNode;
 }) {
   const pathName = usePathname();
+  console.log(pathName);
+
+  if (pathName === "/profile") {
+    return (
+      <div className={styles.rightSectionWrapper}>
+        <div className={styles.rightSectionInner}>
+          <div className={styles.mainSection}>{children}</div>
+          <div className={styles.rightSection}>
+            <RightSectionSearch />
+            <HomeRightSectionProfileImage />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (pathName === "/explore") {
+    return (
+      <div className={styles.rightSectionWrapper}>
+        <div className={styles.rightSectionInner}>
+          <div className={styles.mainSection}>{children}</div>
+          <div className={styles.rightSection}>
+            <RightSectionRecommend />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.rightSectionWrapper}>
       <div className={styles.rightSectionInner}>
         <div className={styles.mainSection}>{children}</div>
         <div className={styles.rightSection}>
-          {pathName === "/profile" ? (
-            <>
-              <RightSectionSearch />
-              <HomeRightSectionProfileImage />
-            </>
-          ) : (
-            <>
-              <RightSectionSearch />
-              <RightSectionRecommend />
-            </>
-          )}
+          <RightSectionSearch />
+          <RightSectionRecommend />
         </div>
       </div>
     </div>
