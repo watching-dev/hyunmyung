@@ -3,6 +3,7 @@ import styles from "./post.module.css";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
+import PostArticle from "./PostArticle";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -26,7 +27,7 @@ export default function Post() {
   }
 
   return (
-    <article className={styles.post}>
+    <PostArticle post={data}>
       <div className={styles.postWrapper}>
         <div className={styles.postUserSection}>post</div>
         <div className={styles.postBody}>
@@ -62,6 +63,6 @@ export default function Post() {
            </div> */}
         </div>
       </div>
-    </article>
+    </PostArticle>
   );
 }
