@@ -6,6 +6,7 @@ import styles from "./homeRightSection.module.css";
 import RightSectionRecommend from "./homeRightSection/RightSectionRecommend";
 import RightSectionSearch from "./homeRightSection/RightSectionSearch";
 import { usePathname } from "next/navigation";
+import HomeRightSectionProfileImage from "../profileSection/HomeRightSectionProfileImage";
 
 export default function HomeRightSection({
   children,
@@ -19,7 +20,12 @@ export default function HomeRightSection({
       <div className={styles.rightSectionInner}>
         <div className={styles.mainSection}>{children}</div>
         <div className={styles.rightSection}>
-          {pathName === "/profile" ? null : (
+          {pathName === "/profile" ? (
+            <>
+              <RightSectionSearch />
+              <HomeRightSectionProfileImage />
+            </>
+          ) : (
             <>
               <RightSectionSearch />
               <RightSectionRecommend />
