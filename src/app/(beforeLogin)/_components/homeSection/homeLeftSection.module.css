@@ -10,7 +10,7 @@
   display: flex;
   height: inherit;
   /* background-color: blue; */
-  width: 275px;
+  width: 72px;
 }
 
 .fixed {
@@ -20,6 +20,8 @@
   width: inherit;
   height: inherit;
   flex-direction: column;
+  padding: 0 8px;
+  align-items: center;
 }
 
 .fixed nav {
@@ -30,4 +32,23 @@
 
 .fixed li {
   list-style-type: none;
+}
+
+@media all and (min-width: 1300px) {
+  .leftSection {
+    display: flex;
+    height: inherit;
+    /* background-color: blue; */
+    width: 275px;
+  }
+
+  .fixed {
+    display: flex;
+    position: fixed;
+    /* background-color: cadetblue; */
+    width: inherit;
+    height: inherit;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

@@ -110,6 +110,7 @@
   height: 360px;
   border-radius: 16px;
   opacity: 0.25;
+  /* margin-left: 85px; */
 }
 
 .afterImageSection > span {
@@ -124,6 +125,7 @@
   width: 517px;
   height: 360px;
   border-radius: 16px;
+  /* margin-left: 85px; */
 }
 
 .actionButtons {
