@@ -10,7 +10,9 @@ export default function HomeLeftSection() {
           <LeftSectionLogo />
           <nav>
             <ul>
-              <LeftSectionMenu />
+              <div className={styles.fixedBackground}>
+                <LeftSectionMenu />
+              </div>
             </ul>
           </nav>
         </div>
