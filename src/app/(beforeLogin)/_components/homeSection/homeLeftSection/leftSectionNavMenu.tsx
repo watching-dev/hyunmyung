@@ -51,7 +51,7 @@ export default function LeftSectionMenu() {
       <li>
         <Link href="/explore">
           <div className={styles.navItem}>
-            {segment === "/explore" ? (
+            {segment === "explore" ? (
               <>
                 <svg
                   width={26}
