@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PostArticle from "./PostArticle";
+import Link from "next/link";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -32,7 +33,12 @@ export default function Post() {
         <div className={styles.postUserSection}>post</div>
         <div className={styles.postBody}>
           <div className={styles.postMeta}>
-            <div className={styles.postUserName}>{data.User.nickname}</div>
+            <Link
+              href={`/${data.User.nickname}`}
+              className={styles.postUserName}
+            >
+              {data.User.nickname}
+            </Link>
             &nbsp;
             <div className={styles.postUserId}>{data.User.id}</div>
             &nbsp; · &nbsp;
