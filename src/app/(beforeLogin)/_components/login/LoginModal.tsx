@@ -2,21 +2,34 @@
 
 import { useRouter } from "next/navigation";
 import style from "./loginModal.module.css";
-import { useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function LoginModal() {
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
-  const [message, setMessage] = useState();
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const router = useRouter();
-  const onSubmit = () => {};
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    try {
+      await signIn("credentials", { username: id, password, redirect: false });
+      router.replace("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const onClickClose = () => {
     router.back();
   };
 
-  const onChangeId = () => {};
+  const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setId(e.target.value);
+  };
 
-  const onChangePassword = () => {};
+  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <div className={style.modalBackground}>
