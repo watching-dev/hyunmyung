@@ -16,11 +16,14 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@mswjs/http-middleware": "^0.10.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cors": "^2.8.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "express": "^4.21.1",
     "msw": "^2.6.0",
     "typescript": "^5"
   },
