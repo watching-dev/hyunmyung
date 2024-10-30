@@ -15,6 +15,7 @@ export default function LoginModal() {
     try {
       await signIn("credentials", { username: id, password, redirect: false });
       router.replace("/");
+      router.back();
     } catch (error) {
       console.error(error);
     }
