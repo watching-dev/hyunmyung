@@ -8,10 +8,11 @@ import {
 import Post from "./Post";
 import { Post as IPost } from "@/app/model/Post";
 import { getPostRecommends } from "@/app/(afterLogin)/_lib/getPostRecommends";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 export default function PostRecommends() {
-  const { data } = useInfiniteQuery<
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
     IPost[],
     Object,
     InfiniteData<IPost[]>,
@@ -24,11 +25,24 @@ export default function PostRecommends() {
     getNextPageParam: (lastPage) => lastPage.at(-1)?.postId,
     staleTime: 60 * 1000,
   });
-  return data?.pages.map((page, i) => (
-    <Fragment key={i}>
-      {page.map((post) => (
-        <Post key={post.postId} post={post} />
+
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+  return (
+    <>
+      {data?.pages.map((page, i) => (
+        <Fragment key={i}>
+          {page.map((post) => (
+            <Post key={post.postId} post={post} />
+          ))}
+        </Fragment>
       ))}
-    </Fragment>
-  ));
+      <div ref={ref} style={{ height: 50 }} />
+    </>
+  );
 }
