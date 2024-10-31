@@ -29,7 +29,8 @@ export default function Post({ post }: Props) {
         <div className={styles.postBody}>
           <div className={styles.postMeta}>
             <Link
-              href={`/${data.User.nickname}`}
+              //   href={`/${data.User.nickname}`}
+              href={`/profile`}
               className={styles.postUserName}
             >
               {data.User.nickname}
