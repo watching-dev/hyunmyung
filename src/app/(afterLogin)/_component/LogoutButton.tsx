@@ -6,10 +6,13 @@ import { Session } from "@auth/core/types";
 import { useRouter } from "next/navigation";
 // import { useQueryClient } from "@tanstack/react-query";
 
-export default function LogoutButton() {
+type Props = {
+  me: Session | null;
+};
+export default function LogoutButton({ me }: Props) {
   //   const queryClient = useQueryClient();
 
-  const { data: me } = useSession();
+  // const { data: me } = useSession();
 
   const router = useRouter();
 
