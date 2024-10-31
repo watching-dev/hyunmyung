@@ -9,22 +9,8 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-async function getPostRecommends() {
-  const res = await fetch(`http://localhost:9090/api/postRecommends`, {
-    next: {
-      tags: ["posts", "recommends"],
-    },
-  });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
+import PostRecommends from "./_components/homeSection/homeMainSection/tab/PostRecommends";
+import { getPostRecommends } from "../(afterLogin)/_lib/getPostRecommends";
 
 export default async function RightSectionMain() {
   const queryClient = new QueryClient();
@@ -41,16 +27,7 @@ export default async function RightSectionMain() {
           <Tab />
           <PostForm />
           {/* <Banner /> */}
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          <PostRecommends />
         </TabProvider>
       </HydrationBoundary>
     </div>

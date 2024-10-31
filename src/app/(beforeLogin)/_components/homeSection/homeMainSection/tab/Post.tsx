@@ -5,22 +5,17 @@ import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PostArticle from "./PostArticle";
 import Link from "next/link";
+import { Post as IPost } from "@/app/model/Post";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
-export default function Post() {
-  const data = {
-    postID: 1,
-    User: {
-      id: "@hm",
-      nickname: "HM",
-      image: "",
-    },
-    content: "어려워어려워 여기에 내용 출력함",
-    createAt: new Date(),
-    Images: [] as any,
-  };
+type Props = {
+  post: IPost;
+};
+
+export default function Post({ post }: Props) {
+  const data = post;
   let noImage: boolean = true;
   if (Math.random() > 0.5) {
     data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
@@ -43,7 +38,7 @@ export default function Post() {
             <div className={styles.postUserId}>{data.User.id}</div>
             &nbsp; · &nbsp;
             <div className={styles.postDate}>
-              {dayjs(data.createAt).fromNow(true)}
+              {dayjs(data.createdAt).fromNow(true)}
             </div>
           </div>
           {/* <div>{data.content}</div> */}
