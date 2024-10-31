@@ -8,7 +8,7 @@ import { PostImage } from "@/app/model/PostImage";
 type Props = {
   children: ReactNode;
   post: {
-    postID: number;
+    postId: number;
     content: string;
     User: {
       id: string;
@@ -23,7 +23,7 @@ type Props = {
 export default function PostArticle({ children, post }: Props) {
   const router = useRouter();
   const onClick = () => {
-    router.push(`/${post.User.id}/status/${post.postID}`);
+    router.push(`/${post.User.id}/status/${post.postId}`);
   };
 
   return (

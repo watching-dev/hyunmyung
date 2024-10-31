@@ -11,5 +11,5 @@ export default function PostFollowings() {
     queryFn: getPostfollowings,
     staleTime: 60 * 1000,
   });
-  return data?.map((post) => <Post key={post.postID} post={post} />);
+  return data?.map((post) => <Post key={post.postId} post={post} />);
 }
