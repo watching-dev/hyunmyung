@@ -29,9 +29,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {/* <div>Root Layout</div> */}
-        {/* <MSWComponent />
-        <AuthSession>{children}</AuthSession> */}
-        {children}
+        <MSWComponent />
+        <AuthSession>{children}</AuthSession>
+        {/* {children} */}
       </body>
     </html>
   );

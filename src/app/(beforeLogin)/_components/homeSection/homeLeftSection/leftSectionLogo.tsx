@@ -7,7 +7,7 @@ export default async function LeftSectionLogo() {
   return (
     <>
       <div className={styles.logo}>로고</div>
-      <LogoutButton me={session} />
+      <LogoutButton />
     </>
   );
 }
