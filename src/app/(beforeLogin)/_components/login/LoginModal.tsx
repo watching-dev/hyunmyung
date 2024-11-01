@@ -13,11 +13,43 @@ export default function LoginModal() {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
-      await signIn("credentials", { username: id, password, redirect: false });
-      router.replace("/");
-      router.back();
+      const response = await signIn("credentials", {
+        username: id,
+        password,
+        redirect: false,
+      });
+      console.log("err", response);
+      console.log("eeror", response?.error);
+
+      // if (!response?.error) {
+      //   // setMessage("아이디와 비번이 일치하지 않음");
+      //   setMessage("!response?.error");
+      // } else {
+      //   setMessage("!response?.error else");
+      //   // router.replace("/");
+      //   // router.back();
+      // }
+      // 이게 왜 틀렸냐면 response status가 200인건 당연한거임
+      // response?.error는 문자열이니까 무조건 true로 떨어지지..
+      // 통신 자체는 성공 한거고(status 200, ok true) 그 안에서 이름, 비번이 틀린걸 검증했어야 했던 것
+      // 서버에서 날라오는게 이상하게 되어 있어서 그런거.. error가 왜 저따구로 와서 햇갈리게 하냐
+      if (response?.code === "no_user" || response?.code === "wrong_password") {
+        setMessage("아이디와 비번이 일치하지 않음");
+      } else {
+        router.replace("/");
+      }
+
+      // response 찍어보면 아래처럼 나온다
+      //   {
+      //     "error": "CredentialsSignin",
+      //     "code": "no_user",
+      //     "status": 200,
+      //     "ok": true,
+      //     "url": null
+      // }
     } catch (error) {
       console.error(error);
+      setMessage("에러");
     }
   };
   const onClickClose = () => {

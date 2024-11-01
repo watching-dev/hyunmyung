@@ -141,3 +141,10 @@
     fill: white;
   }
 }
+
+.message {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
+}
