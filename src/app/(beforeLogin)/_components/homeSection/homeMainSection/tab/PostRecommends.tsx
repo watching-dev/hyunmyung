@@ -11,5 +11,7 @@ export default function PostRecommends() {
     queryFn: getPostRecommends,
     staleTime: 60 * 1000,
   });
-  return data?.map((post) => <Post key={post.postId} post={post} />);
+  return data
+    ?.filter((post) => post.postId == 2)
+    .map((post) => <Post key={post.postId} post={post} />);
 }
