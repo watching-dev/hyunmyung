@@ -17,7 +17,6 @@ type Props = {
 
 export default function Post({ post }: Props) {
   const data = post;
-  console.log("data== ", data);
 
   const noImage: boolean = data.Images[0].link === "" ? true : false;
   // if (Math.random() > 0.5) {
