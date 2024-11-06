@@ -30,7 +30,7 @@ export default function HomeRightSection({
     );
   }
 
-  if (pathName === "/explore") {
+  if (pathName === "/explore" || pathName === "/search") {
     return (
       <div className={styles.rightSectionWrapper}>
         <div className={styles.rightSectionInner}>
