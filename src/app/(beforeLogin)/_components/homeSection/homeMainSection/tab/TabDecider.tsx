@@ -2,14 +2,14 @@
 
 import { useContext } from "react";
 import { TabContext } from "./TabProvider";
-import PostRecommends from "./PostAll";
-import PostFollowings from "./PostRecommends";
+import PostAll from "./PostAll";
+import PostRecommends from "./PostRecommends";
 
 export default function TabDecider() {
   const { tab } = useContext(TabContext);
 
-  if (tab === "rec") {
-    return <PostRecommends />;
+  if (tab === "all") {
+    return <PostAll />;
   }
-  return <PostFollowings />;
+  return <PostRecommends />;
 }

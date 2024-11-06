@@ -7,25 +7,25 @@ import { TabContext } from "./TabProvider";
 export default function Tab() {
   const { tab, setTab } = useContext(TabContext);
 
-  const onClickRec = () => {
-    setTab("rec");
+  const onClickAll = () => {
+    setTab("all");
   };
 
-  const onClickFol = () => {
-    setTab("fol");
+  const onClickRec = () => {
+    setTab("rec");
   };
 
   return (
     <div className={styles.tabFixed}>
       <div className={styles.title}>홈</div>
       <div className={styles.tab}>
-        <div onClick={onClickRec}>
+        <div onClick={onClickAll}>
           전체
-          <div className={styles.tabIndicator} hidden={tab === "fol"}></div>
-        </div>
-        <div onClick={onClickFol}>
-          추천
           <div className={styles.tabIndicator} hidden={tab === "rec"}></div>
+        </div>
+        <div onClick={onClickRec}>
+          추천
+          <div className={styles.tabIndicator} hidden={tab === "all"}></div>
         </div>
       </div>
     </div>
