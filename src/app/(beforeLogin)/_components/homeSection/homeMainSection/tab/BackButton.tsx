@@ -6,7 +6,8 @@ import style from "./backButton.module.css";
 export default function BackButton() {
   const router = useRouter();
   const onClick = () => {
-    router.back();
+    // router.back();
+    router.replace("/explore");
   };
   return (
     <button className={style.backButton} onClick={onClick}>
