@@ -19,6 +19,8 @@
   font-size: 15px;
   margin-left: 5px;
   padding: 12px;
+  width: inherit;
+  border-radius: inherit;
   outline: none;
   background-color: inherit;
   border: none;
