@@ -9,8 +9,8 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-import PostRecommends from "./_components/homeSection/homeMainSection/tab/PostRecommends";
-import { getPostRecommends } from "../(afterLogin)/_lib/getPostRecommends";
+import PostRecommends from "./_components/homeSection/homeMainSection/tab/PostAll";
+import { getPostRecommends } from "../(afterLogin)/_lib/getPostAll";
 import TabDecider from "./_components/homeSection/homeMainSection/tab/TabDecider";
 
 export default async function RightSectionMain() {
@@ -21,7 +21,7 @@ export default async function RightSectionMain() {
   //   initialPageParam: 1,
   // });
   await queryClient.prefetchQuery({
-    queryKey: ["posts", "recommends"],
+    queryKey: ["posts", "all"],
   });
   const dehydrateState = dehydrate(queryClient);
 

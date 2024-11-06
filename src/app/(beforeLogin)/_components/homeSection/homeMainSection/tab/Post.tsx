@@ -17,7 +17,9 @@ type Props = {
 
 export default function Post({ post }: Props) {
   const data = post;
-  let noImage: boolean = false;
+  console.log("data== ", data);
+
+  const noImage: boolean = data.Images[0].link === "" ? true : false;
   // if (Math.random() > 0.5) {
   //   data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
   //   noImage = Math.random() < 0.5;
@@ -34,10 +36,10 @@ export default function Post({ post }: Props) {
               href={`/profile`}
               className={styles.postUserName}
             >
-              {data.User.nickname}
+              {data.User.nickName}
             </Link>
             &nbsp;
-            <div className={styles.postUserId}>{data.User.id}</div>
+            <div className={styles.postUserId}>{data.postId}</div>
             &nbsp; · &nbsp;
             <div className={styles.postDate}>
               {dayjs(data.createdAt).fromNow(true)}
@@ -57,7 +59,7 @@ export default function Post({ post }: Props) {
                       src={data.Images[0]?.link}
                       width={50}
                       height={50}
-                      alt=""
+                      alt={data.content}
                     />
                   </>
                 )}

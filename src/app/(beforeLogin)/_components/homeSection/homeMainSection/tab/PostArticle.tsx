@@ -12,7 +12,7 @@ type Props = {
     content: string;
     User: {
       id: string;
-      nickname: string;
+      nickName: string;
       image: string;
     };
     createdAt: Date;
