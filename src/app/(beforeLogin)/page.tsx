@@ -15,10 +15,13 @@ import TabDecider from "./_components/homeSection/homeMainSection/tab/TabDecider
 
 export default async function RightSectionMain() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  // await queryClient.prefetchInfiniteQuery({
+  //   queryKey: ["posts", "recommends"],
+  //   queryFn: getPostRecommends,
+  //   initialPageParam: 1,
+  // });
+  await queryClient.prefetchQuery({
     queryKey: ["posts", "recommends"],
-    queryFn: getPostRecommends,
-    initialPageParam: 0,
   });
   const dehydrateState = dehydrate(queryClient);
 

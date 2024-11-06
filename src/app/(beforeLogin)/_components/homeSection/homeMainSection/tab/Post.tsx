@@ -6,6 +6,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import PostArticle from "./PostArticle";
 import Link from "next/link";
 import { Post as IPost } from "@/app/model/Post";
+import Image from "next/image";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -16,11 +17,11 @@ type Props = {
 
 export default function Post({ post }: Props) {
   const data = post;
-  let noImage: boolean = true;
-  if (Math.random() > 0.5) {
-    data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
-    noImage = Math.random() < 0.5;
-  }
+  let noImage: boolean = false;
+  // if (Math.random() > 0.5) {
+  //   data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
+  //   noImage = Math.random() < 0.5;
+  // }
 
   return (
     <PostArticle post={data}>
@@ -52,7 +53,12 @@ export default function Post({ post }: Props) {
                   <>
                     <div className={styles.afterImageSectionCover} />
                     <span>{data.content}</span>
-                    <img src={data.Images[0]?.link} alt="" />
+                    <Image
+                      src={data.Images[0]?.link}
+                      width={50}
+                      height={50}
+                      alt=""
+                    />
                   </>
                 )}
               </div>
