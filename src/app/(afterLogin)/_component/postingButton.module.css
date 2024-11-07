@@ -1,0 +1,18 @@
+.postingButton {
+  width: 94px;
+  height: 36px;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 18px;
+  background-color: rgb(107, 115, 120);
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+}
+.postingButton:hover {
+  background-color: rgb(57, 61, 45);
+}
