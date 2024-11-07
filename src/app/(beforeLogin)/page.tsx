@@ -12,6 +12,7 @@ import {
 import PostRecommends from "./_components/homeSection/homeMainSection/tab/PostAll";
 import { getPostRecommends } from "../(afterLogin)/_lib/getPostAll";
 import TabDecider from "./_components/homeSection/homeMainSection/tab/TabDecider";
+import Banner from "./_components/homeSection/homeMainSection/tab/Banner";
 
 export default async function RightSectionMain() {
   const queryClient = new QueryClient();
@@ -30,8 +31,8 @@ export default async function RightSectionMain() {
       <HydrationBoundary state={dehydrateState}>
         <TabProvider>
           <Tab />
-          <PostForm />
-          {/* <Banner /> */}
+          {/* <PostForm /> */}
+          <Banner />
           <TabDecider />
         </TabProvider>
       </HydrationBoundary>

@@ -1,0 +1,14 @@
+.banner {
+  display: flex;
+  background-color: yellow;
+  width: inherit;
+  height: 130px;
+  margin-top: 101px;
+}
+
+.banner img {
+  margin-top: 12px;
+  width: inherit;
+  height: 130px;
+  border-radius: 16px;
+}

@@ -8,6 +8,7 @@
   transition-property: background-color, box-shadow;
   transition-duration: 0.2s;
   cursor: pointer;
+  /* margin-top: 101px; */
 }
 .post:hover {
   background-color: rgba(0, 0, 0, 0.03);
