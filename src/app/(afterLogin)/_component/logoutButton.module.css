@@ -3,12 +3,13 @@
   height: 66px;
   padding: 12px;
   display: flex;
-  margin: 12px 0;
+  margin: 12px 20px;
   cursor: pointer;
   border: none;
   align-items: center;
   background-color: #fff;
   text-align: left;
+  justify-content: right;
 }
 .logOutUserName {
   display: none;
@@ -23,7 +24,7 @@
 }
 @media all and (min-width: 1300px) {
   .logOutButton {
-    width: 258px;
+    width: 100px;
   }
   .logOutUserName {
     margin: 0 12px;
@@ -34,12 +35,36 @@
   }
 }
 .logOutButton:hover {
-  background-color: rgba(15, 20, 25, 0.1);
-  border-radius: 33px;
+  /* background-color: rgba(15, 20, 25, 0.1);
+  border-radius: 33px; */
 }
 
 .bg {
-  width: 50px;
+  /* display: flex; */
+}
+.navItem {
+  display: flex;
   height: 50px;
-  background-color: black;
+  width: 50px;
+  align-items: center;
+  padding: 12px;
+  /* background-color: brown; */
+}
+
+.navItem:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+  border-radius: 29px;
+}
+
+.navItem > div {
+  display: none;
+}
+
+@media all and (min-width: 1300px) {
+  .navItem > div {
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 16px;
+    font-size: 20px;
+  }
 }

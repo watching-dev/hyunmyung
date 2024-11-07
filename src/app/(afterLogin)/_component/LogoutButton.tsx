@@ -37,15 +37,21 @@ export default function LogoutButton({ me }: Props) {
   return (
     <div className={style.bg}>
       <button className={style.logOutButton} onClick={onLogout}>
-        로그아웃
-        {/* <div className={style.logOutUserImage}>
+        <div className={style.navItem}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
+            </g>
+          </svg>
+        </div>
+      </button>
+      {/* <div className={style.logOutUserImage}>
         <img src={me.user?.image as string} alt={me.user?.email as string} />
       </div>
       <div className={style.logOutUserName}>
         <div>{me.user?.name}</div>
         <div>@{me.user?.email}</div>
       </div> */}
-      </button>
     </div>
   );
 }

@@ -5,9 +5,9 @@ import { auth } from "@/auth";
 export default async function LeftSectionLogo() {
   const session = await auth();
   return (
-    <>
+    <div className={styles.bg}>
       <div className={styles.logo}>로고</div>
       <LogoutButton me={session} />
-    </>
+    </div>
   );
 }
