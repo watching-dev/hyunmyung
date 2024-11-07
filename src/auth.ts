@@ -14,7 +14,7 @@ export const {
     CredentialsProvider({
       async authorize(credentials) {
         const authResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
+          `${process.env.NEXT_PUBLIC_BASE}/api/login`,
           {
             method: "POST",
             headers: {
