@@ -1,5 +1,6 @@
 import dbConnect from "@/app/_lib/dbConnect";
 import JoinAPIS from "@/app/model/join";
+import * as bcrypt from "bcrypt";
 
 const saltRounds = 10;
 
@@ -9,13 +10,24 @@ export async function POST(req: Request, res: Response) {
 
     const data = await req.json();
     console.log(data);
-    const hashPassword: String = data.userPw;
-    // const hashPassword: String = await bcrypt.hash(userPassword, saltRounds);
+    const userPassword: String = data.userPw;
+    // bcrypt.genSalt(saltRounds, function (err, salt) {
+    //   bcrypt.hash(userPassword as string, salt, function (err, hash) {
+    //     // Store hash in your password DB.
+    //     console.log("hash:", hash);
+    //   });
+    // });
+    const hashPassword: String = await bcrypt.hash(
+      userPassword as string,
+      saltRounds
+    );
+    console.log("hashp:", hashPassword);
     // const userJ = JoinAPIS2;
     // console.log(userJ);
+
     const userr = new JoinAPIS({
       userId: data.userId,
-      userPw: 33,
+      userPw: hashPassword,
       name: data.name,
       createdAt: Date.now(),
     }); // 모델을 생성하고 나서 여기에서 뭐라도 수정하고 저장 -> post 하면 중복 생성하라고 에러 뜸, 서버 재시작 해야함
