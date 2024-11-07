@@ -26,6 +26,7 @@ export default function LogoutButton({ me }: Props) {
     // signOut({ callbackUrl: "/" });
     signOut({ redirect: false }).then(() => {
       router.replace("/");
+      router.refresh();
     });
   };
 
