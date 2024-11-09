@@ -12,7 +12,7 @@ export default function Search({ searchParams }: Props) {
       <div className={style.searchTop}>
         <div className={style.searchZone}>
           <div className={style.buttonZone}>
-            <BackButton />
+            <BackButton page="/explore" />
           </div>
           <div className={style.formZone}>
             <RightSectionSearch q={searchParams.q} />

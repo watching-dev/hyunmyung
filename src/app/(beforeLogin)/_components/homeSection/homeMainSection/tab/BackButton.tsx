@@ -3,11 +3,12 @@
 import { useRouter } from "next/navigation";
 import style from "./backButton.module.css";
 
-export default function BackButton() {
+type Props = { page: string };
+export default function BackButton({ page }: Props) {
   const router = useRouter();
   const onClick = () => {
     // router.back();
-    router.replace("/explore");
+    router.replace(page);
   };
   return (
     <button className={style.backButton} onClick={onClick}>
