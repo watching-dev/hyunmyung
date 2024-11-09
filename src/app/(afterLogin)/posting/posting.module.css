@@ -1,12 +1,15 @@
 .tabFixed {
   position: fixed;
   z-index: 1;
-  width: 598px;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   border-color: rgb(239, 243, 244);
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
