@@ -5,7 +5,11 @@ import RightSectionMain from "../../page";
 import styles from "./homeRightSection.module.css";
 import RightSectionRecommend from "./homeRightSection/RightSectionRecommend";
 import RightSectionSearch from "./homeRightSection/RightSectionSearch";
-import { usePathname } from "next/navigation";
+import {
+  usePathname,
+  useRouter,
+  useSelectedLayoutSegments,
+} from "next/navigation";
 import HomeRightSectionProfileImage from "../profileSection/HomeRightSectionProfileImage";
 
 export default function HomeRightSection({
@@ -14,7 +18,9 @@ export default function HomeRightSection({
   children: ReactNode;
 }) {
   const pathName = usePathname();
+  const pathNames = useSelectedLayoutSegments();
   console.log(pathName);
+  console.log(pathNames);
 
   if (pathName === "/profile") {
     return (
@@ -38,6 +44,16 @@ export default function HomeRightSection({
           <div className={styles.rightSection}>
             <RightSectionRecommend />
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (pathName === `/post/${pathNames[1]}`) {
+    return (
+      <div className={styles.rightSectionWrapper}>
+        <div className={styles.rightSectionInner}>
+          <div className={styles.mainSection}>{children}</div>
         </div>
       </div>
     );
