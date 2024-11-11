@@ -5,6 +5,8 @@ import styles from "./posting.module.css";
 import QuillNoSSRWrapper from "../_component/QuillEditor";
 import { useRef, useState } from "react";
 import ReactQuill from "react-quill";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const modules = {
   toolbar: [
@@ -48,15 +50,31 @@ const formats = [
 
 export default function Posting() {
   const [value, setValue] = useState("");
+  const router = useRouter();
+  const session = useSession();
+  console.log("session:", session);
+
   // 게시물 작성하기
   const handleSubmit = async () => {
     try {
       console.log(value);
-      // const response = await fetch(
-      //   `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
-      // );
 
-      // console.log(response);
+      // const params = {
+      //   userId: formData.get("userId"),
+      //   userPw: formData.get("userPw"),
+      //   name: formData.get("userName"),
+      // };
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      });
+      console.log(response);
+      const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나
+      console.log(res);
+      // router.replace("/");
     } catch (error: unknown) {
       console.error(error);
     }
@@ -68,9 +86,7 @@ export default function Posting() {
       <div className={styles.tabFixed}>
         <BackButton page="/" />
         <div className={styles.title}>작성하기</div>
-      </div>{" "}
-      이미지는 아직 모르겠는데 글은 setContent, content로 데이터 받아와서 서버
-      넘김, 에디터에서 가져오는건 onChange로 가져오는거네
+      </div>
       <QuillNoSSRWrapper
         className={styles.editor}
         forwardedRef={quillInstance}

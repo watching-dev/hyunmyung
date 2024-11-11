@@ -50,11 +50,16 @@ export const {
 
         console.log("user", user);
         return {
+          // email: user.id,
+          // name: user.nickname,
+          // image: user.image,
+          // id: "usersuer" 이거 리턴 못받네,
           email: user.id,
-          name: user.nickname,
+          name: user.name,
           image: user.image,
           // ...user,
         };
+        // return user;
       },
     }),
   ],
