@@ -30,3 +30,31 @@
   margin-top: 70px;
   padding: 20px 100px;
 }
+
+.logOutButton {
+  width: 66px;
+  height: 66px;
+  padding: 12px;
+  display: flex;
+  margin: 12px 20px;
+  cursor: pointer;
+  border: none;
+  align-items: center;
+  background-color: #fff;
+  text-align: left;
+  justify-content: right;
+}
+
+.navItem {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  align-items: center;
+  padding: 12px;
+  /* background-color: brown; */
+}
+
+.navItem:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+  border-radius: 30px;
+}
