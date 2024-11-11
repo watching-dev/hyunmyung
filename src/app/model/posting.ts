@@ -4,7 +4,7 @@ const PostingSchema = new Schema({
   userName: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   email: String,
   content: String,
