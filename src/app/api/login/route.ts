@@ -28,6 +28,9 @@ export async function POST(req: Request, res: Response) {
     return Response.json({
       message: isMatched ? "OK" : "아이디 혹은 비밀번호를 확인해주세요.",
       result: isMatched,
+      id: userInfo.userId,
+      name: userInfo.name,
+      image: null,
     });
   } catch (error) {
     console.log("err==", error);

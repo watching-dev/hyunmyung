@@ -18,7 +18,8 @@ export default function LoginModal() {
         password,
         redirect: false,
       });
-      console.log("err", response);
+
+      console.log(response);
       console.log("eeror", response?.error);
 
       // if (!response?.error) {
