@@ -11,5 +11,5 @@ export async function middleware() {
 // See "Matching Paths" below to learn more
 export const config = {
   //   matcher: ["/profile"], /profile이면 로그인 창 뜸
-  matcher: ["/posting"],
+  matcher: ["/posting", "/banner"],
 };
