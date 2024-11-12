@@ -34,4 +34,8 @@
     flex-direction: row;
     width: inherit;
   }
+
+  .logo svg {
+    fill: rgb(255, 147, 39);
+  }
 }
