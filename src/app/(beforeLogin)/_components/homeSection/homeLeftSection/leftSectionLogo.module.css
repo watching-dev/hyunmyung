@@ -15,6 +15,10 @@
   width: 100px;
 }
 
+.logo svg {
+  fill: rgb(255, 147, 39);
+}
+
 @media all and (min-width: 1300px) {
   .logo {
     display: flex;

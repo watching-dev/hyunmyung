@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function LeftSectionMenu() {
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
+  console.log("seg", segment);
   const profile = {
     // id: "hyunmyung",
     id: "profile",
@@ -51,7 +51,7 @@ export default function LeftSectionMenu() {
       <li>
         <Link href="/explore">
           <div className={styles.navItem}>
-            {segment === "explore" ? (
+            {segment === "explore" || segment === "search" ? (
               <>
                 <svg
                   width={26}
