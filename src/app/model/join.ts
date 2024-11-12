@@ -2,15 +2,20 @@ import { InferSchemaType, model, models, Schema } from "mongoose";
 import Default from "../(beforeLogin)/@modal/default";
 
 const JoinSchema = new Schema({
-  //   _id: Schema.Types.ObjectId,
+  // _id: Schema.Types.ObjectId, - 이거 하니까 updatedAt, _id 생성이 안되네
   userId: {
     type: String,
     required: true,
     unique: true,
   },
   userPw: { type: String, required: [true, "비밀번호를 입력하세요"] },
-  name: String,
-  createdAt: { type: Date, Default: Date.now() },
+  userName: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  createdAt: { type: Date },
+  //updatedAt: { type: Date }, // 업데이트 이력을 남기려면 새로운 컬렉션에다가 해야하네_unique 때문에
 });
 
 type JoinType = InferSchemaType<typeof JoinSchema>;
