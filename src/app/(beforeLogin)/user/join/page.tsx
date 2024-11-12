@@ -6,6 +6,7 @@ export default function Join() {
       userId: formData.get("userId"),
       userPw: formData.get("userPw"),
       name: formData.get("userName"),
+      description: formData.get("userDesc"),
     };
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE}/api/user/join`,
@@ -32,6 +33,8 @@ export default function Join() {
           <input type="password" name="userPw"></input>
           <p>이름</p>
           <input type="text" name="userName"></input>
+          <p>소개</p>
+          <input type="text" name="userDesc"></input>
           <hr />
           <button type="submit">가입하기</button>
         </div>
