@@ -62,7 +62,7 @@ export default async function Profile({ params }: Props) {
       </div>
       <div className={styles.backgroundImage}>background image</div>
       <div className={styles.profileBackground}>
-        <div className={styles.profileImage}></div>
+        <div className={styles.profileImage} />
       </div>
       <div className={styles.name}>
         {data === null ? "HyunMyung" : data.User.userName}
