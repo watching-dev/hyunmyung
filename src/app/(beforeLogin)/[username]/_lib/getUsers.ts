@@ -6,10 +6,11 @@ export const getUser: QueryFunction<User, [_1: string, _2: string]> = async ({
 }) => {
   const [_1, username] = queryKey;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,
+    // `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile`,
     {
       next: {
-        tags: ["users", username],
+        tags: ["user", username],
       },
       credentials: "include",
       cache: "no-store",

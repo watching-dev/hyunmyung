@@ -29,7 +29,7 @@ export default function HomeRightSection({
           <div className={styles.mainSection}>{children}</div>
           <div className={styles.rightSection}>
             <RightSectionSearch />
-            <HomeRightSectionProfileImage />
+            {/* <HomeRightSectionProfileImage /> */}
           </div>
         </div>
       </div>
