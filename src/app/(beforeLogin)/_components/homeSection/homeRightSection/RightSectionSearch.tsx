@@ -17,7 +17,12 @@ export default function RightSectionSearch({ q }: Props) {
   };
 
   return (
-    <div style={{ marginBottom: 60, width: "inherit" }}>
+    <div
+      style={{
+        marginBottom: 60,
+        width: "inherit",
+      }}
+    >
       <form className={styles.search} onSubmit={onSubmit}>
         <svg width={20} viewBox="0 0 24 24" aria-hidden="true">
           <g>

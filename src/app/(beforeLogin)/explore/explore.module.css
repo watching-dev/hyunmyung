@@ -8,6 +8,8 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,4 +28,5 @@
 
 .searchBack {
   width: 80%;
+  margin-top: 3px;
 }

@@ -18,10 +18,15 @@
   border-bottom-style: solid;
   width: 600px;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .searchZone {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 4px 0;
 }
 
 .backButton {
@@ -47,6 +52,7 @@
   flex: 1;
   height: 53px;
   width: 526px;
+  margin-bottom: 3px;
 }
 
 .homeFixed {

@@ -1,13 +1,14 @@
 .search {
   display: flex;
   position: fixed;
-  height: 42px;
+  height: 32px;
   width: inherit;
   background-color: rgb(239, 243, 244);
   border-radius: 21px;
   margin-top: 12px;
   margin-bottom: 20px;
   align-items: center;
+  /* justify-content: center; */
 }
 
 .search svg {
@@ -24,4 +25,5 @@
   outline: none;
   background-color: inherit;
   border: none;
+  height: inherit;
 }
