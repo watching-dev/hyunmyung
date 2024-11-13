@@ -40,7 +40,7 @@ export async function GET(req: Request) {
     // }
     console.log("posting:", allPost);
 
-    const postList = allPost.map((post) => {
+    const postList = allPost.reverse().map((post) => {
       const list = {
         title: post.title,
         postId: post.postId,
