@@ -78,7 +78,7 @@ export default function Post({ post }: Props) {
             >
               {data.Profile.User.userName}
             </Link>
-            &nbsp;
+            &nbsp; &nbsp;
             <div className={styles.postUserId}>{data.Profile.description}</div>
             &nbsp; · &nbsp;
             <div className={styles.postDate}>{time}</div>

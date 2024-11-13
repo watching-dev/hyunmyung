@@ -43,6 +43,12 @@
   border-radius: 20px;
 }
 
+.postUserId {
+  color: gray;
+  font-size: 14px;
+  margin-top: 1px;
+}
+
 .postShade {
   display: inline-block;
   width: 40px;
@@ -66,7 +72,10 @@
 }
 .postUserNick,
 .postDate {
-  color: rgb(83, 100, 113);
+  /* color: rgb(83, 100, 113); */
+  color: rgb(142, 142, 147);
+  font-weight: bold;
+  font-size: 14px;
 }
 /* .postDate:hover {
   text-decoration: underline;
