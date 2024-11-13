@@ -89,6 +89,10 @@
   flex-direction: row;
 }
 
+.titleImage {
+  margin: 10px 0;
+}
+
 .postImageSection img {
   margin-top: 12px;
   width: 517px;
