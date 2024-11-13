@@ -56,22 +56,21 @@ export default function Posting() {
   const title = "title";
 
   // 게시물 작성하기
-  const handleSubmit = async () => {
+  const handleSubmit = async (formData: FormData) => {
     try {
       console.log("handle");
       console.log(content);
 
-      // const params = {
-      //   userId: formData.get("userId"),
-      //   userPw: formData.get("userPw"),
-      //   name: formData.get("userName"),
-      // };
+      const params = {
+        postImage: formData.get("image"),
+      };
+      console.log(params);
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content, title }),
+        body: JSON.stringify({ content, title, params }),
       });
       console.log(response);
       const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나
@@ -100,15 +99,25 @@ export default function Posting() {
         onChange={setContent}
         // style={{ width: "100%", height: "80%" }}
       />
-      <button className={styles.logOutButton} onClick={handleSubmit}>
-        <div className={styles.navItem}>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <g>
-              <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
-            </g>
-          </svg>
+
+      <form action={handleSubmit}>
+        <div>
+          <p>post image url</p>
+          <input type="text" name="image"></input>
         </div>
-      </button>
+        <button
+          type="submit"
+          className={styles.logOutButton} /* onClick={handleSubmit}*/
+        >
+          <div className={styles.navItem}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <g>
+                <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
+              </g>
+            </svg>
+          </div>
+        </button>
+      </form>
     </>
   );
 }

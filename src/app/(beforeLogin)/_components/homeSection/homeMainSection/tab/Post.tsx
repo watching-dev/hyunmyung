@@ -8,37 +8,9 @@ import Link from "next/link";
 import { Post as IPost } from "@/app/model/Post";
 import Image from "next/image";
 import { IList } from "@/app/api/posts/route";
-import updateLocale from "dayjs/plugin/updateLocale";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
-dayjs.extend(updateLocale);
-dayjs.updateLocale("en", {
-  relativeTime: {
-    future: "in %s",
-    past: (value: string) => {
-      if (value === "0 seconds") {
-        return "Just Now";
-      }
-
-      if (value === "1 seconds") {
-        return "1 second ago";
-      }
-      return `${value} ago`;
-    },
-    s: "%d seconds",
-    m: "a minute",
-    mm: "%d minutes",
-    h: "an hour",
-    hh: "%d hours",
-    d: "a day",
-    dd: "%d days",
-    M: "a month",
-    MM: "%d months",
-    y: "a year",
-    yy: "%d years",
-  },
-});
 
 type Props = {
   // post: IPost;
@@ -59,7 +31,8 @@ export default function Post({ post }: Props) {
     dayjs(data.createdAt).subtract(9, "hour").format()
   ).fromNow(true);
 
-  const noImage: boolean = true; // data.Images[0].link === "" ? true : false;
+  const noImage: boolean =
+    data.postImage === "" || data.postImage === undefined ? true : false;
   // if (Math.random() > 0.5) {
   //   data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
   //   noImage = Math.random() < 0.5;

@@ -4,7 +4,6 @@ const PostingSchema = new Schema({
   postId: String,
   title: String,
   Profile: {
-    postImage: String,
     User: {
       userName: {
         type: String,
@@ -13,6 +12,7 @@ const PostingSchema = new Schema({
     },
     description: String,
   },
+  postImage: String,
   content: String,
   createdAt: Date,
   updatedAt: Date,

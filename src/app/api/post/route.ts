@@ -54,13 +54,13 @@ export async function POST(req: Request, res: Response) {
       postId: postId2,
       title: data.title,
       Profile: {
-        postImage: data.postImage,
         User: {
           userName: profile.User.userName,
           user_Id: profile.User.user_id,
         },
         description: profile.description,
       },
+      postImage: data.params.postImage,
       content: data.content,
       createdAt: kr_current,
       updatedAt: kr_current,
