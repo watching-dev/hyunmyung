@@ -1,13 +1,20 @@
 import { InferSchemaType, model, models, Schema } from "mongoose";
 
 const PostingSchema = new Schema({
-  userName: {
-    type: String,
-    required: true,
-    unique: false,
+  postId: Number,
+  title: String,
+  Profile: {
+    postImage: String,
+    User: {
+      userName: {
+        type: String,
+      },
+      user_Id: Schema.Types.ObjectId,
+    },
   },
-  email: String,
   content: String,
+  createdAt: Date,
+  updatedAt: Date,
 });
 
 type PostingType = InferSchemaType<typeof PostingSchema>;

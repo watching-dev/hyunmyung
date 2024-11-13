@@ -49,15 +49,17 @@ const formats = [
 ];
 
 export default function Posting() {
-  const [value, setValue] = useState("");
+  const [content, setContent] = useState("");
   const router = useRouter();
   const session = useSession();
   console.log("session:", session);
+  const title = "title";
 
   // 게시물 작성하기
   const handleSubmit = async () => {
     try {
-      console.log(value);
+      console.log("handle");
+      console.log(content);
 
       // const params = {
       //   userId: formData.get("userId"),
@@ -69,7 +71,7 @@ export default function Posting() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(value),
+        body: JSON.stringify({ content, title }),
       });
       console.log(response);
       const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나
@@ -94,8 +96,8 @@ export default function Posting() {
         formats={formats}
         theme="snow"
         placeholder={"여기에서 입력하세요."}
-        value={value}
-        onChange={setValue}
+        value={content}
+        onChange={setContent}
         // style={{ width: "100%", height: "80%" }}
       />
       <button className={styles.logOutButton} onClick={handleSubmit}>
