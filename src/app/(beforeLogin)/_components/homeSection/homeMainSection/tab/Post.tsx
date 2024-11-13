@@ -7,18 +7,20 @@ import PostArticle from "./PostArticle";
 import Link from "next/link";
 import { Post as IPost } from "@/app/model/Post";
 import Image from "next/image";
+import { IList } from "@/app/api/posts/route";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
 type Props = {
-  post: IPost;
+  // post: IPost;
+  post: IList;
 };
 
 export default function Post({ post }: Props) {
   const data = post;
 
-  const noImage: boolean = data.Images[0].link === "" ? true : false;
+  const noImage: boolean = true; // data.Images[0].link === "" ? true : false;
   // if (Math.random() > 0.5) {
   //   data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
   //   noImage = Math.random() < 0.5;
@@ -35,30 +37,30 @@ export default function Post({ post }: Props) {
               href={`/profile`}
               className={styles.postUserName}
             >
-              {data.User.nickName}
+              {data.Profile.User.userName}
             </Link>
             &nbsp;
-            <div className={styles.postUserId}>{data.postId}</div>
+            <div className={styles.postUserId}>{data.Profile.description}</div>
             &nbsp; · &nbsp;
             <div className={styles.postDate}>
               {dayjs(data.createdAt).fromNow(true)}
             </div>
           </div>
           {/* <div>{data.content}</div> */}
-          <div>
+          <div className={styles.titleImage}>
             {noImage ? (
-              <div>{data.content}</div>
+              <div>{data.title}</div>
             ) : (
               <div className={styles.afterImageSection}>
-                {data.Images && data.Images.length > 0 && (
+                {data.postImage && data.postImage.length > 0 && (
                   <>
                     <div className={styles.afterImageSectionCover} />
-                    <span>{data.content}</span>
+                    <span>{data.title}</span>
                     <Image
-                      src={data.Images[0]?.link}
+                      src={data.postImage}
                       width={50}
                       height={50}
-                      alt={data.content}
+                      alt={data.title}
                     />
                   </>
                 )}

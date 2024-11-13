@@ -1,7 +1,7 @@
 import { InferSchemaType, model, models, Schema } from "mongoose";
 
 const PostingSchema = new Schema({
-  postId: Number,
+  postId: String,
   title: String,
   Profile: {
     postImage: String,

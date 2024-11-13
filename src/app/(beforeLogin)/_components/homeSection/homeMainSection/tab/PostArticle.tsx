@@ -8,15 +8,19 @@ import { PostImage } from "@/app/model/PostImage";
 type Props = {
   children: ReactNode;
   post: {
-    postId: number;
-    content: string;
-    User: {
-      id: string;
-      nickName: string;
-      image: string;
+    title: string;
+    postId: string;
+    Profile: {
+      User: {
+        userId: string;
+        userName: string;
+      };
+      description: String;
+      profileImage: String;
     };
+    postImage: String;
     createdAt: Date;
-    Images: PostImage[];
+    updatedAt: Date;
   };
 };
 

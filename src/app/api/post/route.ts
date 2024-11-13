@@ -17,15 +17,19 @@ export async function POST(req: Request, res: Response) {
 
     // 로그인된 정보의 프로필 가져오기
     const profile = await ProfileAPIS.findOne({
-      "User.userName": session?.user?.email,
+      "User.userId": session?.user?.email,
     });
     console.log("pf", profile);
 
     // 포스팅 갯수 가쟈와서 postId 계산하기
     const count = await PostingAPIS.find({
-      "Profile.User.userName": session?.user?.email,
-    }); //.countDocuments;
+      "Profile.User.userId": session?.user?.email,
+    }); //.countDocuments
     console.log("count:", count, "length:", count.length);
+
+    // 전체 포스팅 개수
+    const countAll = (await PostingAPIS.find()).length;
+    console.log("countAll", countAll);
 
     const current = new Date();
     const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
@@ -34,11 +38,20 @@ export async function POST(req: Request, res: Response) {
     const kr_current = new Date(utc + KR_TIME_DIFF * 2);
     console.log("time:", kr_current);
 
-    console.log("postID:", count.length + 1, "userName", profile.User.userName);
+    // 나중에 id를 base64든 뭐든 암호화 해서 저장
+    const base64ID = btoa(session?.user?.email as string);
+    const originID = atob(base64ID);
+    console.log("64: ", base64ID, "origin: ", originID);
+    const postId = `(${countAll})${session?.user?.email}_${count.length + 1}`;
+    const postId2 = `${countAll}_${base64ID}_${count.length + 1}`;
+    // postId니까 어차피 겹치지만 않으면 되는데 postId2 전체를 base64할까..
+
+    console.log(">> postID:", postId, "userId", profile.User.userName);
+    console.log(">> postID2:", postId2);
 
     console.log("-------");
     const post = new PostingAPIS({
-      postId: count.length + 1,
+      postId: postId2,
       title: data.title,
       Profile: {
         postImage: data.postImage,

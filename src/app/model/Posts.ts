@@ -1,19 +1,22 @@
 import { InferSchemaType, model, models, Schema } from "mongoose";
 
-const PostSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  postId: Number,
-  User: {
-    id: String,
-    nickName: String,
-    image: String,
+const PostsSchema = new Schema({
+  title: String,
+  Profile: {
+    User: {
+      user_id: Schema.Types.ObjectId,
+      userId: String,
+      userName: String,
+    },
+    description: String,
+    profileImage: String,
   },
-  content: String,
+  postImage: String,
   createdAt: Date,
-  Images: Array,
+  updatedAt: Date,
 });
 
-type PostType = InferSchemaType<typeof PostSchema>;
-const PostAPI = models?.PostAPI || model<PostType>("PostAPI", PostSchema);
+type PostsType = InferSchemaType<typeof PostsSchema>;
+const PostsAPI = models?.PostsAPI || model<PostsType>("PostsAPI", PostsSchema);
 
-export default PostAPI;
+export default PostsAPI;

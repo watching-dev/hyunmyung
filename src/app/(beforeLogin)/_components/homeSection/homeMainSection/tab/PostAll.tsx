@@ -10,6 +10,7 @@ import { Post as IPost } from "@/app/model/Post";
 import { getPostAll } from "@/app/(afterLogin)/_lib/getPostAll";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { IList } from "@/app/api/posts/route";
 
 export default function PostAll() {
   // const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
@@ -64,10 +65,11 @@ export default function PostAll() {
   //     <div ref={ref} style={{ height: 50 }} />
   //   </>
   // );
-  const { data } = useQuery<IPost[]>({
+  const { data } = useQuery<IList[]>({
     queryKey: ["posts", "all"],
     queryFn: getPostAll,
     staleTime: 60 * 1000,
   });
+  console.log("qq==", data);
   return data?.map((post) => <Post key={post.postId} post={post} />);
 }
