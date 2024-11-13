@@ -11,6 +11,7 @@ const PostingSchema = new Schema({
       },
       user_Id: Schema.Types.ObjectId,
     },
+    description: String,
   },
   content: String,
   createdAt: Date,

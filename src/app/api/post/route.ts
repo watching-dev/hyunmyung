@@ -59,6 +59,7 @@ export async function POST(req: Request, res: Response) {
           userName: profile.User.userName,
           user_Id: profile.User.user_id,
         },
+        description: profile.description,
       },
       content: data.content,
       createdAt: kr_current,
