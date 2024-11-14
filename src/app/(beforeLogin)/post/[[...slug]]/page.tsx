@@ -41,12 +41,20 @@ type Props = {
 //   return <div>post slug</div>;
 // }
 
-const PostSlug: React.FC<Props> = () => {
+export default function PostSlug() {
   const search = useSearchParams();
   console.log("search", search);
   const post: any = search.get("post");
   console.log("post", post);
   return <div>post slug</div>;
-};
+}
 
-export default PostSlug;
+// const PostSlug: React.FC<Props> = () => {
+//   const search = useSearchParams();
+//   console.log("search", search);
+//   const post: any = search.get("post");
+//   console.log("post", post);
+//   return <div>post slug</div>;
+// };
+
+// export default PostSlug;
