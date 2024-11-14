@@ -52,8 +52,8 @@ export default function HomeRightSection({
   if (pathName === `/post/${pathNames[1]}`) {
     return (
       <div className={styles.rightSectionWrapper}>
-        <div className={styles.rightSectionInner}>
-          <div className={styles.mainSection}>{children}</div>
+        <div className={styles.rightSectionPost}>
+          <div className={styles.mainSectionPost}>{children}</div>
         </div>
       </div>
     );

@@ -7,6 +7,8 @@ import {
   useSelectedLayoutSegments,
 } from "next/navigation";
 import PostDetail from "../../_components/homeSection/homeMainSection/tab/PostDetail";
+import styles from "./postSlug.module.css";
+import BackButton from "../../_components/homeSection/homeMainSection/tab/BackButton";
 
 type Props = {
   // param: { id: string };
@@ -47,10 +49,18 @@ export default async function PostSlug(props: any) {
   console.log(res);
 
   return (
-    <div>
-      post slug
-      <div>{res.content}</div>
-    </div>
+    <>
+      <div className={styles.tabFixed}>
+        <BackButton page="/" />
+        <div className={styles.title}>Title</div>
+      </div>
+      <div className={styles.postWrapper}>
+        <div className={styles.postBoundary}>
+          post slug
+          <div>{res.content}</div>
+        </div>
+      </div>
+    </>
   );
 }
 
