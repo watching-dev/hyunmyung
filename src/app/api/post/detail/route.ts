@@ -8,11 +8,12 @@ export async function POST(req: Request, res: Response) {
     await dbConnect();
 
     // 입력한 데이터
-    const postId = await req.json();
-    console.log("data==>>", postId);
+    const data = await req.json();
+    console.log("data==>>", data);
 
     const postedData = await PostingAPIS.findOne({
-      postId: postId.originPostId,
+      postId: data.originPostId,
+      title: data.slug,
     });
     console.log("postedData", postedData);
     return Response.json(postedData);

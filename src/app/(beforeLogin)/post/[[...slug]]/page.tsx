@@ -34,6 +34,8 @@ export default async function PostSlug(props: any) {
     console.log("props slug", props.params.slug); // 이렇게 해야 url 값을 가져오네
     const originPostId = atob(props.params.slug[0]); // 디코딩이 실패하면 에러남_인코딩 글자를 임의로 수정했을 경우처럼
     console.log("origin:", originPostId);
+    const slug = props.params.slug[1].replace(/-/gi, " "); // -를 공백으로 치환
+    console.log("slug==", slug);
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE}/api/post/detail`,
@@ -42,7 +44,7 @@ export default async function PostSlug(props: any) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ originPostId }),
+        body: JSON.stringify({ originPostId, slug }),
         next: { revalidate: 3 },
       }
     );
