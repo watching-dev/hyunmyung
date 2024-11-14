@@ -62,7 +62,10 @@ export default async function PostSlug(props: any) {
         </div>
         <div className={styles.postWrapper}>
           <div className={styles.postBoundary}>
-            <span dangerouslySetInnerHTML={{ __html: cleanContent }} />
+            <span
+              className={styles.content}
+              dangerouslySetInnerHTML={{ __html: cleanContent }}
+            />
           </div>
         </div>
       </>
