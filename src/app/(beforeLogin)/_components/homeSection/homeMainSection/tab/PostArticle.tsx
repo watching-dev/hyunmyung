@@ -52,20 +52,20 @@ export default function PostArticle({ children, post }: Props) {
   };
 
   return (
-    // <article onClickCapture={onClick} className={styles.post}>
-    //   {children}
-    // </article>
-    <Link
-      href={
-        {
-          pathname: `/post/${base64Flag}/${slug}`,
-          query: { post: JSON.stringify(post) },
-        }
-        // ref={ref}
-      }
-      className={styles.post}
-    >
+    <article onClickCapture={onClick} className={styles.post}>
       {children}
-    </Link>
+    </article>
+    // <Link
+    //   href={
+    //     {
+    //       pathname: `/post/${base64Flag}/${slug}`,
+    //       query: { post: JSON.stringify(post) },
+    //     }
+    //     // ref={ref}
+    //   }
+    //   className={styles.post}
+    // >
+    //   {children}
+    // </Link>
   );
 }
