@@ -20,7 +20,7 @@ export default function HomeRightSection({
   const pathName = usePathname();
   const pathNames = useSelectedLayoutSegments();
   console.log("right", pathName);
-  console.log("right", pathNames);
+  console.log("rights", pathNames);
 
   if (pathName === "/profile") {
     return (
