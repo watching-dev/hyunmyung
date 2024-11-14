@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import styles from "./post.module.css";
 import { useRouter } from "next/navigation";
 import { PostImage } from "@/app/model/PostImage";
@@ -16,10 +16,10 @@ type Props = {
         userId: string;
         userName: string;
       };
-      description: String;
-      profileImage: String;
+      description: string;
+      profileImage: string;
     };
-    postImage: String;
+    postImage: string;
     createdAt: Date;
     updatedAt: Date;
   };
@@ -39,6 +39,7 @@ export default function PostArticle({ children, post }: Props) {
   console.log("split:", split);
   const base64Flag = btoa(post.postId); // bas64로 인코딩
   console.log("send", base64Flag);
+  const ref = useRef(null);
 
   const onClick = () => {
     // router.push(`/${post.User.id}/status/${post.postId}`);
@@ -51,8 +52,20 @@ export default function PostArticle({ children, post }: Props) {
   };
 
   return (
-    <article onClickCapture={onClick} className={styles.post}>
+    // <article onClickCapture={onClick} className={styles.post}>
+    //   {children}
+    // </article>
+    <Link
+      href={
+        {
+          pathname: `/post/${base64Flag}/${slug}`,
+          query: { post: JSON.stringify(post) },
+        }
+        // ref={ref}
+      }
+      className={styles.post}
+    >
       {children}
-    </article>
+    </Link>
   );
 }

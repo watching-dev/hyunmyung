@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function LeftSectionMenu() {
   const segment = useSelectedLayoutSegment();
-  console.log("seg", segment);
+  console.log("left seg", segment);
   const profile = {
     // id: "hyunmyung",
     id: "profile",
