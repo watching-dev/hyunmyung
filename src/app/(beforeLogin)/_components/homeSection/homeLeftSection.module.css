@@ -11,6 +11,7 @@
   height: inherit;
   /* background-color: blue; */
   width: 72px;
+  margin-right: 20px;
 }
 
 .fixed {
@@ -45,6 +46,7 @@
     height: inherit;
     /* background-color: blue; */
     width: 210px;
+    margin-right: 0px;
   }
 
   .fixed {
