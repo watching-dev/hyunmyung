@@ -26,22 +26,32 @@ type Props = {
     updatedAt: Date;
   };
 };
-export default function PostSlug(props: any) {
-  console.log("props id", props.params.id);
+export default async function PostSlug(props: any) {
   console.log("props slug", props.params.slug); // 이렇게 해야 url 값을 가져오네
-  // const { [...slug] } = param;
-  // console.log("ppp==", slug);
-  // const pathName = usePathname();
+  const originPostId = atob(props.params.slug[0]);
+  console.log("origin:", originPostId);
 
-  // const pathNames = useSelectedLayoutSegments();
-  // console.log("name:", pathName);
-  // console.log("names", pathNames); // 이건 왜 여기서만 못잡냐..
-  // const split = pathName.split("/"); // /로 구분해서 각 배열에 담음
-  // console.log("split:", split);
-  // const originPostId = atob(split[2]);
-  // console.log("origin:", originPostId);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE}/api/post/detail`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ originPostId }),
+      next: { revalidate: 3 },
+    }
+  );
 
-  return <div>post slug</div>;
+  const res = await response.json();
+  console.log(res);
+
+  return (
+    <div>
+      post slug
+      <div>{res.content}</div>
+    </div>
+  );
 }
 
 // export default function PostSlug() {

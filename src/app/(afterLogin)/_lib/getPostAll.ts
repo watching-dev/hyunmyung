@@ -7,6 +7,7 @@ export async function getPostAll() {
     {
       next: {
         tags: ["posts", "all"],
+        revalidate: 30,
       },
     }
   );
