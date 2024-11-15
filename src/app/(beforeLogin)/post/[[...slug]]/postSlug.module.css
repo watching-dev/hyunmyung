@@ -25,6 +25,7 @@
   border-bottom-right-radius: 1.5rem;
   margin-bottom: 50px;
   padding: 50px;
+  cursor: default;
 }
 
 .tabFixed {
@@ -39,7 +40,8 @@
   display: flex;
   align-items: center;
   /* padding-left: 20px; */
-  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   cursor: default;
 }
 
