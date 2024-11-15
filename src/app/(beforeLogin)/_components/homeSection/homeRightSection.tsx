@@ -17,14 +17,15 @@ export default function HomeRightSection({
 }: {
   children: ReactNode;
 }) {
-  const pathName = usePathname();
+  const pathUseName = usePathname();
   const pathNames = useSelectedLayoutSegments();
+  const pathName = decodeURIComponent(pathUseName);
   console.log("right", pathName);
   console.log("rights", pathNames);
   console.log("rightSection: ", `/post/${pathNames[1]}`);
   // 특수문자로 생기는 문제 -> 디코딩해서 정상 URL로 변환
   const decodePathName = decodeURIComponent(pathNames[1]);
-  console.log("decode:", decodePathName);
+  console.log("decode == :", decodePathName);
 
   if (pathName === "/profile") {
     return (
