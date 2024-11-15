@@ -182,7 +182,7 @@ export default function Posting() {
       console.log("upload==", thumb);
       const fileName = `${Date.now().toString()}_${thumb.name}`;
       console.log("filename==: ", fileName);
-      const storageRef = ref(storage, `images/profiles/${fileName}`);
+      const storageRef = ref(storage, `images/thumbnail/${fileName}`);
       console.log("storageRef", storageRef);
       const imageFile = new File([thumb], fileName, { type: "image/jpeg" });
       console.log("imageFile", imageFile);
