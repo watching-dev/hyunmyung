@@ -23,7 +23,7 @@
   border-top-right-radius: 10px; */
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   padding: 50px;
 }
 
@@ -60,4 +60,8 @@
 
 .content {
   cursor: default;
+}
+
+.bottom {
+  color: white;
 }
