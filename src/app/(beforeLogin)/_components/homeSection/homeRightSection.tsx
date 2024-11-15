@@ -21,6 +21,10 @@ export default function HomeRightSection({
   const pathNames = useSelectedLayoutSegments();
   console.log("right", pathName);
   console.log("rights", pathNames);
+  console.log("rightSection: ", `/post/${pathNames[1]}`);
+  // 특수문자로 생기는 문제 -> 디코딩해서 정상 URL로 변환
+  const decodePathName = decodeURIComponent(pathNames[1]);
+  console.log("decode:", decodePathName);
 
   if (pathName === "/profile") {
     return (
@@ -49,7 +53,8 @@ export default function HomeRightSection({
     );
   }
 
-  if (pathName === `/post/${pathNames[1]}`) {
+  // ${pathNames[0]으로 한번에 해도 되지 않을까 그럼 /post 안해도 되잖아}
+  if (pathName === `/post/${decodePathName}`) {
     return (
       <div className={styles.rightSectionWrapper}>
         <div className={styles.rightSectionPost}>
