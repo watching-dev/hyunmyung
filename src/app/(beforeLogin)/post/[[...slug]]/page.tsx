@@ -65,7 +65,7 @@ export default async function PostSlug(props: any) {
       <>
         <div className={styles.tabFixed}>
           <BackButton page="/" />
-          <div className={styles.title}>Title</div>
+          <div className={styles.title}>{res.title}</div>
         </div>
         <div className={styles.postWrapper}>
           <div className={styles.postBoundary}>
