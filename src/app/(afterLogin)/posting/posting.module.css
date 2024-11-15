@@ -80,6 +80,7 @@
   border-style: solid;
   border-color: gray;
   border-radius: 10px;
+  word-break: break-all;
 }
 
 .previewText {
