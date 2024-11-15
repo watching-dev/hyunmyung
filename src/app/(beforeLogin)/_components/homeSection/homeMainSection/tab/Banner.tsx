@@ -16,19 +16,20 @@ export default function Banner() {
 
   console.log(data);
 
-  const url =
-    data?.bannerURL === null
-      ? "/img.png"
-      : data?.bannerURL === undefined
-      ? "/img.png"
-      : data!.bannerURL;
-
-  console.log(url);
-
   return (
     <div className={styles.banner}>
-      {/* banner */}
-      <Image src={url} width={600} height={400} alt="banner"></Image>
+      {data?.bannerURL === null || data?.bannerURL === undefined ? (
+        <></>
+      ) : (
+        <>
+          <Image
+            src={data.bannerURL}
+            width={600}
+            height={400}
+            alt="banner"
+          ></Image>
+        </>
+      )}
     </div>
   );
 }
