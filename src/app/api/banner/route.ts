@@ -31,7 +31,7 @@ export async function POST(req: Request, res: Response) {
     console.log("time:", kr_current);
 
     const banner = new BannerAPIS({
-      bannerURL: data.bannerURL,
+      bannerURL: data.url,
       createdAt: kr_current,
       updatedAt: kr_current,
     });

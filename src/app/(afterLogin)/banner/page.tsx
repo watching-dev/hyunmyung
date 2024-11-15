@@ -1,32 +1,16 @@
+import BackButton from "@/app/(beforeLogin)/_components/homeSection/homeMainSection/tab/BackButton";
+
+import UploadBanner from "../_component/UploadBanner";
+import styles from "./bannerPage.module.css";
+
 export default function BannerPage() {
-  async function onSubmit(formData: FormData) {
-    "use server";
-
-    const params = {
-      bannerURL: formData.get("bannerURL"),
-    };
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/banner`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    });
-
-    const data = response.json();
-    // ...
-  }
-
   return (
-    <form action={onSubmit}>
-      <main>
-        <div>
-          <p>BannerURL</p>
-          <input type="text" name="bannerURL"></input>
-          <hr />
-          <button type="submit">저장하기</button>
-        </div>
-      </main>
-    </form>
+    <>
+      <div className={styles.tabFixed}>
+        <BackButton page="/" />
+        <div className={styles.title}>배너 이미지 업로드 하기</div>
+      </div>
+      <UploadBanner />
+    </>
   );
 }

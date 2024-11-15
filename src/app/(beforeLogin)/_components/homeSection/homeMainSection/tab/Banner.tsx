@@ -28,7 +28,7 @@ export default function Banner() {
   return (
     <div className={styles.banner}>
       {/* banner */}
-      <Image src={url} width={50} height={50} alt="banner"></Image>
+      <Image src={url} width={600} height={400} alt="banner"></Image>
     </div>
   );
 }
