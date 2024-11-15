@@ -177,6 +177,38 @@ export default function Posting() {
     }
   };
 
+  const uploadThumbnail = async (formData: FormData) => {
+    try {
+      console.log("upload==", thumb);
+    } catch (error) {
+      console.error(error);
+      alert("업로드 에러");
+    }
+  };
+
+  // 파일의 url 가져옴, input의 onChange에 실행
+  const readURL = (e) => {
+    // 업로드한 파일이 있는지 체크
+    if (e.target.files.length) {
+      // 있으면 FileReader 객체 생성
+      const reader = new FileReader();
+      // reader에게 파일 url 읽으라고 함
+      reader.readAsDataURL(e.target.files[0]);
+      console.log(e.target.files.length);
+      console.log(e.target.files[0]);
+      setThumb(e.target.files[0]);
+
+      // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
+      reader.onload = function (e) {
+        // state에 담아줌
+        // setPreviewImg(e.target.result);
+        console.log(e.target.result);
+        setPreview(e.target.result);
+      };
+    }
+  };
+  const [thumb, setThumb] = useState(null);
+  const [preview, setPreview] = useState(null);
   return (
     <>
       <div className={styles.tabFixed}>
@@ -195,24 +227,48 @@ export default function Posting() {
         // style={{ width: "100%", height: "80%" }}
       />
 
-      <form className={styles.form} action={handleSubmit}>
-        <div>
-          <p>post image url</p>
-          <input type="text" name="image"></input>
-        </div>
-        <button
-          type="submit"
-          className={styles.logOutButton} /* onClick={handleSubmit}*/
-        >
-          <div className={styles.navItem}>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <g>
-                <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
-              </g>
-            </svg>
+      <div className={styles.section}>
+        <form className={styles.form} action={handleSubmit}>
+          <div>
+            <p>post image url</p>
+            <input type="text" name="image"></input>
           </div>
-        </button>
-      </form>
+          <button
+            type="submit"
+            className={styles.logOutButton} /* onClick={handleSubmit}*/
+          >
+            <div className={styles.navItem}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <g>
+                  <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
+                </g>
+              </svg>
+            </div>
+          </button>
+        </form>
+        <form className={styles.upload} action={uploadThumbnail}>
+          <div>
+            <p>썸네일 업로드</p>
+            <input
+              type="file"
+              id="thumb"
+              name="thumb"
+              accept="image/*"
+              // onClick={imageHandler}
+              onChange={readURL}
+            />
+          </div>
+
+          {preview === null ? (
+            <></>
+          ) : (
+            <>
+              <img src={preview} width={100} height={50} />
+              <button type="submit">업로드</button>
+            </>
+          )}
+        </form>
+      </div>
       <div className={styles.preview}>
         <div className={styles.saveText}>{content}</div>
         <div className={styles.previewText}>

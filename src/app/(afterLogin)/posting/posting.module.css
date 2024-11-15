@@ -59,10 +59,22 @@
   border-radius: 30px;
 }
 
+.section {
+  display: flex;
+}
+
+.upload {
+  margin-top: 30px;
+  padding: 20px 100px;
+  background-color: antiquewhite;
+  width: 50%;
+}
+
 .form {
   margin-top: 30px;
   padding: 20px 100px;
-  background-color: yellow;
+  background-color: antiquewhite;
+  width: 50%;
 }
 
 .preview {
