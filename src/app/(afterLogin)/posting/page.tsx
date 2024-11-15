@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import DOMPurify from "dompurify";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebase/config";
+import imageCompression from "browser-image-compression";
 
 /*
  * Quill editor formats
@@ -55,6 +56,12 @@ export default function Posting() {
     input.addEventListener("change", async () => {
       const file = input.files[0];
 
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+
       try {
         console.log("file: ", file);
         console.log("file name", file.name);
@@ -64,7 +71,9 @@ export default function Posting() {
         console.log("storageRef", storageRef);
         const imageFile = new File([file], fileName, { type: "image/jpeg" });
         console.log("imageFile", imageFile);
-        const snapshot = await uploadBytes(storageRef, imageFile);
+        const compressdFile = await imageCompression(imageFile, options);
+        console.log("compressedFile", compressdFile);
+        const snapshot = await uploadBytes(storageRef, compressdFile);
         console.log("snapshot", snapshot);
         // const snapshot = await uploadBytes(storageRef, compressdFile);
         const url = await getDownloadURL(snapshot.ref);
@@ -97,6 +106,7 @@ export default function Posting() {
         // )
       } catch (error) {
         console.log(error);
+        alert("이미지 업로드 실패");
       }
     });
   };
