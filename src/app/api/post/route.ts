@@ -60,7 +60,7 @@ export async function POST(req: Request, res: Response) {
         },
         description: profile.description,
       },
-      postImage: data.params.postImage,
+      postImage: data.thumbURL,
       content: data.content,
       createdAt: kr_current,
       updatedAt: kr_current,

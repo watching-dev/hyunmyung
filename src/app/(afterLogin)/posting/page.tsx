@@ -166,7 +166,7 @@ export default function Posting() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content, title, params }),
+        body: JSON.stringify({ content, title, params, thumbURL }),
       });
       console.log(response);
       const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나
@@ -180,6 +180,25 @@ export default function Posting() {
   const uploadThumbnail = async (formData: FormData) => {
     try {
       console.log("upload==", thumb);
+      const fileName = `${Date.now().toString()}_${thumb.name}`;
+      console.log("filename==: ", fileName);
+      const storageRef = ref(storage, `images/profiles/${fileName}`);
+      console.log("storageRef", storageRef);
+      const imageFile = new File([thumb], fileName, { type: "image/jpeg" });
+      console.log("imageFile", imageFile);
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+      const compressdFile = await imageCompression(imageFile, options);
+      console.log("compressedFile", compressdFile);
+      const snapshot = await uploadBytes(storageRef, compressdFile);
+      console.log("snapshot", snapshot);
+      // const snapshot = await uploadBytes(storageRef, compressdFile);
+      const url = await getDownloadURL(snapshot.ref);
+      console.log("url:", url);
+      setThumbURL(url);
     } catch (error) {
       console.error(error);
       alert("업로드 에러");
@@ -209,24 +228,27 @@ export default function Posting() {
   };
   const [thumb, setThumb] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [thumbURL, setThumbURL] = useState("");
   return (
     <>
       <div className={styles.tabFixed}>
         <BackButton page="/" />
         <div className={styles.title}>작성하기</div>
       </div>
-      <QuillNoSSRWrapper
-        className={styles.editor}
-        forwardedRef={quillInstance}
-        modules={modules}
-        formats={formats}
-        theme="snow"
-        placeholder={"여기에서 입력하세요."}
-        value={content}
-        onChange={setContent}
-        // style={{ width: "100%", height: "80%" }}
-      />
-
+      <div className={styles.inputWrapper}>
+        <input className={styles.titleInput} type="text" placeholder="제목" />
+        <QuillNoSSRWrapper
+          className={styles.editor}
+          forwardedRef={quillInstance}
+          modules={modules}
+          formats={formats}
+          theme="snow"
+          placeholder={"여기에서 입력하세요."}
+          value={content}
+          onChange={setContent}
+          // style={{ width: "100%", height: "80%" }}
+        />
+      </div>
       <div className={styles.section}>
         <form className={styles.form} action={handleSubmit}>
           <div>
