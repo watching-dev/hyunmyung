@@ -3,31 +3,12 @@
 import BackButton from "@/app/(beforeLogin)/_components/homeSection/homeMainSection/tab/BackButton";
 import styles from "./posting.module.css";
 import QuillNoSSRWrapper from "../_component/QuillEditor";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import DOMPurify from "dompurify";
 
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-  clipboard: {
-    // toggle to add extra line breaks when pasting HTML:
-    matchVisual: false,
-  },
-};
 /*
  * Quill editor formats
  * See https://quilljs.com/docs/formats/
@@ -45,11 +26,65 @@ const formats = [
   "bullet",
   "indent",
   "link",
+  "align",
   "image",
   "video",
 ];
 
 export default function Posting() {
+  const quillRef = useRef(null);
+
+  const imageHandler = () => {
+    console.log("imageHandler");
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+    console.log("input", input);
+
+    input.addEventListener("change", async () => {
+      const file = input.files[0];
+
+      try {
+        console.log("file: ", file);
+        // const res = await imageApi({ img: file });
+        // const imgUrl = res.data.imgUrl;
+        // const editor = quillRef.current.getEditor();
+        // const range = editor.getSelection();
+        // editor.insertEmbed(range.index, "image", imgUrl);
+        // editor.setSelection(range.index + 1);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: "1" }, { header: "2" }, { font: [] }],
+          [{ size: [] }],
+          ["bold", "italic", "underline", "strike", "blockquote"],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+            { indent: "-1" },
+            { indent: "+1" },
+          ],
+          ["link", "image", "video"],
+          ["clean"],
+        ],
+        handlers: { image: imageHandler },
+      },
+      clipboard: {
+        // toggle to add extra line breaks when pasting HTML:
+        matchVisual: false,
+      },
+    }),
+    []
+  );
+
   const [content, setContent] = useState("");
   const router = useRouter();
   const session = useSession();
