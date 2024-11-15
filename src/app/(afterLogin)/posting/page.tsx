@@ -45,7 +45,6 @@ export default function Posting() {
   const router = useRouter();
   const session = useSession();
   console.log("session:", session);
-  const title = "title";
   const quillInstance = useRef<ReactQuill>(null);
   const sanitizer = DOMPurify.sanitize;
   const cleanContent = sanitizer(content);
@@ -156,6 +155,7 @@ export default function Posting() {
     try {
       console.log("handle");
       console.log(content);
+      console.log("tititi", title);
 
       const params = {
         postImage: formData.get("image"),
@@ -229,6 +229,12 @@ export default function Posting() {
   const [thumb, setThumb] = useState(null);
   const [preview, setPreview] = useState(null);
   const [thumbURL, setThumbURL] = useState("");
+  const [title, setTitle] = useState("");
+  const titleChange = (e) => {
+    setTitle(e.target.value);
+    console.log("title:", e.target.value);
+    console.log("setTitle:", title);
+  };
   return (
     <>
       <div className={styles.tabFixed}>
@@ -236,7 +242,12 @@ export default function Posting() {
         <div className={styles.title}>작성하기</div>
       </div>
       <div className={styles.inputWrapper}>
-        <input className={styles.titleInput} type="text" placeholder="제목" />
+        <input
+          className={styles.titleInput}
+          onChange={titleChange}
+          type="text"
+          placeholder="제목"
+        />
         <QuillNoSSRWrapper
           className={styles.editor}
           forwardedRef={quillInstance}
