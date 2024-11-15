@@ -52,6 +52,14 @@
   height: 93%;
   border-radius: 50%;
   background-color: black;
+  align-items: center;
+  justify-content: center;
+  /* position: absolute; */
+  overflow: auto;
+}
+
+.img {
+  background-color: yellow;
 }
 
 .name {
