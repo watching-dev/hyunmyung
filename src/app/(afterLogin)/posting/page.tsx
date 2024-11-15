@@ -8,6 +8,8 @@ import ReactQuill from "react-quill";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import DOMPurify from "dompurify";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "@/firebase/config";
 
 /*
  * Quill editor formats
@@ -33,6 +35,14 @@ const formats = [
 
 export default function Posting() {
   const quillRef = useRef(null);
+  const [content, setContent] = useState("");
+  const router = useRouter();
+  const session = useSession();
+  console.log("session:", session);
+  const title = "title";
+  const quillInstance = useRef<ReactQuill>(null);
+  const sanitizer = DOMPurify.sanitize;
+  const cleanContent = sanitizer(content);
 
   const imageHandler = () => {
     console.log("imageHandler");
@@ -47,12 +57,44 @@ export default function Posting() {
 
       try {
         console.log("file: ", file);
+        console.log("file name", file.name);
+        const fileName = `${Date.now().toString()}_${file.name}`;
+        console.log("filename==: ", fileName);
+        const storageRef = ref(storage, `images/${fileName}`);
+        console.log("storageRef", storageRef);
+        const imageFile = new File([file], fileName, { type: "image/jpeg" });
+        console.log("imageFile", imageFile);
+        const snapshot = await uploadBytes(storageRef, imageFile);
+        console.log("snapshot", snapshot);
+        // const snapshot = await uploadBytes(storageRef, compressdFile);
+        const url = await getDownloadURL(snapshot.ref);
+        console.log("url:", url);
         // const res = await imageApi({ img: file });
         // const imgUrl = res.data.imgUrl;
-        // const editor = quillRef.current.getEditor();
-        // const range = editor.getSelection();
-        // editor.insertEmbed(range.index, "image", imgUrl);
-        // editor.setSelection(range.index + 1);
+        const editor = quillInstance.current.getEditor();
+        console.log("editor", editor);
+        const range = editor.getSelection();
+        console.log("range", range);
+        editor.insertEmbed(range.index, "image", url);
+        editor.setSelection(range.index + 1);
+
+        //     (const fileName = `${Date.now().toString()}_${blob.name}`;
+        //     const storageRef = ref(storage, `images/${fileName}`);
+        //     const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
+
+        //     const options = {
+        //       maxSizeMB: 1,
+        //       maxWidthOrHeight: 1920,
+        //       useWebWorker: true,
+        //     }
+
+        //     try {
+        //       const compressdFile = await imageCompression(imageFile, options)
+        //       const snapshot = await uploadBytes(storageRef, compressdFile);
+        //       const url = await getDownloadURL(snapshot.ref);
+        //       images.current = Array.isArray(images.current) ? [...images.current, {fileName: fileName, url: url.replaceAll(/&/g, '&amp;')}] : [{fileName: fileName, url: url.replaceAll(/&/g, '&amp;')}]
+
+        // )
       } catch (error) {
         console.log(error);
       }
@@ -85,12 +127,6 @@ export default function Posting() {
     []
   );
 
-  const [content, setContent] = useState("");
-  const router = useRouter();
-  const session = useSession();
-  console.log("session:", session);
-  const title = "title";
-
   // 게시물 작성하기
   const handleSubmit = async (formData: FormData) => {
     try {
@@ -116,10 +152,6 @@ export default function Posting() {
       console.error(error);
     }
   };
-
-  const quillInstance = useRef<ReactQuill>(null);
-  const sanitizer = DOMPurify.sanitize;
-  const cleanContent = sanitizer(content);
 
   return (
     <>
