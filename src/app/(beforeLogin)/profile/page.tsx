@@ -85,10 +85,8 @@ export default async function Profile({ params }: Props) {
           </svg> */}
           <Image
             src={url}
-            alt="ellon"
-            width={100}
-            height={100}
-            sizes="100vw"
+            alt="elon musk"
+            fill
             placeholder="blur"
             blurDataURL={lqipData.metadata.dataURIBase64}
           />

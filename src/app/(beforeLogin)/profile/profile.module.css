@@ -54,7 +54,7 @@
   background-color: black;
   align-items: center;
   justify-content: center;
-  /* position: absolute; */
+  position: absolute;
   overflow: auto;
 }
 
