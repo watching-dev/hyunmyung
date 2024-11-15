@@ -68,8 +68,8 @@ export default function Post({ post }: Props) {
                     <span>{data.title}</span>
                     <Image
                       src={data.postImage}
-                      width={50}
-                      height={50}
+                      width={600}
+                      height={400}
                       alt={data.title}
                     />
                   </>
