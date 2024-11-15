@@ -76,6 +76,10 @@
   color: rgb(142, 142, 147);
   font-weight: bold;
   font-size: 14px;
+  margin-top: 1px;
+}
+.dot {
+  margin-top: 1px;
 }
 /* .postDate:hover {
   text-decoration: underline;

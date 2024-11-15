@@ -53,7 +53,7 @@ export default function Post({ post }: Props) {
             </Link>
             &nbsp; &nbsp;
             <div className={styles.postUserId}>{data.Profile.description}</div>
-            &nbsp; · &nbsp;
+            <div className={styles.dot}>&nbsp; · &nbsp;</div>
             <div className={styles.postDate}>{time}</div>
           </div>
           {/* <div>{data.content}</div> */}
