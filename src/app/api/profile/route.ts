@@ -8,6 +8,8 @@ export async function GET(req: Request) {
     const userName = "HyunMyung";
     const profile = await ProfileAPIS.findOne({ "User.userName": userName });
     console.log("pf", profile);
+    const count = await ProfileAPIS.countDocuments();
+    console.log("count", count);
     return NextResponse.json(profile);
   } catch (err) {
     console.error(err);

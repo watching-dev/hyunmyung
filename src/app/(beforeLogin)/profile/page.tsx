@@ -69,6 +69,7 @@ export default async function Profile({ params }: Props) {
   });
   const arrayBufferData = await imgData.arrayBuffer();
   const lqipData = await lqip(Buffer.from(arrayBufferData));
+  const blurDataURL = lqipData.metadata.dataURIBase64;
 
   return (
     <HydrationBoundary state={dehydrateState}>
@@ -88,7 +89,7 @@ export default async function Profile({ params }: Props) {
             alt="elon musk"
             fill
             placeholder="blur"
-            blurDataURL={lqipData.metadata.dataURIBase64}
+            blurDataURL={blurDataURL}
           />
         </div>
       </div>
