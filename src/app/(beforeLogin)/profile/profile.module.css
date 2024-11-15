@@ -29,7 +29,9 @@
   margin-top: 50px;
   width: 598px;
   height: 199px;
-  background-color: yellow;
+  /* background-color: rgb(247, 249, 249); */
+  /* background-color: lightslategray; */
+  background-color: lightgray;
 }
 
 .profileBackground {
@@ -51,7 +53,7 @@
   width: 93%;
   height: 93%;
   border-radius: 50%;
-  background-color: black;
+  background-color: lightgray;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -59,7 +61,7 @@
 }
 
 .img {
-  background-color: yellow;
+  background-color: lightgray;
 }
 
 .name {
