@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import DOMPurify from "dompurify";
 
 const modules = {
   toolbar: [
@@ -82,6 +83,9 @@ export default function Posting() {
   };
 
   const quillInstance = useRef<ReactQuill>(null);
+  const sanitizer = DOMPurify.sanitize;
+  const cleanContent = sanitizer(content);
+
   return (
     <>
       <div className={styles.tabFixed}>
@@ -100,7 +104,7 @@ export default function Posting() {
         // style={{ width: "100%", height: "80%" }}
       />
 
-      <form action={handleSubmit}>
+      <form className={styles.form} action={handleSubmit}>
         <div>
           <p>post image url</p>
           <input type="text" name="image"></input>
@@ -118,6 +122,16 @@ export default function Posting() {
           </div>
         </button>
       </form>
+      <div className={styles.preview}>
+        <div className={styles.saveText}>{content}</div>
+        <div className={styles.previewText}>
+          <span
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: cleanContent }}
+          />
+        </div>
+      </div>
+      <div className={styles.bottom} />
     </>
   );
 }
