@@ -4,13 +4,14 @@ import BackButton from "@/app/(beforeLogin)/_components/homeSection/homeMainSect
 import styles from "./posting.module.css";
 import QuillNoSSRWrapper from "../_component/QuillEditor";
 import { useMemo, useRef, useState } from "react";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import DOMPurify from "dompurify";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebase/config";
 import imageCompression from "browser-image-compression";
+import { ImageActions } from "@xeger/quill-image-actions";
 
 /*
  * Quill editor formats
@@ -32,9 +33,13 @@ const formats = [
   "align",
   "image",
   "video",
+  "width",
+  "height",
+  "float",
 ];
 
 export default function Posting() {
+  Quill.register("modules/imageActions", ImageActions);
   const quillRef = useRef(null);
   const [content, setContent] = useState("");
   const router = useRouter();
@@ -50,6 +55,8 @@ export default function Posting() {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
+    // input.setAttribute("accept", "image/jpg,image/png,image/jpeg");
+    // input.setAttribute("multiple", "multiple");
     input.click();
     console.log("input", input);
 
@@ -113,6 +120,7 @@ export default function Posting() {
 
   const modules = useMemo(
     () => ({
+      imageActions: {},
       toolbar: {
         container: [
           [{ header: "1" }, { header: "2" }, { font: [] }],
@@ -126,8 +134,14 @@ export default function Posting() {
           ],
           ["link", "image", "video"],
           ["clean"],
+          [{ align: "" }, { align: "center" }, { align: "right" }],
+          [{ color: [] }, "image"],
+          ["link"],
         ],
         handlers: { image: imageHandler },
+        ImageResize: {
+          modules: ["Resize"],
+        },
       },
       clipboard: {
         // toggle to add extra line breaks when pasting HTML:
