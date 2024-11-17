@@ -8,9 +8,10 @@ const PostingSchema = new Schema({
       userName: {
         type: String,
       },
-      user_Id: Schema.Types.ObjectId,
+      user_id: Schema.Types.ObjectId,
     },
     description: String,
+    profileImage: String,
   },
   postImage: String,
   content: String,

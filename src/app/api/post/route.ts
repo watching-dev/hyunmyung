@@ -18,7 +18,7 @@ export async function POST(req: Request, res: Response) {
     // 로그인된 정보의 프로필 가져오기
     const profile = await ProfileAPIS.findOne({
       "User.userId": session?.user?.email,
-    });
+    }).sort({ createdAt: -1 });
     console.log("pf", profile);
 
     // 포스팅 갯수 가쟈와서 postId 계산하기
@@ -56,9 +56,10 @@ export async function POST(req: Request, res: Response) {
       Profile: {
         User: {
           userName: profile.User.userName,
-          user_Id: profile.User.user_id,
+          user_id: profile.User.user_id,
         },
         description: profile.description,
+        profileImage: profile.profileImage,
       },
       postImage: data.thumbURL,
       content: data.content,
