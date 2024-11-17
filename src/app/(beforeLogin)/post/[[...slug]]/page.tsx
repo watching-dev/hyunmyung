@@ -74,7 +74,7 @@ export default async function PostSlug(props: any) {
               dangerouslySetInnerHTML={{ __html: cleanContent }}
             />
           </div>
-          <div className={styles.bottom}>hyunmyung.com</div>
+          <div className={styles.bottom}>_</div>
         </div>
       </>
     );
