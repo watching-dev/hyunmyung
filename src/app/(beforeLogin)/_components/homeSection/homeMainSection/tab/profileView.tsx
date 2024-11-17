@@ -346,7 +346,7 @@ export default function ProfileView({
         {session.data === null || session.data === undefined
           ? name === null || name === undefined
             ? "HyunMyung"
-            : name === "HyunMyung"
+            : name === "HyunMyung" || name === "hyunmyung"
             ? "HyunMyung"
             : `HyunMyung(${name})`
           : name}
@@ -355,7 +355,7 @@ export default function ProfileView({
         {session.data === null || session.data === undefined
           ? description === null || description === undefined
             ? "지금까지 알게된 모든 것을 공유합니다."
-            : name === "HyunMyung"
+            : name === "HyunMyung" || name === "hyunmyung"
             ? "지금까지 알게된 모든 것을 공유합니다."
             : `HyunMyung(${description})`
           : description}
