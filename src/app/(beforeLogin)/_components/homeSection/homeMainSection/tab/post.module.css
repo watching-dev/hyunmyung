@@ -132,11 +132,12 @@
   position: absolute;
   width: 517px;
   height: 360px;
-  border-radius: 16px;
+  border-radius: 1.5rem;
   opacity: 0.25;
   /* margin-left: 85px; */
   box-shadow: rgba(0, 0, 0, 1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.6) 0px 2px 4px -1px;
+  margin-top: 10px;
 }
 
 .afterImageSection > span {
@@ -146,13 +147,15 @@
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
+  margin: 0px 5px;
+  padding: 3px 5px;
 }
 
 .afterImageSection > img {
   margin-top: 12px;
   width: 517px;
   height: 360px;
-  border-radius: 16px;
+  border-radius: 1.5rem;
   /* margin-left: 85px; */
 }
 
