@@ -16,7 +16,10 @@ export async function GET(req: Request) {
       { title: { $regex: q } },
     ]);
 
-    if (q === "p") {
+    console.log("q length:", q?.length);
+
+    // if (q === "p") {
+    if (q?.length === 1) {
       console.log("search is p:", q);
       const postList = await PostingAPIS.find({ title: { $regex: q } });
       return NextResponse.json(postList.reverse());
