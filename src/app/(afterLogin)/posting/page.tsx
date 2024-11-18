@@ -161,12 +161,14 @@ export default function Posting() {
         postImage: formData.get("image"),
       };
       console.log(params);
+
+      const recommended = false;
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content, title, params, thumbURL }),
+        body: JSON.stringify({ content, title, params, thumbURL, recommended }),
       });
       console.log(response);
       const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나

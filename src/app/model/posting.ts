@@ -13,6 +13,7 @@ const PostingSchema = new Schema({
     description: String,
     profileImage: String,
   },
+  recommended: Boolean,
   postImage: String,
   content: String,
   createdAt: Date,

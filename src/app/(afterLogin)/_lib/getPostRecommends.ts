@@ -2,6 +2,7 @@ export async function getPostRecommends() {
   const res = await fetch(`http://localhost:3000/api/posts`, {
     next: {
       tags: ["posts", "recommends"],
+      revalidate: 30,
     },
   });
   // The return value is *not* serialized

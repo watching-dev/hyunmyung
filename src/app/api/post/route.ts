@@ -63,6 +63,7 @@ export async function POST(req: Request, res: Response) {
       },
       postImage: data.thumbURL,
       content: data.content,
+      recommended: data.recommended,
       createdAt: kr_current,
       updatedAt: kr_current,
     });

@@ -15,6 +15,7 @@ export interface IList {
     description: string;
     profileImage: string;
   };
+  recommended: boolean;
   postImage: string;
   createdAt: Date;
   updatedAt: Date;
@@ -52,6 +53,7 @@ export async function GET(req: Request) {
           description: post.Profile.description,
           profileImage: post.Profile.profileImage,
         },
+        recommended: post.recommended,
         postImage: post.postImage,
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,

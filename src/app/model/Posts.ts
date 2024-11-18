@@ -11,6 +11,7 @@ const PostsSchema = new Schema({
     description: String,
     profileImage: String,
   },
+  recommended: Boolean,
   postImage: String,
   createdAt: Date,
   updatedAt: Date,
