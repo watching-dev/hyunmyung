@@ -1,4 +1,5 @@
 import dbConnect from "@/app/_lib/dbConnect";
+import PostingAPIS from "@/app/model/posting";
 import PostsAPI from "@/app/model/Posts";
 import { NextResponse } from "next/server";
 
@@ -9,8 +10,19 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const q = searchParams.get("q");
     console.log("q", q);
-    const postList = await PostsAPI.find({ content: { $regex: q } });
-    return NextResponse.json(postList);
+    // const postList = await PostingAPIS.find({ content: { $regex: q } });
+    const postList = await PostingAPIS.find().or([
+      { content: { $regex: q } },
+      { title: { $regex: q } },
+    ]);
+
+    if (q === "p") {
+      console.log("search is p:", q);
+      const postList = await PostingAPIS.find({ title: { $regex: q } });
+      return NextResponse.json(postList.reverse());
+    }
+    console.log("search list", postList);
+    return NextResponse.json(postList.reverse());
   } catch (err) {
     console.error(err);
     return NextResponse.error();
