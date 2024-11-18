@@ -17,7 +17,7 @@ export default function Tab() {
 
   return (
     <div className={styles.tabFixed}>
-      <div className={styles.title}>홈</div>
+      <div className={styles.title}>매거진</div>
       <div className={styles.tab}>
         <div onClick={onClickAll}>
           전체
