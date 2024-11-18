@@ -10,7 +10,13 @@ export default function RightSectionSearch({ q }: Props) {
   const router = useRouter();
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    router.push(`/search?q=${e.currentTarget.search.value}`);
+    console.log("search value:", e.currentTarget.search.value);
+    console.log("e", e);
+    console.log("target", e.currentTarget);
+    console.log("search", e.currentTarget.search);
+    router.push(
+      `/search?q=${e.currentTarget.search.value}&f=${e.currentTarget.search.value}`
+    );
   };
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setInputValue(q);
