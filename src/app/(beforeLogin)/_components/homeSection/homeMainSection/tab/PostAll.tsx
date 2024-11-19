@@ -11,6 +11,7 @@ import { getPostAll } from "@/app/(afterLogin)/_lib/getPostAll";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { IList } from "@/app/api/posts/route";
+import { getPosts } from "@/app/(afterLogin)/_lib/getPosts";
 
 export default function PostAll() {
   // const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
@@ -65,11 +66,25 @@ export default function PostAll() {
   //     <div ref={ref} style={{ height: 50 }} />
   //   </>
   // );
-  const { data } = useQuery<IList[]>({
+  // const { data } = useQuery<IList[]>({
+  //   queryKey: ["posts", "all"],
+  //   queryFn: getPostAll,
+  //   staleTime: 60 * 1000,
+  // });
+  type Props = { pageParam?: number };
+  interface IPage {
+    pageParam: number;
+  }
+  const { data, fetchNextPage, isLoading } = useInfiniteQuery<IList>({
     queryKey: ["posts", "all"],
-    queryFn: getPostAll,
-    staleTime: 60 * 1000,
+    queryFn: ({ pageParam = 1 }) => getPosts(pageParam as IPage),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === 10 ? allPages.length + 1 : undefined;
+    },
   });
+
   console.log("qq==", data);
-  return data?.map((post) => <Post key={post.postId} post={post} />);
+  // return data?.map((post) => <Post key={post.postId} post={post} />);
+  return <Post post={data} />;
 }
