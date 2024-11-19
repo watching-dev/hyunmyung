@@ -72,6 +72,7 @@ export default function PostAll() {
   //   staleTime: 60 * 1000,
   // });
 
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
   const { data, fetchNextPage, isLoading } = useInfiniteQuery<
     IList[]
     // InfiniteData<IList[]>
@@ -85,6 +86,10 @@ export default function PostAll() {
     },
   });
 
+  useEffect(() => {
+    if (inView) fetchNextPage();
+  }, [inView, fetchNextPage]);
+
   console.log("qq==>", data?.pages.flat());
   // console.log("length", data?.pages?.[0]?.length);
   // return data?.map((post) => <Post key={post.postId} post={post} />);
@@ -96,7 +101,18 @@ export default function PostAll() {
   } else {
     console.log("data not null", data);
     // return true;
-    return data?.pages[0].map((post) => <Post key={post.postId} post={post} />);
+    return (
+      <>
+        {data?.pages.map((page, i) => (
+          <Fragment key={i}>
+            {page.map((post) => (
+              <Post key={post.postId} post={post} />
+            ))}
+          </Fragment>
+        ))}
+        <div ref={ref} /*style={{ height: 50 }}*/ />
+      </>
+    );
   }
   // return <Post post={data?.pages.flat()} />;
   // return false;
