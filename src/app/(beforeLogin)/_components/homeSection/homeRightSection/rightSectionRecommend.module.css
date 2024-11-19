@@ -6,8 +6,10 @@
   background-color: rgb(247, 249, 249);
   border-radius: 16px;
   /* margin: 12px 0; */
-  margin-top: 80px;
   padding: 12px 16px;
+  margin-top: 80px;
+  /* position: fixed;
+  width: inherit; fixed 할 경우에*/
 }
 
 .postRecommend h3 {
