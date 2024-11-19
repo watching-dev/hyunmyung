@@ -72,7 +72,10 @@ export default function PostAll() {
   //   staleTime: 60 * 1000,
   // });
 
-  const { data, fetchNextPage, isLoading } = useInfiniteQuery<IList[]>({
+  const { data, fetchNextPage, isLoading } = useInfiniteQuery<
+    IList[]
+    // InfiniteData<IList[]>
+  >({
     queryKey: ["posts", "all"],
     queryFn: async ({ pageParam = 1 }: IPage) => await getPosts(pageParam),
     initialPageParam: 1,
@@ -82,8 +85,19 @@ export default function PostAll() {
     },
   });
 
-  console.log("qq==>", data);
+  console.log("qq==>", data?.pages.flat());
+  // console.log("length", data?.pages?.[0]?.length);
   // return data?.map((post) => <Post key={post.postId} post={post} />);
-  // return <Post post={data} />;
-  return false;
+  // (data === undefined || data === null ? (return null) : (return <Post post={data} />));
+
+  if (data === undefined || data === null) {
+    console.log("data === undefun!!!!!");
+    return null;
+  } else {
+    console.log("data not null", data);
+    // return true;
+    return data?.pages[0].map((post) => <Post key={post.postId} post={post} />);
+  }
+  // return <Post post={data?.pages.flat()} />;
+  // return false;
 }
