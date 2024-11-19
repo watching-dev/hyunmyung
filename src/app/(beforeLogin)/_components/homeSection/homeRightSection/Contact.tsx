@@ -9,7 +9,7 @@ export default function Contact() {
         <div>
           <nav>
             <ul>
-              <Link href="/">
+              <Link href="https://coderefactoring.tistory.com/">
                 <li className={styles.navItem}>
                   <svg
                     width={26}
@@ -25,7 +25,7 @@ export default function Contact() {
                   <div>blog</div>
                 </li>
               </Link>
-              <Link href="/">
+              <Link href="https://github.com/watching-dev">
                 <li className={styles.navItem}>
                   <svg
                     width={26}
@@ -40,7 +40,7 @@ export default function Contact() {
                   <div>github</div>
                 </li>
               </Link>
-              <Link href="/">
+              <Link href="mailto:coderefactoring90@gmail.com">
                 <li className={styles.navItem}>
                   <svg
                     width={21}
