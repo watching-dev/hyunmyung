@@ -11,6 +11,7 @@ import {
   useSelectedLayoutSegments,
 } from "next/navigation";
 import HomeRightSectionProfileImage from "../profileSection/HomeRightSectionProfileImage";
+import Contact from "./homeRightSection/Contact";
 
 export default function HomeRightSection({
   children,
@@ -72,6 +73,7 @@ export default function HomeRightSection({
         <div className={styles.rightSection}>
           <RightSectionSearch />
           <RightSectionRecommend />
+          <Contact />
         </div>
       </div>
     </div>

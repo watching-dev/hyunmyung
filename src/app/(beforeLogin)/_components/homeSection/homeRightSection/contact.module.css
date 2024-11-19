@@ -1,0 +1,55 @@
+.navItem {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  padding: 12px;
+  /* background-color: brown; */
+}
+
+.navItem:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+  border-radius: 29px;
+  cursor: pointer;
+}
+
+.contactBackground a:hover {
+  fill: rgb(255, 147, 39);
+}
+
+/* .contactBackground .navItem .title:hover {
+  color: black;
+} */
+
+.contactBackground a {
+  fill: gray;
+}
+
+.navItem > div {
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 16px;
+  font-size: 18px;
+  color: gray;
+}
+
+.navItem li {
+  list-style-type: none;
+}
+
+.contactBackground {
+  /* background-color: rgb(247, 249, 249); */
+  border-radius: 16px;
+  margin-top: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+}
+
+.contactBackground > h2 {
+  padding: 15px 20px 0px 20px;
+}
+
+.email {
+  margin-left: 3px;
+  margin-right: 3px;
+}
