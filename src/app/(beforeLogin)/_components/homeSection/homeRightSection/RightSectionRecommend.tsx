@@ -31,19 +31,23 @@ export default function RightSectionRecommend() {
   return (
     <div className={styles.postRecommend}>
       <h3>이달의 매거진</h3>
-      {data // 최신 데이터 중에
-        ?.filter(
-          // 무조건 썸네일 이미지가 있어야하고
-          (post) =>
-            post.postImage !== "" &&
-            post.postImage !== null &&
-            post.postImage !== undefined
-        )
-        .slice(0, 5) // 최신 5개만 가져와서
-        .reverse() // 오래된 순으로 보여줌
-        .map((post) => (
-          <RecommendPost key={post.postId} data={post} /> // useQuery에 타입 지정 안되어 있으니까 'never' 형식에 'postId' 속성 없다고 나오네
-        ))}
+      <nav>
+        <ul>
+          {data // 최신 데이터 중에
+            ?.filter(
+              // 무조건 썸네일 이미지가 있어야하고
+              (post) =>
+                post.postImage !== "" &&
+                post.postImage !== null &&
+                post.postImage !== undefined
+            )
+            .slice(0, 5) // 최신 5개만 가져와서
+            .reverse() // 오래된 순으로 보여줌
+            .map((post) => (
+              <RecommendPost key={post.postId} data={post} /> // useQuery에 타입 지정 안되어 있으니까 'never' 형식에 'postId' 속성 없다고 나오네
+            ))}
+        </ul>
+      </nav>
     </div>
   );
 }
