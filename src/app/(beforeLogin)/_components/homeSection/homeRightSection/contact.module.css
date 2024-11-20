@@ -68,12 +68,14 @@
 .contactBackgroundExplore {
   /* background-color: rgb(247, 249, 249); */
   border-radius: 16px;
-  margin-top: 350px;
+  /* margin-top: 450px; */
   border-width: 1px;
   border-style: solid;
   border-color: lightgray;
   position: fixed;
   width: inherit;
+  bottom: 0;
+  margin-bottom: 20px;
 }
 
 .contactBackgroundProfile {
