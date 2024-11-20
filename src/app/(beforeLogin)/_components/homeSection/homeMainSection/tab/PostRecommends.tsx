@@ -15,6 +15,9 @@ export default function PostRecommends() {
     queryFn: getPostRecommends,
     staleTime: 60 * 1000,
   });
+  // useEffect(() => { 나중에 여기도 무한 스크롤하면 적용
+  //   if (inView) fetchNextPage();
+  // }, [inView, fetchNextPage]);
   console.log(
     "recommend==",
     "isLoading",
