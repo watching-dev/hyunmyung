@@ -74,18 +74,19 @@ export default function PostAll() {
   // });
 
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
-  const { data, fetchNextPage, isLoading, isFetching } = useInfiniteQuery<
-    IList[]
-    // InfiniteData<IList[]>
-  >({
-    queryKey: ["posts", "all"],
-    queryFn: async ({ pageParam = 1 }: IPage) => await getPosts(pageParam),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => {
-      console.log("lastPage:", lastPage, "allPage:", allPages);
-      return lastPage.length === 10 ? allPages.length + 1 : undefined;
-    },
-  });
+  const { data, fetchNextPage, isPending, isFetching, isLoading } =
+    useInfiniteQuery<
+      IList[]
+      // InfiniteData<IList[]>
+    >({
+      queryKey: ["posts", "all"],
+      queryFn: async ({ pageParam = 1 }: IPage) => await getPosts(pageParam),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, allPages) => {
+        console.log("lastPage:", lastPage, "allPage:", allPages);
+        return lastPage.length === 10 ? allPages.length + 1 : undefined;
+      },
+    });
 
   useEffect(() => {
     if (inView) fetchNextPage();
@@ -95,42 +96,63 @@ export default function PostAll() {
   // console.log("length", data?.pages?.[0]?.length);
   // return data?.map((post) => <Post key={post.postId} post={post} />);
   // (data === undefined || data === null ? (return null) : (return <Post post={data} />));
+  console.log(
+    "before",
+    "isLoading",
+    isLoading,
+    "isPending",
+    isPending,
+    "isFetching",
+    isFetching,
+    "data ==",
+    data
+  );
 
-  if (data === undefined || data === null) {
-    console.log("data === undefun!!!!!");
-    return null;
-  } else {
-    console.log("data not null", data);
-    // return true;
-    console.log("isLoading:", isLoading, "isFetching", isFetching);
-    return (
-      <>
-        {isFetching ? (
+  return (
+    <>
+      {isPending ? (
+        <>
           <div
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              marginTop: "200px",
+              margin: "150px 0px",
             }}
           >
             <HashLoader color="orange" />
           </div>
-        ) : (
-          <>
-            {data?.pages.map((page, i) => (
-              <Fragment key={i}>
-                {page.map((post) => (
-                  <Post key={post.postId} post={post} />
-                ))}
-              </Fragment>
-            ))}
-            <div ref={ref} /*style={{ height: 50 }}*/ />
-          </>
-        )}
-      </>
-    );
-  }
-  // return <Post post={data?.pages.flat()} />;
-  // return false;
+        </>
+      ) : (
+        <>
+          {data?.pages.map((page, i) => (
+            <Fragment key={i}>
+              {page.map((post) => (
+                <Post key={post.postId} post={post} />
+              ))}
+            </Fragment>
+          ))}
+          <div ref={ref} /*style={{ height: 50 }}*/ />
+          <div>
+            {isFetching ? (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "150px 0px",
+                  }}
+                >
+                  <HashLoader color="orange" />
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
 }
