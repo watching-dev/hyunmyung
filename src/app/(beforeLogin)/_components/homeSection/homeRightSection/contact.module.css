@@ -16,11 +16,27 @@
   fill: rgb(255, 147, 39);
 }
 
+.contactBackgroundExplore a:hover {
+  fill: rgb(255, 147, 39);
+}
+
+.contactBackgroundProfile a:hover {
+  fill: rgb(255, 147, 39);
+}
+
 /* .contactBackground .navItem .title:hover {
   color: black;
 } */
 
 .contactBackground a {
+  fill: gray;
+}
+
+.contactBackgroundExplore a {
+  fill: gray;
+}
+
+.contactBackgroundProfile a {
   fill: gray;
 }
 
@@ -39,13 +55,47 @@
 .contactBackground {
   /* background-color: rgb(247, 249, 249); */
   border-radius: 16px;
-  margin-top: 30px;
+  /* margin-top: 350px; */
   border-width: 1px;
   border-style: solid;
   border-color: lightgray;
+  position: fixed;
+  width: inherit;
+  bottom: 0;
+  margin-bottom: 20px;
+}
+
+.contactBackgroundExplore {
+  /* background-color: rgb(247, 249, 249); */
+  border-radius: 16px;
+  margin-top: 350px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  position: fixed;
+  width: inherit;
+}
+
+.contactBackgroundProfile {
+  /* background-color: rgb(247, 249, 249); */
+  border-radius: 16px;
+  margin-top: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  position: fixed;
+  width: inherit;
 }
 
 .contactBackground > h2 {
+  padding: 15px 20px 0px 20px;
+}
+
+.contactBackgroundExplore > h2 {
+  padding: 15px 20px 0px 20px;
+}
+
+.contactBackgroundProfile > h2 {
   padding: 15px 20px 0px 20px;
 }
 

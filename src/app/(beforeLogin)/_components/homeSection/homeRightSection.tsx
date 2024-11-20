@@ -36,7 +36,7 @@ export default function HomeRightSection({
           <div className={styles.rightSection}>
             <RightSectionSearch />
             {/* <HomeRightSectionProfileImage /> */}
-            <Contact />
+            <Contact pathName={pathName} />
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function HomeRightSection({
           <div className={styles.mainSection}>{children}</div>
           <div className={styles.rightSection}>
             <RightSectionRecommend />
-            <Contact />
+            <Contact pathName={pathName} />
           </div>
         </div>
       </div>
