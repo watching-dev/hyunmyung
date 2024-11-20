@@ -37,7 +37,7 @@ export default function HomeRightSection({
             <RightSectionSearch />
             {/* <HomeRightSectionProfileImage /> */}
             <Contact pathName={pathName} />
-            <div className={styles.copyright}>© HyunMuyng 2024</div>
+            <div className={styles.copyright}>© HyunMyung 2024</div>
           </div>
         </div>
       </div>
