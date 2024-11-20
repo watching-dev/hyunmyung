@@ -10,7 +10,7 @@ export async function getPosts(pageParam: IPage) {
     {
       next: {
         tags: ["posts", "all"],
-        revalidate: 30,
+        // revalidate: 30,
       },
     }
   );

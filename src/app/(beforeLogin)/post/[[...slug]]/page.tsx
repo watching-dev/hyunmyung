@@ -52,7 +52,7 @@ export default async function PostSlug(props: any) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ originPostId, slug }),
-        next: { revalidate: 3 },
+        // next: { revalidate: 3 }, 리액트 쿼리로 재수정 필요
       }
     );
 

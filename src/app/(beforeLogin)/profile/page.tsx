@@ -21,7 +21,7 @@ export default async function Profile() {
           "Content-Type": "application/json",
         },
         next: {
-          revalidate: 0,
+          // revalidate: 0, 리액트 쿼리로 재수정 필요
         },
 
         // cache: "no-store",
