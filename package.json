@@ -30,6 +30,7 @@
     "react-dom": "^18",
     "react-intersection-observer": "^9.13.1",
     "react-quill": "^2.0.0",
+    "react-spinners": "^0.14.1",
     "react-textarea-autosize": "^8.5.4"
   },
   "devDependencies": {
