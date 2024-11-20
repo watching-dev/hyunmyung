@@ -12,6 +12,7 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { IList } from "@/app/api/posts/route";
 import { getPosts, IPage } from "@/app/(afterLogin)/_lib/getPosts";
+import { HashLoader } from "react-spinners";
 
 export default function PostAll() {
   // const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
@@ -73,7 +74,7 @@ export default function PostAll() {
   // });
 
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
-  const { data, fetchNextPage, isLoading } = useInfiniteQuery<
+  const { data, fetchNextPage, isLoading, isFetching } = useInfiniteQuery<
     IList[]
     // InfiniteData<IList[]>
   >({
@@ -101,16 +102,32 @@ export default function PostAll() {
   } else {
     console.log("data not null", data);
     // return true;
+    console.log("isLoading:", isLoading, "isFetching", isFetching);
     return (
       <>
-        {data?.pages.map((page, i) => (
-          <Fragment key={i}>
-            {page.map((post) => (
-              <Post key={post.postId} post={post} />
+        {isFetching ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "200px",
+            }}
+          >
+            <HashLoader color="orange" />
+          </div>
+        ) : (
+          <>
+            {data?.pages.map((page, i) => (
+              <Fragment key={i}>
+                {page.map((post) => (
+                  <Post key={post.postId} post={post} />
+                ))}
+              </Fragment>
             ))}
-          </Fragment>
-        ))}
-        <div ref={ref} /*style={{ height: 50 }}*/ />
+            <div ref={ref} /*style={{ height: 50 }}*/ />
+          </>
+        )}
       </>
     );
   }
