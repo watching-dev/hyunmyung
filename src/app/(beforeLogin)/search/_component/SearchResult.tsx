@@ -20,8 +20,8 @@ export default function SearchResult({ searchParams }: Props) {
   >({
     queryKey: ["posts", "search", searchParams],
     queryFn: getSearchResult,
-    staleTime: 60 * 1000, // fresh -> stale, 5분이라는 기준
-    gcTime: 300 * 1000,
+    staleTime: 1000 * 30,
+    gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
 
   return (

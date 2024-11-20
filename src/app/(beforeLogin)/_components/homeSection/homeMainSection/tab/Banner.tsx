@@ -11,7 +11,8 @@ export default function Banner() {
   const { data } = useQuery<IBanner>({
     queryKey: ["banner"],
     queryFn: getBanner,
-    staleTime: 60 * 1000,
+    staleTime: 1000 * 60 * 60 * 24 * 1,
+    gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
 
   console.log(data);

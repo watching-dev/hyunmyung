@@ -13,7 +13,8 @@ export default function PostRecommends() {
   const { data, isFetching, isLoading, isPending } = useQuery<IList[]>({
     queryKey: ["posts", "recommends"],
     queryFn: getPostRecommends,
-    staleTime: 60 * 1000,
+    staleTime: 1000 * 30,
+    gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
   // useEffect(() => { 나중에 여기도 무한 스크롤하면 적용
   //   if (inView) fetchNextPage();

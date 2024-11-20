@@ -86,6 +86,9 @@ export default function PostAll() {
         console.log("lastPage:", lastPage, "allPage:", allPages);
         return lastPage.length === 10 ? allPages.length + 1 : undefined;
       },
+      staleTime: 1000 * 30, // fresh -> stale time, fresh에서는 fetching 안됨, 다른 페이지에 넘어가면 inactive되는데 이때도 stale time 멈춤 -> fresh에서는 계속 캐시에서 데이터 가져옴, stale time이 chache time 보다 높을 수  없음 캐시가 삭제되는데 어디서 가져올거임
+      // staleTime: 1000 * 60 * 60 * 24 * 1,
+      gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
     });
 
   useEffect(() => {
