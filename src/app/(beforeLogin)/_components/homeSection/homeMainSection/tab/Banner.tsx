@@ -9,7 +9,7 @@ export interface IBanner {
 }
 export default function Banner() {
   const { data } = useQuery<IBanner>({
-    queryKey: ["posts", "banner"],
+    queryKey: ["banner"],
     queryFn: getBanner,
     staleTime: 60 * 1000,
   });
@@ -19,15 +19,19 @@ export default function Banner() {
   return (
     <div className={styles.banner}>
       {data?.bannerURL === null || data?.bannerURL === undefined ? (
-        <></>
+        <>
+          <div className={styles.bg} />
+        </>
       ) : (
         <>
-          <Image
-            src={data.bannerURL}
-            width={600}
-            height={400}
-            alt="banner"
-          ></Image>
+          <div className={styles.bg}>
+            <Image
+              src={data.bannerURL}
+              width={600}
+              height={400}
+              alt="banner"
+            ></Image>
+          </div>
         </>
       )}
     </div>

@@ -11,3 +11,10 @@
   height: 130px;
   /* border-radius: 16px; */
 }
+
+.bg {
+  width: 598px;
+  height: 130px;
+  /* background-color: lightgray; */
+  background-color: rgb(247, 249, 249);
+}
