@@ -6,26 +6,41 @@ import { Post as IPost } from "@/app/model/Post";
 import { getPostRecommends } from "@/app/(afterLogin)/_lib/getPostRecommends";
 import { IList } from "@/app/api/posts/route";
 import { HashLoader } from "react-spinners";
+import { useInView } from "react-intersection-observer";
 
 export default function PostRecommends() {
-  const { data, isFetching } = useQuery<IList[]>({
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+  const { data, isFetching, isLoading, isPending } = useQuery<IList[]>({
     queryKey: ["posts", "recommends"],
     queryFn: getPostRecommends,
     staleTime: 60 * 1000,
   });
+  console.log(
+    "recommend==",
+    "isLoading",
+    isLoading,
+    "isPending",
+    isPending,
+    "isFetching",
+    isFetching,
+    "data ==",
+    data
+  );
   return (
     <>
-      {isFetching ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "200px",
-          }}
-        >
-          <HashLoader color="orange" />
-        </div>
+      {isPending ? (
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "150px 0px",
+            }}
+          >
+            <HashLoader color="orange" />
+          </div>
+        </>
       ) : (
         <>
           {data
@@ -33,6 +48,25 @@ export default function PostRecommends() {
             .map((post) => (
               <Post key={post.postId} post={post} />
             ))}
+          <div ref={ref} /*style={{ height: 50 }}*/ />
+          <div>
+            {isFetching ? (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "150px 0px",
+                  }}
+                >
+                  <HashLoader color="orange" />
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
         </>
       )}
     </>
