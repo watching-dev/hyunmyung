@@ -47,7 +47,7 @@ export async function GET() {
         $gte: `${kr_current.getFullYear()}-${kr_current.getMonth() + 1}-01`,
         $lt: `${kr_current.getFullYear()}-${kr_current.getMonth() + 2}-01`,
       },
-    });
+    }).sort({ createdAt: -1 });
     console.log(">>>>>>>>");
     console.log("count:", allPost.length, "allPost", allPost);
     return NextResponse.json(allPost);

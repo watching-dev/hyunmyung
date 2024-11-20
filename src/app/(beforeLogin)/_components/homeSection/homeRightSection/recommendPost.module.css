@@ -1,0 +1,32 @@
+.bg {
+  display: flex;
+  margin: 10px 0;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.info {
+  padding: 10px 20px;
+  display: flex;
+  align-items: centerter;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 18px;
+  font-family: sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+  white-space: nowrap;
+}
+
+.date {
+  font-size: 15px;
+  color: gray;
+  font-family: sans-serif;
+}
