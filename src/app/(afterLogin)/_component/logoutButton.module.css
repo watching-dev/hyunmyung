@@ -48,6 +48,7 @@
   width: 50px;
   align-items: center;
   padding: 12px;
+  justify-content: center;
   /* background-color: brown; */
 }
 
