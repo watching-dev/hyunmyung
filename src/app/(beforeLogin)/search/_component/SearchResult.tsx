@@ -4,12 +4,15 @@ import { Post as IPost } from "@/app/model/Post";
 import { useQuery } from "@tanstack/react-query";
 import Post from "../../_components/homeSection/homeMainSection/tab/Post";
 import { getSearchResult } from "../_lib/GetSearchResult";
+import { HashLoader } from "react-spinners";
+import { useInView } from "react-intersection-observer";
 
 type Props = {
   searchParams: { q: string; f?: string; pf?: string };
 };
 export default function SearchResult({ searchParams }: Props) {
-  const { data } = useQuery<
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+  const { data, isFetching, isPending } = useQuery<
     IPost[],
     Object,
     IPost[],
@@ -21,5 +24,47 @@ export default function SearchResult({ searchParams }: Props) {
     gcTime: 300 * 1000,
   });
 
-  return data?.map((post) => <Post key={post.postId} post={post} />);
+  return (
+    <>
+      {isPending ? (
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "150px 0px",
+            }}
+          >
+            <HashLoader color="orange" />
+          </div>
+        </>
+      ) : (
+        <>
+          {data?.map((post) => (
+            <Post key={post.postId} post={post} />
+          ))}
+          <div ref={ref} /*style={{ height: 50 }}*/ />
+          <div>
+            {isFetching ? (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "150px 0px",
+                  }}
+                >
+                  <HashLoader color="orange" />
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
 }
