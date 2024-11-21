@@ -12,9 +12,6 @@ export default function RightSectionRecommend() {
     gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
   console.log("rQ", data?.length); // length를 사용항려면 useQuery옆에 타입 <[]> 이렇게 지정해줘야 length 사용 가능, 그리고 data 뿌려주는 타입을 넣어야 지 <[타입]>
-  // Math.floor(Math.random() * data?.length - 1);
-  const sliceData = data?.slice(0, Math.floor(Math.random() * 10)); // 이번달 작성 글 모두 뿌리려고 했더니 너무 길어서 1~10개 랜덤으로 뿌리기
-  console.log("slice", sliceData);
   console.log("recommend data:", data);
   const slice = data?.filter(
     (post) =>
