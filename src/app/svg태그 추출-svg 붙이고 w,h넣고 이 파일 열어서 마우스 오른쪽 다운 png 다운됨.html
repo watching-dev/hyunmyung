@@ -1,0 +1,148 @@
+<html>
+  <body>
+    <div class="card card-default pb-5">
+      <div class="save_btn">
+        <a
+          class="hover"
+          href="javascript:void(0);"
+          onclick="PrintDiv(document.querySelector('#bar_chart2 > svg'));"
+          >이미지로 저장</a
+        >
+      </div>
+      <div id="bar_chart2">
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="50px" height="50px">
+          <g>
+            <path
+              d="M7.323 2h11.443l-3 5h6.648L6.586 22.83 7.847 14H2.523l4.8-12zm1.354 2l-3.2 8h4.676l-.739 5.17L17.586 9h-5.352l3-5H8.677z"
+            ></path>
+          </g>
+        </svg>
+      </div>
+
+      <img id="resultPng" />
+    </div>
+
+    <script>
+      //*
+      console.log("SVGToImage");
+      function SVGToImage(settings) {
+        let _settings = {
+          svg: null,
+          // Usually all SVG have transparency, so PNG is the way to go by default
+          mimetype: "image/png",
+          quality: 1,
+          width: "auto",
+          height: "auto",
+          outputFormat: "base64",
+        };
+
+        // Override default settings
+        for (let key in settings) {
+          _settings[key] = settings[key];
+        }
+
+        return new Promise(function (resolve, reject) {
+          let svgNode;
+
+          // Create SVG Node if a plain string has been provided
+          if (typeof _settings.svg == "string") {
+            // Create a non-visible node to render the SVG string
+            let SVGContainer = document.createElement("div");
+            SVGContainer.style.display = "none";
+            SVGContainer.innerHTML = _settings.svg;
+            svgNode = SVGContainer.firstElementChild;
+          } else {
+            svgNode = _settings.svg;
+          }
+
+          let canvas = document.createElement("canvas");
+          let context = canvas.getContext("2d");
+
+          let svgXml = new XMLSerializer().serializeToString(svgNode);
+          let svgBase64 = "data:image/svg+xml;base64," + btoa(svgXml);
+
+          const image = new Image();
+
+          image.onload = function () {
+            let finalWidth, finalHeight;
+
+            // Calculate width if set to auto and the height is specified (to preserve aspect ratio)
+            if (_settings.width === "auto" && _settings.height !== "auto") {
+              finalWidth = (this.width / this.height) * _settings.height;
+              // Use image original width
+            } else if (_settings.width === "auto") {
+              finalWidth = this.naturalWidth;
+              // Use custom width
+            } else {
+              finalWidth = _settings.width;
+            }
+
+            // Calculate height if set to auto and the width is specified (to preserve aspect ratio)
+            if (_settings.height === "auto" && _settings.width !== "auto") {
+              finalHeight = (this.height / this.width) * _settings.width;
+              // Use image original height
+            } else if (_settings.height === "auto") {
+              finalHeight = this.naturalHeight;
+              // Use custom height
+            } else {
+              finalHeight = _settings.height;
+            }
+
+            // Define the canvas intrinsic size
+            canvas.width = finalWidth;
+            canvas.height = finalHeight;
+
+            // Render image in the canvas
+            context.drawImage(this, 0, 0, finalWidth, finalHeight);
+
+            if (_settings.outputFormat == "blob") {
+              // Fullfil and Return the Blob image
+              canvas.toBlob(
+                function (blob) {
+                  resolve(blob);
+                },
+                _settings.mimetype,
+                _settings.quality
+              );
+            } else {
+              // Fullfil and Return the Base64 image
+              resolve(canvas.toDataURL(_settings.mimetype, _settings.quality));
+            }
+          };
+
+          // Load the SVG in Base64 to the image
+          image.src = svgBase64;
+        });
+      }
+
+      SVGToImage({
+        // 1. Provide the SVG DOM element
+        svg: document.querySelector("#bar_chart2 > svg"),
+        // 2. Provide the format of the output image
+        mimetype: "image/png",
+        // 3. Provide the dimensions of the image if you want a specific size.
+        //  - if they remain in auto, the width and height attribute of the svg will be used
+        //  - You can provide a single dimension and the other one will be automatically calculated
+        width: 50,
+        height: 50,
+        // 4. Specify the quality of the image
+        quality: 1,
+        // 5. Define the format of the output (base64 or blob)
+        outputFormat: "base64",
+      })
+        .then(function (outputData) {
+          // If using base64 (outputs a DataURL)
+          //  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0...
+          // Or with Blob (Blob)
+          //  Blob {size: 14353, type: "image/png"}
+          console.log(outputData);
+          document.querySelector("#resultPng").src = outputData;
+        })
+        .catch(function (err) {
+          // Log any error
+          console.log(err);
+        });
+      //*/
+    </script>
+  </body>
+</html>
