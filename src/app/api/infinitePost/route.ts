@@ -13,11 +13,10 @@ export async function GET(req: NextRequest) {
     const limit = 10;
     const posts = await PostingAPIS.find()
       .sort({ createdAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit);
+      .skip((page - 1) * limit) // 얼추 의미 알고 있어서 정확하게 다시 알기
+      .limit(limit); // 얼추 의미 알고 있어서 정확하게 다시 알기
     console.log("count:", posts.length);
     console.log("posts", posts);
-    // console.log("posts json", posts.json());
 
     return NextResponse.json(posts);
   } catch (e) {
