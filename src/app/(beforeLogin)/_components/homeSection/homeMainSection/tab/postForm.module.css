@@ -23,17 +23,21 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
+
 @media (prefers-color-scheme: dark) {
   .postForm {
     border-color: rgb(47, 51, 54);
   }
 }
+
 .postInputSection {
   flex: 1;
 }
+
 .postButtonSection {
   width: 100%;
 }
+
 .postForm textarea {
   width: 100%;
   border: none;
@@ -42,17 +46,21 @@
   line-height: 24px;
   outline: none;
 }
+
 .postForm textarea::placeholder {
   font-family: Malgun Gothic;
 }
+
 .footerButtons {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .footerButtonLeft {
   flex: 1;
 }
+
 .uploadButton {
   width: 34px;
   height: 34px;
@@ -66,15 +74,19 @@
   align-items: center;
   justify-content: center;
 }
+
 .uploadButton:hover {
   background-color: rgb(29, 155, 240, 0.1);
 }
+
 .uploadButton svg {
   fill: rgb(29, 155, 240);
 }
+
 .actionButton:disabled {
   opacity: 0.5;
 }
+
 .actionButton {
   width: 94px;
   height: 36px;
@@ -85,6 +97,7 @@
   border-radius: 18px;
   background-color: rgb(29, 155, 240);
 }
+
 .actionButton:hover {
   background-color: rgb(26, 140, 216);
 }
