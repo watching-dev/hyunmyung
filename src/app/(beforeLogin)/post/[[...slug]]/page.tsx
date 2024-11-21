@@ -26,13 +26,11 @@ export default async function PostSlug(props: any) {
     // 디코딩을 먼저 다시 하고 변환으로 해결
     const decodeURI = decodeURIComponent(props.params.slug[0]);
     const decodeSlug = decodeURIComponent(props.params.slug[1]);
-    console.log("decode:", decodeURI);
-    console.log("decode slug", decodeSlug);
-    console.log("props slug", props.params.slug); // 이렇게 해야 url 값을 가져오네
+    // console.log("decode:", decodeURI);
+    // console.log("decode slug", decodeSlug);
+    // console.log("props slug", props.params.slug); // 이렇게 해야 url 값을 가져오네
     const originPostId = atob(decodeURI); // 디코딩이 실패하면 에러남_인코딩 글자를 임의로 수정했을 경우처럼
-    console.log("origin:", originPostId);
     const slug = decodeSlug.replace(/-/gi, " "); // -를 공백으로 치환
-    console.log("slug==", slug);
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE}/api/post/detail`,
@@ -47,7 +45,6 @@ export default async function PostSlug(props: any) {
     );
 
     const res = await response.json();
-    console.log(res);
 
     const cleanContent = sanitizeHtml(res.content);
 
