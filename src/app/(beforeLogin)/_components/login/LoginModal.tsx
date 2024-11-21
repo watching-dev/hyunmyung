@@ -19,9 +19,6 @@ export default function LoginModal() {
         redirect: false,
       });
 
-      console.log(response);
-      console.log("eeror", response?.error);
-
       // if (!response?.error) {
       //   // setMessage("아이디와 비번이 일치하지 않음");
       //   setMessage("!response?.error");
