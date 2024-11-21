@@ -7,7 +7,6 @@ interface Props {
   searchParams: { q: string; f?: string; pf?: string };
 }
 export default function Search({ searchParams }: Props) {
-  console.log("search params", searchParams);
   return (
     <main className={style.main}>
       <div className={style.searchTop}>
