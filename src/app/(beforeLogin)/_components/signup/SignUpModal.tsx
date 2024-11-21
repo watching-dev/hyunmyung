@@ -6,7 +6,6 @@ import onSubmit from "../../_lib/singup";
 import { useRouter } from "next/navigation";
 
 function showMessage(message: string | null) {
-  console.log("message", message);
   if (message === "no_id") {
     return "아이디를 입력하세요.";
   }
@@ -28,7 +27,6 @@ function showMessage(message: string | null) {
 export default function SignupModal() {
   const [state, formAction] = useFormState(onSubmit, { message: null });
   const { pending } = useFormStatus();
-  console.log("state", state);
   const router = useRouter();
   const onClickClose = () => {
     router.back();
