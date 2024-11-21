@@ -1,8 +1,15 @@
 export async function getRecommend() {
-  const response = await fetch(`http://localhost:3000/api/recommend`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE}/api/recommend`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (!response.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
 
