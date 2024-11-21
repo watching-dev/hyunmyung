@@ -15,8 +15,6 @@ export default function Banner() {
     gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
 
-  console.log(data);
-
   return (
     <div className={styles.banner}>
       {data?.bannerURL === null || data?.bannerURL === undefined ? (
