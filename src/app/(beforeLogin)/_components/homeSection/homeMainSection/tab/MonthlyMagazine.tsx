@@ -1,12 +1,9 @@
 "use client";
 
 import { ReactNode, useRef } from "react";
-import styles from "./post.module.css";
 import { useRouter } from "next/navigation";
-import { PostImage } from "@/app/model/PostImage";
-import Link from "next/link";
 
-type Props = {
+interface Props {
   children: ReactNode;
   post: {
     title: string;
@@ -23,7 +20,7 @@ type Props = {
     createdAt: Date;
     updatedAt: Date;
   };
-};
+}
 
 export default function MonthlyMagazine({ children, post }: Props) {
   const router = useRouter();
@@ -39,7 +36,6 @@ export default function MonthlyMagazine({ children, post }: Props) {
   console.log("split:", split);
   const base64Flag = btoa(post.postId); // bas64로 인코딩
   console.log("send", base64Flag);
-  const ref = useRef(null);
 
   const onClick = () => {
     // router.push(`/${post.User.id}/status/${post.postId}`);
@@ -51,19 +47,5 @@ export default function MonthlyMagazine({ children, post }: Props) {
     router.push(`/post/${base64Flag}/${slug}`);
   };
 
-  return (
-    <article onClickCapture={onClick}>{children}</article>
-    // <Link
-    //   href={
-    //     {
-    //       pathname: `/post/${base64Flag}/${slug}`,
-    //       query: { post: JSON.stringify(post) },
-    //     }
-    //     // ref={ref}
-    //   }
-    //   className={styles.post}
-    // >
-    //   {children}
-    // </Link>
-  );
+  return <article onClickCapture={onClick}>{children}</article>;
 }
