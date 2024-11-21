@@ -7,12 +7,12 @@ export async function POST(req: Request, res: Response) {
 
     // 입력한 데이터
     const data = await req.json();
-    console.log("data==>>", data);
+    // console.log("data==>>", data);
 
     const profileData = await ProfileAPIS.findOne({
       "User.userId": data.userInfo,
     }).sort({ createdAt: -1 });
-    console.log("profileData", profileData);
+    // console.log("profileData", profileData);
 
     // const ProfileSchema = new Schema({
     //   //   _id: Schema.Types.ObjectId,- 이거 하니까 updatedAt, _id 생성이 안되네
@@ -22,7 +22,7 @@ export async function POST(req: Request, res: Response) {
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     // const kr_current = new Date(utc + KR_TIME_DIFF) === Date.now() 똑같음_9시간 부족하니까 2배 해줘야 맞음;
     const kr_current = new Date(utc + KR_TIME_DIFF * 2);
-    console.log("time:", kr_current);
+    // console.log("time:", kr_current);
 
     const profile = new ProfileAPIS({
       User: {
@@ -36,7 +36,7 @@ export async function POST(req: Request, res: Response) {
       createdAt: kr_current,
       updatedAt: kr_current,
     });
-    console.log("save profile", profile);
+    // console.log("save profile", profile);
     await profile.save();
     return Response.json(profile);
   } catch (error) {
