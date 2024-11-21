@@ -1,37 +1,29 @@
 .rightSectionWrapper {
   display: flex;
-  /* background-color: green; */
   flex-grow: 1;
 }
 
 .rightSectionInner {
   display: flex;
-  /* background-color: pink; */
   justify-content: space-between;
   width: 600px;
 }
 
 .rightSectionPost {
   display: flex;
-  /* background-color: pink; */
-  /* justify-content: space-between;*/
   width: 600px;
-  /* flex: 1; */
 }
 
 .mainSectionPost {
   width: 600px;
-  /* background-color: aquamarine; */
 }
 
 .mainSection {
   width: 600px;
-  /* background-color: aquamarine; */
 }
 
 .rightSection {
   display: none;
-  /* background-color: blueviolet; */
 }
 
 .copyright {
@@ -43,27 +35,21 @@
   .rightSection {
     display: inline-block;
     width: 350px;
-    /* background-color: blueviolet; */
   }
 
   .rightSectionInner {
     width: 990px;
     display: flex;
-    /* background-color: pink; */
     justify-content: space-between;
   }
 
   .rightSectionPost {
     display: flex;
-    /* background-color: pink; */
-    /* justify-content: space-between;*/
     width: 1000px;
-    /* flex: 1; */
   }
 
   .mainSectionPost {
     width: 1000px;
-    /* background-color: aquamarine; */
   }
 
   .copyright {
