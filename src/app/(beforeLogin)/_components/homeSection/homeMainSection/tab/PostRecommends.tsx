@@ -3,16 +3,16 @@
 import { useQuery } from "@tanstack/react-query";
 import Post from "./Post";
 import { Post as IPost } from "@/app/model/Post";
-import { getPostRecommends } from "@/app/(afterLogin)/_lib/getPostRecommends";
 import { IList } from "@/app/api/posts/route";
 import { HashLoader } from "react-spinners";
 import { useInView } from "react-intersection-observer";
+import { getPostAll } from "@/app/(afterLogin)/_lib/getPostAll";
 
 export default function PostRecommends() {
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
   const { data, isFetching, isLoading, isPending } = useQuery<IList[]>({
     queryKey: ["posts", "recommends"],
-    queryFn: getPostRecommends,
+    queryFn: getPostAll,
     staleTime: 1000 * 30,
     gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
