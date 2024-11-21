@@ -1,8 +1,4 @@
-// "use server";
-
-import { revalidatePath } from "next/cache";
 import ProfileView from "../_components/homeSection/homeMainSection/tab/profileView";
-import styles from "./profile.module.css";
 import { auth } from "@/auth";
 
 export default async function Profile() {
