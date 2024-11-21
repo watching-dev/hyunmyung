@@ -1,28 +1,31 @@
 "use client";
 
-import { Post as IPost } from "@/app/model/Post";
 import { useQuery } from "@tanstack/react-query";
 import Post from "../../_components/homeSection/homeMainSection/tab/Post";
 import { getSearchResult } from "../_lib/GetSearchResult";
 import { HashLoader } from "react-spinners";
 import { useInView } from "react-intersection-observer";
+import { IList } from "@/app/api/posts/route";
 
-type Props = {
+interface Props {
   searchParams: { q: string; f?: string; pf?: string };
-};
+}
 export default function SearchResult({ searchParams }: Props) {
-  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+  const { ref } = useInView({ threshold: 0, delay: 0 });
   const { data, isFetching, isPending } = useQuery<
-    IPost[],
+    IList[],
     Object,
-    IPost[],
+    IList[],
     [_1: string, _2: string, Props["searchParams"]]
+    // 아직도 여긴 왜 이렇게 타입을 지정하는 건지 모르겠네
   >({
     queryKey: ["posts", "search", searchParams],
     queryFn: getSearchResult,
     staleTime: 1000 * 30,
     gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
+
+  // 나중에 무한스크롤 적용
 
   return (
     <>
