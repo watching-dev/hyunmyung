@@ -13,7 +13,7 @@ export const {
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        console.log("auth#1===");
+        // console.log("auth#1===");
         const authResponse = await fetch(
           `${process.env.NEXT_PUBLIC_BASE}/api/login`,
           {
@@ -28,14 +28,14 @@ export const {
           }
         );
         const user = await authResponse.json();
-        console.log("==>", authResponse.ok);
-        console.log(user);
+        // console.log("==>", authResponse.ok);
+        // console.log(user);
 
         if (!user.result) {
           // return null;
           const credentialsSignin = new CredentialsSignin();
-          console.log("cre", credentialsSignin);
-          console.log("status", authResponse);
+          // console.log("cre", credentialsSignin);
+          // console.log("status", authResponse);
           // if (authResponse.status === 404) {
           //   credentialsSignin.code = "no_user";
           // } else if (authResponse.status === 401) {
@@ -48,7 +48,7 @@ export const {
           throw credentialsSignin;
         }
 
-        console.log("user", user);
+        // console.log("user", user);
         return {
           // email: user.id,
           // name: user.nickname,
