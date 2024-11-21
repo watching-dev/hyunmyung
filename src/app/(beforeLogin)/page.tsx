@@ -1,6 +1,4 @@
 import styles from "./rightSectionMain.module.css";
-import Post from "./_components/homeSection/homeMainSection/tab/Post";
-import PostForm from "./_components/homeSection/homeMainSection/tab/PostForm";
 import Tab from "./_components/homeSection/homeMainSection/tab/Tab";
 import TabProvider from "./_components/homeSection/homeMainSection/tab/TabProvider";
 import {
@@ -9,8 +7,6 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-import PostRecommends from "./_components/homeSection/homeMainSection/tab/PostAll";
-import { getPostRecommends } from "../(afterLogin)/_lib/getPostAll";
 import TabDecider from "./_components/homeSection/homeMainSection/tab/TabDecider";
 import Banner from "./_components/homeSection/homeMainSection/tab/Banner";
 
