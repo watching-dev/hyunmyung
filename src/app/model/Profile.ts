@@ -7,7 +7,6 @@ const ProfileSchema = new Schema({
     userId: String,
     userName: String,
   },
-  //   name: { type: String, unique: true },
   description: String,
   profileImage: String,
   backgroundImage: String,
