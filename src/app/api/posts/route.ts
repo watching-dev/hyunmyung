@@ -23,7 +23,7 @@ export async function GET(req: Request) {
     await dbConnect();
     const allPost = await PostingAPIS.find();
 
-    console.log("posting:", allPost);
+    // console.log("posting:", allPost);
 
     const postList = allPost.reverse().map((post) => {
       const list = {
@@ -46,7 +46,7 @@ export async function GET(req: Request) {
       return list;
     });
 
-    console.log("postList:", postList);
+    // console.log("postList:", postList);
 
     return NextResponse.json(postList);
   } catch (err) {
