@@ -1,18 +1,8 @@
-// "use client";
-
-import { useQuery } from "@tanstack/react-query";
-import {
-  usePathname,
-  useSearchParams,
-  useSelectedLayoutSegments,
-} from "next/navigation";
-import PostDetail from "../../_components/homeSection/homeMainSection/tab/PostDetail";
 import styles from "./postSlug.module.css";
 import BackButton from "../../_components/homeSection/homeMainSection/tab/BackButton";
 import sanitizeHtml from "../../_lib/sanitizeHTML";
 
-type Props = {
-  // param: { id: string };
+interface Props {
   post: {
     title: string;
     postId: string;
@@ -28,7 +18,7 @@ type Props = {
     createdAt: Date;
     updatedAt: Date;
   };
-};
+}
 export default async function PostSlug(props: any) {
   try {
     // props.params.slug[0](postId)가 인코딩 된 값이 MTFfY1hkbGNnPT1fMQ== 인데 특수문자 인코딩문제로 MTFfY1hkbGNnPT1fMQ%3D%3D 이렇게 변환되어 넘어옴
@@ -78,24 +68,6 @@ export default async function PostSlug(props: any) {
         </div>
       </>
     );
-
-    // export default function PostSlug() {
-    //   const search = useSearchParams();
-    //   console.log("search", search);
-    //   const post: any = search.get("post");
-    //   console.log("post", post);
-    //   return <div>post slug</div>;
-    // }
-
-    // const PostSlug: React.FC<Props> = () => {
-    //   const search = useSearchParams();
-    //   console.log("search", search);
-    //   const post: any = search.get("post");
-    //   console.log("post", post);
-    //   return <div>post slug</div>;
-    // };
-
-    // export default PostSlug;
   } catch (error) {
     console.error(error);
     return <div>not found</div>;
