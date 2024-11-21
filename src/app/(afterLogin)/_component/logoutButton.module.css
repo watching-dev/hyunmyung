@@ -11,37 +11,21 @@
   text-align: left;
   justify-content: right;
 }
+
 .logOutUserName {
   display: none;
 }
+
 .logOutUserImage {
   display: flex;
   align-items: center;
 }
+
 .logOutUserImage img {
   width: 40px;
   border-radius: 50%;
 }
-@media all and (min-width: 1300px) {
-  .logOutButton {
-    width: 100px;
-  }
-  .logOutUserName {
-    margin: 0 12px;
-    display: inline-block;
-  }
-  .logOutUserName > div:first-child {
-    font-weight: bold;
-  }
-}
-.logOutButton:hover {
-  /* background-color: rgba(15, 20, 25, 0.1);
-  border-radius: 33px; */
-}
 
-.bg {
-  /* display: flex; */
-}
 .navItem {
   display: flex;
   height: 50px;
@@ -49,7 +33,6 @@
   align-items: center;
   padding: 12px;
   justify-content: center;
-  /* background-color: brown; */
 }
 
 .navItem:hover {
@@ -62,6 +45,19 @@
 }
 
 @media all and (min-width: 1300px) {
+  .logOutButton {
+    width: 100px;
+  }
+
+  .logOutUserName {
+    margin: 0 12px;
+    display: inline-block;
+  }
+
+  .logOutUserName > div:first-child {
+    font-weight: bold;
+  }
+
   .navItem > div {
     display: inline-block;
     margin-left: 20px;
