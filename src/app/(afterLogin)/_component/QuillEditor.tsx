@@ -9,13 +9,10 @@ interface ForwardedQuillComponent extends ReactQuillProps {
   forwardedRef: React.Ref<ReactQuill>;
 }
 
+// dynamic import 적용
 const QuillNoSSRWrapper = dynamic(
   async () => {
     const { default: QuillComponent } = await import("react-quill");
-    // 해당 라이브러리 dynamic import
-    // const { default: ImageCompress } = await import("quill-image-compress");
-    // Quill에 모듈 등록
-    // QuillComponent.Quill.register("modules/imageCompress", ImageCompress);
     const Quill = ({ forwardedRef, ...props }: ForwardedQuillComponent) => (
       <QuillComponent ref={forwardedRef} {...props} />
     );
