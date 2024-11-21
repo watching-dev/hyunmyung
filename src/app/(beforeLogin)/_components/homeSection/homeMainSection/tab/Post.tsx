@@ -17,14 +17,12 @@ interface Props {
 
 export default function Post({ post }: Props) {
   const data = post;
-  console.log("posttt", data);
-  console.log("created", data.createdAt);
-  console.log("dayjs", dayjs(Date.now()).from(data.createdAt));
-  console.log("dayjs now", dayjs(data.createdAt).fromNow(true));
-  console.log(
-    "diff",
-    dayjs(dayjs(data.createdAt).subtract(9, "hour").format()).fromNow(true)
-  );
+  // console.log("dayjs", dayjs(Date.now()).from(data.createdAt));
+  // console.log("dayjs now", dayjs(data.createdAt).fromNow(true));
+  // console.log(
+  //   "diff",
+  //   dayjs(dayjs(data.createdAt).subtract(9, "hour").format()).fromNow(true)
+  // );
   const time = dayjs(
     dayjs(data.createdAt).subtract(9, "hour").format()
   ).fromNow(true);
