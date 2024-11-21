@@ -18,17 +18,17 @@ export default function PostRecommends() {
   // useEffect(() => { 나중에 여기도 무한 스크롤하면 적용
   //   if (inView) fetchNextPage();
   // }, [inView, fetchNextPage]);
-  console.log(
-    "recommend==",
-    "isLoading",
-    isLoading,
-    "isPending",
-    isPending,
-    "isFetching",
-    isFetching,
-    "data ==",
-    data
-  );
+  // console.log(
+  //   "recommend==",
+  //   "isLoading",
+  //   isLoading,
+  //   "isPending",
+  //   isPending,
+  //   "isFetching",
+  //   isFetching,
+  //   "data ==",
+  //   data
+  // );
   return (
     <>
       {isPending ? (
