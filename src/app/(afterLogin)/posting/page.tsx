@@ -43,7 +43,7 @@ export default function Posting() {
   const [content, setContent] = useState("");
   const router = useRouter();
   const session = useSession();
-  console.log("session:", session);
+
   const quillInstance = useRef<ReactQuill>(null);
   const sanitizer = DOMPurify.sanitize;
   const cleanContent = sanitizer(content);
@@ -54,19 +54,17 @@ export default function Posting() {
   const [title, setTitle] = useState("");
   const titleChange = (e: any) => {
     setTitle(e.target.value);
-    console.log("title:", e.target.value);
-    console.log("setTitle:", title);
+    // console.log("title:", e.target.value);
+    // console.log("setTitle:", title);
   };
 
   const imageHandler = () => {
-    console.log("imageHandler");
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
     // input.setAttribute("accept", "image/jpg,image/png,image/jpeg");
     // input.setAttribute("multiple", "multiple");
     input.click();
-    console.log("input", input);
 
     input.addEventListener("change", async () => {
       if (input.files![0] !== null || input.files![0] === undefined) {
@@ -86,43 +84,33 @@ export default function Posting() {
         // ----> 서버가 아니라 브라우저에서 시간 계산이 돼서 그런지 9시간 더해져서 나옴, 2배 -> 1배로 변경
         // 배포 후에는 각각 시간 어떻게 적용되는지 파악해야 할듯, utc로 하든지 등등
         const kr_current = new Date(utc + KR_TIME_DIFF);
-        console.log(
-          "kr",
-          kr_current,
-          "year",
-          kr_current.getFullYear(),
-          "mon",
-          kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
-          "next",
-          kr_current.getMonth() + 2,
-          "day",
-          kr_current.getDate()
-        );
+        // console.log(
+        //   "kr",
+        //   kr_current,
+        //   "year",
+        //   kr_current.getFullYear(),
+        //   "mon",
+        //   kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
+        //   "next",
+        //   kr_current.getMonth() + 2,
+        //   "day",
+        //   kr_current.getDate()
+        // );
 
         try {
-          console.log("file: ", file);
-          console.log("file name", file.name);
           const fileName = `${Date.now().toString()}_${file.name}`;
-          console.log("filename==: ", fileName);
           const storageRef = ref(
             storage,
             `images/images/${kr_current.getFullYear()}/${
               kr_current.getMonth() + 1
             }/${kr_current.getDate()}/images/${fileName}`
           );
-          console.log("storageRef", storageRef);
           const imageFile = new File([file], fileName, { type: "image/jpeg" });
-          console.log("imageFile", imageFile);
           const compressdFile = await imageCompression(imageFile, options);
-          console.log("compressedFile", compressdFile);
           const snapshot = await uploadBytes(storageRef, compressdFile);
-          console.log("snapshot", snapshot);
           const url = await getDownloadURL(snapshot.ref);
-          console.log("url:", url);
           const editor = quillInstance.current?.getEditor();
-          console.log("editor", editor);
           const range = editor?.getSelection();
-          console.log("range", range);
           const rangeIndex =
             range?.index === null || range?.index === undefined
               ? 0
@@ -177,14 +165,9 @@ export default function Posting() {
   // 게시물 작성하기
   const handleSubmit = async (formData: FormData) => {
     try {
-      console.log("handle");
-      console.log(content);
-      console.log("tititi", title);
-
       const params = {
         postImage: formData.get("image"),
       };
-      console.log(params);
 
       const recommended = false;
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/post`, {
@@ -194,9 +177,7 @@ export default function Posting() {
         },
         body: JSON.stringify({ content, title, params, thumbURL, recommended }),
       });
-      console.log(response);
       const res = await response.json(); // awati 해야 제대로 볼 수 있음
-      console.log(res);
       router.replace("/");
     } catch (error: unknown) {
       console.error(error);
@@ -212,42 +193,35 @@ export default function Posting() {
       // ----> 서버가 아니라 브라우저에서 시간 계산이 돼서 그런지 9시간 더해져서 나옴, 2배 -> 1배로 변경
       // 배포 후에는 각각 시간 어떻게 적용되는지 파악해야 할듯, utc로 하든지 등등
       const kr_current = new Date(utc + KR_TIME_DIFF);
-      console.log(
-        "kr",
-        kr_current,
-        "year",
-        kr_current.getFullYear(),
-        "mon",
-        kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
-        "next",
-        kr_current.getMonth() + 2,
-        "day",
-        kr_current.getDate()
-      );
+      // console.log(
+      //   "kr",
+      //   kr_current,
+      //   "year",
+      //   kr_current.getFullYear(),
+      //   "mon",
+      //   kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
+      //   "next",
+      //   kr_current.getMonth() + 2,
+      //   "day",
+      //   kr_current.getDate()
+      // );
       try {
-        console.log("upload==", thumb);
         const fileName = `${Date.now().toString()}_${thumb!.name}`;
-        console.log("filename==: ", fileName);
         const storageRef = ref(
           storage,
           `images/images/${kr_current.getFullYear()}/${
             kr_current.getMonth() + 1
           }/${kr_current.getDate()}/thumbnail/${fileName}`
         );
-        console.log("storageRef", storageRef);
         const imageFile = new File([thumb!], fileName, { type: "image/jpeg" });
-        console.log("imageFile", imageFile);
         const options = {
           maxSizeMB: 1,
           maxWidthOrHeight: 1920,
           useWebWorker: true,
         };
         const compressdFile = await imageCompression(imageFile, options);
-        console.log("compressedFile", compressdFile);
         const snapshot = await uploadBytes(storageRef, compressdFile);
-        console.log("snapshot", snapshot);
         const url = await getDownloadURL(snapshot.ref);
-        console.log("url:", url);
         setThumbURL(url);
         alert("썸네일 저장 완료");
       } catch (error) {
@@ -265,15 +239,13 @@ export default function Posting() {
       const reader = new FileReader();
       // reader에게 파일 url 읽으라고 함
       reader.readAsDataURL(e.target.files[0]);
-      console.log(e.target.files.length);
-      console.log(e.target.files[0]);
+      // console.log(e.target.files.length);
+      // console.log(e.target.files[0]);
       setThumb(e.target.files[0]);
 
       // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
       reader.onload = function (e: any) {
         // state에 담아줌
-        // setPreviewImg(e.target.result);
-        console.log(e.target.result);
         setPreview(e.target.result);
       };
     }
