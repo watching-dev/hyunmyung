@@ -1,7 +1,5 @@
 import dbConnect from "@/app/_lib/dbConnect";
 import PostingAPIS from "@/app/model/posting";
-import ProfileAPIS from "@/app/model/Profile";
-import { auth } from "@/auth";
 
 export async function POST(req: Request, res: Response) {
   try {
