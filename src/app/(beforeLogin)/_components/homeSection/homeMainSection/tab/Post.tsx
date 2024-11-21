@@ -1,21 +1,19 @@
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 import styles from "./post.module.css";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PostArticle from "./PostArticle";
 import Link from "next/link";
-import { Post as IPost } from "@/app/model/Post";
 import Image from "next/image";
 import { IList } from "@/app/api/posts/route";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
-type Props = {
-  // post: IPost;
+interface Props {
   post: IList;
-};
+}
 
 export default function Post({ post }: Props) {
   const data = post;
@@ -33,10 +31,6 @@ export default function Post({ post }: Props) {
 
   const noImage: boolean =
     data.postImage === "" || data.postImage === undefined ? true : false;
-  // if (Math.random() > 0.5) {
-  //   data.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
-  //   noImage = Math.random() < 0.5;
-  // }
 
   return (
     <PostArticle post={data}>
@@ -68,11 +62,7 @@ export default function Post({ post }: Props) {
         </div>
         <div className={styles.postBody}>
           <div className={styles.postMeta}>
-            <Link
-              //   href={`/${data.User.nickname}`}
-              href={`/profile`}
-              className={styles.postUserName}
-            >
+            <Link href={`/profile`} className={styles.postUserName}>
               {data.Profile.User.userName}
             </Link>
             &nbsp; &nbsp;
@@ -80,7 +70,6 @@ export default function Post({ post }: Props) {
             <div className={styles.dot}>&nbsp; · &nbsp;</div>
             <div className={styles.postDate}>{time}</div>
           </div>
-          {/* <div>{data.content}</div> */}
           <div className={styles.titleImage}>
             {noImage ? (
               <div>{data.title}</div>
@@ -101,11 +90,6 @@ export default function Post({ post }: Props) {
               </div>
             )}
           </div>
-          {/*    <div className={styles.postImageSection}>
-             {data.Images && data.Images.length > 0 && (
-               <img src={data.Images[0]?.link} alt="" />
-             )}
-           </div> */}
         </div>
       </div>
     </PostArticle>
