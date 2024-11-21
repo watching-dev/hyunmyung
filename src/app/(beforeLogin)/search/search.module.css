@@ -23,6 +23,7 @@
   justify-content: center;
   z-index: 1;
 }
+
 .searchZone {
   display: flex;
   align-items: center;
@@ -41,6 +42,7 @@
   justify-content: center;
   cursor: pointer;
 }
+
 .backButton:hover {
   background-color: rgba(15, 20, 25, 0.1);
 }
@@ -81,6 +83,7 @@
   font-size: 15px;
   position: relative;
 }
+
 .homeTab a:hover {
   background-color: rgba(15, 20, 25, 0.1);
 }
