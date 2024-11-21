@@ -1,7 +1,6 @@
 .leftSectionWrapper {
   display: flex;
   flex-grow: 1;
-  /* background-color: orange; */
   height: inherit;
   justify-content: flex-end;
 }
@@ -9,7 +8,6 @@
 .leftSection {
   display: flex;
   height: inherit;
-  /* background-color: blue; */
   width: 72px;
   margin-right: 20px;
 }
@@ -17,7 +15,6 @@
 .fixed {
   display: flex;
   position: fixed;
-  /* background-color: cadetblue; */
   width: inherit;
   height: inherit;
   flex-direction: column;
@@ -27,7 +24,6 @@
 
 .fixed nav {
   display: flex;
-  /* background-color: coral; */
   flex: 1;
 }
 
@@ -44,7 +40,6 @@
   .leftSection {
     display: flex;
     height: inherit;
-    /* background-color: blue; */
     width: 210px;
     margin-right: 0px;
   }
@@ -52,7 +47,6 @@
   .fixed {
     display: flex;
     position: fixed;
-    /* background-color: cadetblue; */
     width: inherit;
     height: inherit;
     flex-direction: column;
