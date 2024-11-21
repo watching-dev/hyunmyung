@@ -44,17 +44,17 @@ export default function ProfileView({
   const [session, setSession] = useState(sessionUse);
   const router = useRouter();
 
-  console.log("seeeeesion==", session);
-  console.log(
-    "name",
-    name,
-    "description",
-    description,
-    "backgroundImage",
-    backgroundImage,
-    "profileImage",
-    profileImage
-  );
+  // console.log("seeeeesion==", session);
+  // console.log(
+  //   "name",
+  //   name,
+  //   "description",
+  //   description,
+  //   "backgroundImage",
+  //   backgroundImage,
+  //   "profileImage",
+  //   profileImage
+  // );
 
   const readBgURL = (e: any) => {
     // 업로드한 파일이 있는지 체크
@@ -63,15 +63,12 @@ export default function ProfileView({
       const reader = new FileReader();
       // reader에게 파일 url 읽으라고 함
       reader.readAsDataURL(e.target.files[0]);
-      console.log(e.target.files.length);
-      console.log(e.target.files[0]);
+
       setBackgroundImg(e.target.files[0]);
 
       // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
       reader.onload = function (e: any) {
         // state에 담아줌
-        // setPreviewImg(e.target.result);
-        console.log(e.target.result);
         setPreviewBg(e.target.result);
       };
     }
@@ -84,15 +81,13 @@ export default function ProfileView({
       const reader = new FileReader();
       // reader에게 파일 url 읽으라고 함
       reader.readAsDataURL(e.target.files[0]);
-      console.log(e.target.files.length);
-      console.log(e.target.files[0]);
+
       setProfileImg(e.target.files[0]);
 
       // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
       reader.onload = function (e: any) {
         // state에 담아줌
-        // setPreviewImg(e.target.result);
-        console.log(e.target.result);
+
         setPreviewPf(e.target.result);
       };
     }
@@ -100,9 +95,6 @@ export default function ProfileView({
 
   const uploadImages = async () => {
     // 이미지 한개만 업로드 했을때 처리 / 로그인 했을때만 업로드 나오도록
-    console.log("저장");
-    console.log("pf :", profileImg);
-    console.log("bg :", backgroundImg);
     if (
       (profileImg !== null && backgroundImg !== null) ||
       (profileImg !== undefined && backgroundImg !== undefined)
@@ -115,49 +107,41 @@ export default function ProfileView({
         // ----> 서버가 아니라 브라우저에서 시간 계산이 돼서 그런지 9시간 더해져서 나옴, 2배 -> 1배로 변경
         // 배포 후에는 각각 시간 어떻게 적용되는지 파악해야 할듯, utc로 하든지 등등
         const kr_current = new Date(utc + KR_TIME_DIFF);
-        console.log(
-          "kr",
-          kr_current,
-          "year",
-          kr_current.getFullYear(),
-          "mon",
-          kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
-          "next",
-          kr_current.getMonth() + 2,
-          "day",
-          kr_current.getDate()
-        );
+        // console.log(
+        //   "kr",
+        //   kr_current,
+        //   "year",
+        //   kr_current.getFullYear(),
+        //   "mon",
+        //   kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
+        //   "next",
+        //   kr_current.getMonth() + 2,
+        //   "day",
+        //   kr_current.getDate()
+        // );
 
-        console.log("upload==", profileImg);
         const profileName = `${Date.now().toString()}_${profileImg!.name}`;
-        console.log("upload==", backgroundImg);
         const backgroundName = `${Date.now().toString()}_${
           backgroundImg!.name
         }`;
-        console.log("profilename==: ", profileName);
-        console.log("backgroundname==: ", backgroundName);
         const profileStorageRef = ref(
           storage,
           `images/profile/${kr_current.getFullYear()}/${
             kr_current.getMonth() + 1
           }/${kr_current.getDate()}/profile/${profileName}`
         );
-        console.log("profileStorageRef", profileStorageRef);
         const backgroundStorageRef = ref(
           storage,
           `images/profile/${kr_current.getFullYear()}/${
             kr_current.getMonth() + 1
           }/${kr_current.getDate()}/background/${backgroundName}`
         );
-        console.log("backgroundStorageRef", backgroundStorageRef);
         const profileImageFile = new File([profileImg!], profileName, {
           type: "image/jpeg",
         });
         const backgroundImageFile = new File([backgroundImg!], backgroundName, {
           type: "image/jpeg",
         });
-        console.log("profileImageFile", profileImageFile);
-        console.log("backgroundImageFile", backgroundImageFile);
         const options = {
           maxSizeMB: 1,
           maxWidthOrHeight: 1920,
@@ -167,32 +151,22 @@ export default function ProfileView({
           profileImageFile,
           options
         );
-        console.log("profileCompressedFile", profileCompressdFile);
         const backgroundCompressdFile = await imageCompression(
           backgroundImageFile,
           options
         );
-        console.log("backgroundCompressedFile", backgroundCompressdFile);
         const profileSnapshot = await uploadBytes(
           profileStorageRef,
           profileCompressdFile
         );
-        console.log("profileSnapshot", profileSnapshot);
         const backgroundSnapshot = await uploadBytes(
           backgroundStorageRef,
           backgroundCompressdFile
         );
-        console.log("backgroundSnapshot", backgroundSnapshot);
         const profileUrl = await getDownloadURL(profileSnapshot.ref);
         const backgroundUrl = await getDownloadURL(backgroundSnapshot.ref);
-        console.log("profileUrl:", profileUrl);
-        console.log("backgroundUrl:", backgroundUrl);
-
-        console.log("session:", session);
         const userInfo = session.data?.user?.email;
-        console.log("userInfo", userInfo);
 
-        console.log("before response");
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BASE}/api/profile`,
           {
@@ -207,9 +181,7 @@ export default function ProfileView({
             }),
           }
         );
-        console.log(response);
         const res = await response.json(); // await 해야 제대로 볼 수 있음
-        console.log(res);
         alert("저장 완료");
         // router.replace("/");
         // router.refresh();
@@ -218,7 +190,7 @@ export default function ProfileView({
           (profileImg === null && backgroundImg === null) ||
           (profileImg === undefined && backgroundImg === undefined)
         ) {
-          console.log("pforileImage && backgroundImage 업로드 되지 않음");
+          // console.log("pforileImage && backgroundImage 업로드 되지 않음");
           alert("업로드 되지 않음");
         }
       } catch (error) {
