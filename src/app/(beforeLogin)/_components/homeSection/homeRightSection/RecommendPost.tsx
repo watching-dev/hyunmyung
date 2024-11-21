@@ -22,13 +22,15 @@ export default function RecommendPost({ data }: Props) {
       <div>
         <li className={styles.cursor}>
           <div className={styles.bg}>
-            <Image
-              src={data.postImage}
-              alt={data.title}
-              width={600}
-              height={400}
-              className={styles.thumbnail}
-            />
+            <div className={styles.thumbBg}>
+              <Image
+                src={data.postImage}
+                alt={data.title}
+                width={600}
+                height={400}
+                className={styles.thumbnail}
+              />
+            </div>
             <div className={styles.info}>
               <div className={styles.title}>{data.title}</div>
               <div className={styles.date}>{time}</div>
