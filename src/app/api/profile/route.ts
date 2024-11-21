@@ -1,24 +1,6 @@
 import dbConnect from "@/app/_lib/dbConnect";
 import ProfileAPIS from "@/app/model/Profile";
-import { NextResponse } from "next/server";
-
-// export async function GET(req: Request) {
-//   try {
-//     await dbConnect();
-//     const userId = "aaaa";
-//     const profile = await ProfileAPIS.findOne({
-//       "User.userId": userId,
-//     }).sort({ createdAt: -1 });
-//     console.log("pf", profile);
-//     const count = await ProfileAPIS.countDocuments();
-//     console.log("count", count);
-//     return NextResponse.json(profile);
-//   } catch (err) {
-//     console.error(err);
-//     return NextResponse.error();
-//   }
-// }
-
+i;
 export async function POST(req: Request, res: Response) {
   try {
     await dbConnect();
@@ -34,17 +16,6 @@ export async function POST(req: Request, res: Response) {
 
     // const ProfileSchema = new Schema({
     //   //   _id: Schema.Types.ObjectId,- 이거 하니까 updatedAt, _id 생성이 안되네
-    //   User: {
-    //     user_id: Schema.Types.ObjectId,
-    //     userId: String,
-    //     userName: String,
-    //   },
-    //   //   name: { type: String, unique: true },
-    //   description: String,
-    //   profileImage: String,
-    //   backgroundImage: String,
-    //   createdAt: Date,
-    //   updatedAt: Date,
 
     const current = new Date();
     const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
