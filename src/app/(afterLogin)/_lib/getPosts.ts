@@ -2,7 +2,6 @@ export interface IPage {
   pageParam?: any;
 }
 export async function getPosts(pageParam: IPage) {
-  console.log("IPAGE=====", pageParam);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE}/api/infinitePost?page=${pageParam}`,
     {
