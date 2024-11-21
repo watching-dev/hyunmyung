@@ -3,9 +3,9 @@ import RightSectionSearch from "../_components/homeSection/homeRightSection/Righ
 import BackButton from "../_components/homeSection/homeMainSection/tab/BackButton";
 import SearchResult from "./_component/SearchResult";
 
-type Props = {
+interface Props {
   searchParams: { q: string; f?: string; pf?: string };
-};
+}
 export default function Search({ searchParams }: Props) {
   console.log("search params", searchParams);
   return (
