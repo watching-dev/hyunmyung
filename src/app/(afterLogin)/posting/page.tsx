@@ -40,7 +40,6 @@ const formats = [
 
 export default function Posting() {
   Quill.register("modules/imageActions", ImageActions);
-  const quillRef = useRef(null);
   const [content, setContent] = useState("");
   const router = useRouter();
   const session = useSession();
@@ -48,6 +47,16 @@ export default function Posting() {
   const quillInstance = useRef<ReactQuill>(null);
   const sanitizer = DOMPurify.sanitize;
   const cleanContent = sanitizer(content);
+
+  const [thumb, setThumb] = useState<File>();
+  const [preview, setPreview] = useState<string>();
+  const [thumbURL, setThumbURL] = useState("");
+  const [title, setTitle] = useState("");
+  const titleChange = (e: any) => {
+    setTitle(e.target.value);
+    console.log("title:", e.target.value);
+    console.log("setTitle:", title);
+  };
 
   const imageHandler = () => {
     console.log("imageHandler");
@@ -60,59 +69,49 @@ export default function Posting() {
     console.log("input", input);
 
     input.addEventListener("change", async () => {
-      const file = input.files[0];
+      if (input.files![0] !== null || input.files![0] === undefined) {
+        const file: File = input.files![0];
+        // input.files?.[0] 과 동일한지 체크 필요
 
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true,
-      };
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        };
 
-      try {
-        console.log("file: ", file);
-        console.log("file name", file.name);
-        const fileName = `${Date.now().toString()}_${file.name}`;
-        console.log("filename==: ", fileName);
-        const storageRef = ref(storage, `images/${fileName}`);
-        console.log("storageRef", storageRef);
-        const imageFile = new File([file], fileName, { type: "image/jpeg" });
-        console.log("imageFile", imageFile);
-        const compressdFile = await imageCompression(imageFile, options);
-        console.log("compressedFile", compressdFile);
-        const snapshot = await uploadBytes(storageRef, compressdFile);
-        console.log("snapshot", snapshot);
-        // const snapshot = await uploadBytes(storageRef, compressdFile);
-        const url = await getDownloadURL(snapshot.ref);
-        console.log("url:", url);
-        // const res = await imageApi({ img: file });
-        // const imgUrl = res.data.imgUrl;
-        const editor = quillInstance.current.getEditor();
-        console.log("editor", editor);
-        const range = editor.getSelection();
-        console.log("range", range);
-        editor.insertEmbed(range.index, "image", url);
-        editor.setSelection(range.index + 1);
-
-        //     (const fileName = `${Date.now().toString()}_${blob.name}`;
-        //     const storageRef = ref(storage, `images/${fileName}`);
-        //     const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
-
-        //     const options = {
-        //       maxSizeMB: 1,
-        //       maxWidthOrHeight: 1920,
-        //       useWebWorker: true,
-        //     }
-
-        //     try {
-        //       const compressdFile = await imageCompression(imageFile, options)
-        //       const snapshot = await uploadBytes(storageRef, compressdFile);
-        //       const url = await getDownloadURL(snapshot.ref);
-        //       images.current = Array.isArray(images.current) ? [...images.current, {fileName: fileName, url: url.replaceAll(/&/g, '&amp;')}] : [{fileName: fileName, url: url.replaceAll(/&/g, '&amp;')}]
-
-        // )
-      } catch (error) {
-        console.log(error);
-        alert("이미지 업로드 실패");
+        try {
+          console.log("file: ", file);
+          console.log("file name", file.name);
+          const fileName = `${Date.now().toString()}_${file.name}`;
+          console.log("filename==: ", fileName);
+          const storageRef = ref(storage, `images/${fileName}`);
+          console.log("storageRef", storageRef);
+          const imageFile = new File([file], fileName, { type: "image/jpeg" });
+          console.log("imageFile", imageFile);
+          const compressdFile = await imageCompression(imageFile, options);
+          console.log("compressedFile", compressdFile);
+          const snapshot = await uploadBytes(storageRef, compressdFile);
+          console.log("snapshot", snapshot);
+          const url = await getDownloadURL(snapshot.ref);
+          console.log("url:", url);
+          const editor = quillInstance.current?.getEditor();
+          console.log("editor", editor);
+          const range = editor?.getSelection();
+          console.log("range", range);
+          const rangeIndex =
+            range?.index === null || range?.index === undefined
+              ? 0
+              : range.index;
+          const rangeLength =
+            range?.length === null || range?.length === undefined
+              ? 0
+              : range.length;
+          editor?.insertEmbed(rangeIndex, "image", url);
+          editor?.setSelection(rangeIndex + 1, rangeLength);
+        } catch (error) {
+          console.log(error);
+          alert("이미지 업로드 실패");
+        }
       }
     });
   };
@@ -143,7 +142,6 @@ export default function Posting() {
         },
       },
       clipboard: {
-        // toggle to add extra line breaks when pasting HTML:
         matchVisual: false,
       },
     }),
@@ -171,44 +169,45 @@ export default function Posting() {
         body: JSON.stringify({ content, title, params, thumbURL, recommended }),
       });
       console.log(response);
-      const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나
+      const res = await response.json(); // awati 해야 제대로 볼 수 있음
       console.log(res);
-      // router.replace("/");
+      router.replace("/");
     } catch (error: unknown) {
       console.error(error);
     }
   };
 
   const uploadThumbnail = async (formData: FormData) => {
-    try {
-      console.log("upload==", thumb);
-      const fileName = `${Date.now().toString()}_${thumb.name}`;
-      console.log("filename==: ", fileName);
-      const storageRef = ref(storage, `images/thumbnail/${fileName}`);
-      console.log("storageRef", storageRef);
-      const imageFile = new File([thumb], fileName, { type: "image/jpeg" });
-      console.log("imageFile", imageFile);
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true,
-      };
-      const compressdFile = await imageCompression(imageFile, options);
-      console.log("compressedFile", compressdFile);
-      const snapshot = await uploadBytes(storageRef, compressdFile);
-      console.log("snapshot", snapshot);
-      // const snapshot = await uploadBytes(storageRef, compressdFile);
-      const url = await getDownloadURL(snapshot.ref);
-      console.log("url:", url);
-      setThumbURL(url);
-    } catch (error) {
-      console.error(error);
-      alert("업로드 에러");
+    if (thumb !== null || thumb !== undefined) {
+      try {
+        console.log("upload==", thumb);
+        const fileName = `${Date.now().toString()}_${thumb!.name}`;
+        console.log("filename==: ", fileName);
+        const storageRef = ref(storage, `images/thumbnail/${fileName}`);
+        console.log("storageRef", storageRef);
+        const imageFile = new File([thumb!], fileName, { type: "image/jpeg" });
+        console.log("imageFile", imageFile);
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        };
+        const compressdFile = await imageCompression(imageFile, options);
+        console.log("compressedFile", compressdFile);
+        const snapshot = await uploadBytes(storageRef, compressdFile);
+        console.log("snapshot", snapshot);
+        const url = await getDownloadURL(snapshot.ref);
+        console.log("url:", url);
+        setThumbURL(url);
+      } catch (error) {
+        console.error(error);
+        alert("업로드 에러");
+      }
     }
   };
 
   // 파일의 url 가져옴, input의 onChange에 실행
-  const readURL = (e) => {
+  const readURL = (e: any) => {
     // 업로드한 파일이 있는지 체크
     if (e.target.files.length) {
       // 있으면 FileReader 객체 생성
@@ -220,7 +219,7 @@ export default function Posting() {
       setThumb(e.target.files[0]);
 
       // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
-      reader.onload = function (e) {
+      reader.onload = function (e: any) {
         // state에 담아줌
         // setPreviewImg(e.target.result);
         console.log(e.target.result);
@@ -228,15 +227,7 @@ export default function Posting() {
       };
     }
   };
-  const [thumb, setThumb] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [thumbURL, setThumbURL] = useState("");
-  const [title, setTitle] = useState("");
-  const titleChange = (e) => {
-    setTitle(e.target.value);
-    console.log("title:", e.target.value);
-    console.log("setTitle:", title);
-  };
+
   return (
     <>
       <div className={styles.tabFixed}>
@@ -294,7 +285,7 @@ export default function Posting() {
             />
           </div>
 
-          {preview === null ? (
+          {preview === null || preview === undefined || preview === "" ? (
             <></>
           ) : (
             <>
