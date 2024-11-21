@@ -13,7 +13,6 @@ interface Props {
   data: IList;
 }
 export default function RecommendPost({ data }: Props) {
-  console.log("recommend post data: ", data);
   const time = dayjs(
     dayjs(data.createdAt).subtract(9, "hour").format()
   ).fromNow(true);
