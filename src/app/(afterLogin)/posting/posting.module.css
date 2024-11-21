@@ -64,7 +64,6 @@
   width: 50px;
   align-items: center;
   padding: 12px;
-  /* background-color: brown; */
 }
 
 .navItem:hover {
@@ -99,7 +98,6 @@
 .saveText {
   padding: 20px 50px;
   width: 50%;
-  /* background-color: purple; */
   margin-left: 10px;
   border-width: 1px;
   border-style: solid;
@@ -111,7 +109,6 @@
 .previewText {
   padding: 20px 50px;
   width: 50%;
-  /* background-color: blue; */
   margin-right: 10px;
   border-width: 1px;
   border-style: solid;
