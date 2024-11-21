@@ -23,8 +23,6 @@ export async function POST(req: Request, res: Response) {
       saltRounds
     );
     console.log("hashp:", hashPassword);
-    // const userJ = JoinAPIS2;
-    // console.log(userJ);
 
     const current = new Date();
     const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
@@ -46,25 +44,9 @@ export async function POST(req: Request, res: Response) {
       // } 자동화는 나중에 해보자
     ); // 모델을 생성하고 나서 여기에서 뭐라도 수정하고 저장 -> post 하면 중복 생성했다고  에러 뜸, 서버 재시작 해야함
     // 다른 에러거나 unique 설정했는데 안먹는다면 디비 컬렉션 삭제후 다시 생성_디비 컬렉션 지우고 그냥 다시 하면 자동 생성됨
-    // const u = await JoinAPIS2.create({
-    //   userId: 23,
-    //   userPw: 333,
-    //   name: "name",
-    //   createdAt: Date.now(),
-    // });
-    // user.set({
-    //   timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
-    // });
+
     console.log(user);
     await user.save();
-    // const userInfo = new UserJoin({
-    //   userId: data.userId,
-    //   userPw: hashPassword,
-    //   name: data.name,
-    // });
-
-    // 계정 추가
-    // await userInfo.save();
 
     // profile 데이터도 저장
     const profile = new ProfileAPIS({
