@@ -7,16 +7,16 @@ export async function GET(req: NextRequest) {
     await dbConnect();
 
     const { searchParams } = new URL(req.url);
-    console.log("search params:", searchParams);
+    // console.log("search params:", searchParams);
     const page = parseInt(searchParams.get("page") || "1", 10);
-    console.log("get page: ", page);
+    // console.log("get page: ", page);
     const limit = 10;
     const posts = await PostingAPIS.find()
       .sort({ createdAt: -1 })
       .skip((page - 1) * limit) // 얼추 의미 알고 있어서 정확하게 다시 알기
       .limit(limit); // 얼추 의미 알고 있어서 정확하게 다시 알기
-    console.log("count:", posts.length);
-    console.log("posts", posts);
+    // console.log("count:", posts.length);
+    // console.log("posts", posts);
 
     return NextResponse.json(posts);
   } catch (e) {
