@@ -14,7 +14,6 @@ export default function BeforeLoginLayout({
 }) {
   return (
     <>
-      {/* <div>before login layout</div> */}
       <div className={styles.container}>
         <HomeLeftSection />
         <RQProvider>
