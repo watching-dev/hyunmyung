@@ -4,11 +4,10 @@ import { auth } from "@/auth";
 export default async function Profile() {
   try {
     const session = await auth();
-    console.log("session id", session);
-    console.log("fetch profile====");
+
     // defaultId에 사용할 아이디 작성
     const defaultId = process.env.NEXT_PUBLIC_DEFAULT_ID; // id checker 함수 만들기
-    console.log("defaultID", defaultId);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE}/api/profile/id`,
       {
@@ -33,11 +32,6 @@ export default async function Profile() {
     );
 
     const data = await response.json();
-    console.log("==>", data);
-    console.log("data.backgroundImg", data.backgroundImage);
-    console.log("data.profileImg", data.profileImage);
-    console.log("data.description", data.description);
-    console.log("data.name", data.User.userName);
 
     // revalidatePath("/profile");
 
