@@ -12,13 +12,38 @@ export default function UploadBanner() {
   const [preview, setPreview] = useState<string>();
   const router = useRouter();
 
+  const current = new Date();
+  const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
+  const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+  // const kr_current = new Date(utc + KR_TIME_DIFF) === Date.now() 똑같음_9시간 부족하니까 2배 해줘야 맞음;
+  // ----> 서버가 아니라 브라우저에서 시간 계산이 돼서 그런지 9시간 더해져서 나옴, 2배 -> 1배로 변경
+  // 배포 후에는 각각 시간 어떻게 적용되는지 파악해야 할듯, utc로 하든지 등등
+  const kr_current = new Date(utc + KR_TIME_DIFF);
+  console.log(
+    "kr",
+    kr_current,
+    "year",
+    kr_current.getFullYear(),
+    "mon",
+    kr_current.getMonth() + 1, // month는 0부터 시작하기 때문에 1 더해줘야 함
+    "next",
+    kr_current.getMonth() + 2,
+    "day",
+    kr_current.getDate()
+  );
+
   const uploadBanner = async () => {
     if (banner !== null || banner !== undefined) {
       try {
         console.log("upload==", banner);
         const fileName = `${Date.now().toString()}_${banner!.name}`;
         console.log("filename==: ", fileName);
-        const storageRef = ref(storage, `images/banner/${fileName}`);
+        const storageRef = ref(
+          storage,
+          `images/banner/${kr_current.getFullYear()}/${
+            kr_current.getMonth() + 1
+          }/${kr_current.getDate()}/${fileName}`
+        );
         console.log("storageRef", storageRef);
         const imageFile = new File([banner!], fileName, { type: "image/jpeg" });
         console.log("imageFile", imageFile);
