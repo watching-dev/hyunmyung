@@ -5,10 +5,10 @@ import { getSinglePost } from "../_lib/getSinglePost";
 import { Post as IPost } from "@/app/model/Post";
 import Post from "@/app/(beforeLogin)/_components/homeSection/homeMainSection/tab/Post";
 
-type Props = {
+interface Props {
   id: string;
   noImage?: boolean;
-};
+}
 export default function SinglePost({ id, noImage }: Props) {
   const { data: post, error } = useQuery<
     IPost,
@@ -40,5 +40,5 @@ export default function SinglePost({ id, noImage }: Props) {
   if (!post) {
     return null;
   }
-  return <Post key={post.postId} post={post} />;
+  // return <Post key={post.postId} post={post} />;
 }
