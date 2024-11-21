@@ -28,18 +28,18 @@ export default function PostAll() {
     if (inView) fetchNextPage();
   }, [inView, fetchNextPage]);
 
-  console.log("qq==>", data?.pages.flat());
-  console.log(
-    "before",
-    "isLoading",
-    isLoading,
-    "isPending",
-    isPending,
-    "isFetching",
-    isFetching,
-    "data ==",
-    data
-  );
+  // console.log("qq==>", data?.pages.flat());
+  // console.log(
+  //   "before",
+  //   "isLoading",
+  //   isLoading,
+  //   "isPending",
+  //   isPending,
+  //   "isFetching",
+  //   isFetching,
+  //   "data ==",
+  //   data
+  // );
 
   return (
     <>
