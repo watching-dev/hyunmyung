@@ -108,6 +108,7 @@ export default function Posting() {
               : range.length;
           editor?.insertEmbed(rangeIndex, "image", url);
           editor?.setSelection(rangeIndex + 1, rangeLength);
+          alert("업로드 성공");
         } catch (error) {
           console.log(error);
           alert("이미지 업로드 실패");
@@ -199,6 +200,7 @@ export default function Posting() {
         const url = await getDownloadURL(snapshot.ref);
         console.log("url:", url);
         setThumbURL(url);
+        alert("썸네일 저장 완료");
       } catch (error) {
         console.error(error);
         alert("업로드 에러");
