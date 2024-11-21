@@ -6,7 +6,6 @@ export async function GET(req: Request) {
   try {
     await dbConnect();
     const banner = await BannerAPIS.findOne().sort({ createdAt: -1 });
-    // Model.findOne().sort({ dateCreated: 1 })
     // 1: 가장 오래, -1: 가장 최신
     console.log(banner);
     return NextResponse.json(banner);
