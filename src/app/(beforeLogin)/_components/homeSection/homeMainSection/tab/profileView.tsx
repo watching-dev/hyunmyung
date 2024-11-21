@@ -1,6 +1,5 @@
 "use client";
 
-import { QueryClient } from "@tanstack/react-query";
 import styles from "./profileView.module.css";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
@@ -37,36 +36,10 @@ export default function ProfileView({
   backgroundImage,
   profileImage,
 }: Props) {
-  const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery({
-  //   // queryKey: ["users", username],
-
-  //   queryKey: ["user", "hyunmyung"],
-  //   // queryFn: getUser,
-  // });
-  // const dehydrateState = dehydrate(queryClient);
-
-  // const { data } = useQuery<IPost[]>({
-  //   queryKey: ["posts", "all"],
-  //   queryFn: getPostAll,
-  //   staleTime: 60 * 1000,
-  // });
-  // return data?.map((post) => <Post key={post.postId} post={post} />);
-
-  // const url =
-  //   "https://pbs.twimg.com/profile_images/1849727333617573888/HBgPUrjG_400x400.jpg";
-  // const imgData = await fetch(url, {
-  //   next: {
-  //     revalidate: 3,
-  //   },
-  // });
-  // const arrayBufferData = await imgData.arrayBuffer();
-  // const lqipData = await lqip(Buffer.from(arrayBufferData));
-  // const blurDataURL = lqipData.metadata.dataURIBase64;
-  const [previewBg, setPreviewBg] = useState(null);
-  const [previewPf, setPreviewPf] = useState(null);
-  const [backgroundImg, setBackgroundImg] = useState(null);
-  const [profileImg, setProfileImg] = useState(null);
+  const [previewBg, setPreviewBg] = useState<string>();
+  const [previewPf, setPreviewPf] = useState<string>();
+  const [backgroundImg, setBackgroundImg] = useState<File>();
+  const [profileImg, setProfileImg] = useState<File>();
   const sessionUse = useSession();
   const [session, setSession] = useState(sessionUse);
   const router = useRouter();
@@ -83,7 +56,7 @@ export default function ProfileView({
     profileImage
   );
 
-  const readBgURL = (e) => {
+  const readBgURL = (e: any) => {
     // 업로드한 파일이 있는지 체크
     if (e.target.files.length) {
       // 있으면 FileReader 객체 생성
@@ -95,7 +68,7 @@ export default function ProfileView({
       setBackgroundImg(e.target.files[0]);
 
       // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
-      reader.onload = function (e) {
+      reader.onload = function (e: any) {
         // state에 담아줌
         // setPreviewImg(e.target.result);
         console.log(e.target.result);
@@ -104,7 +77,7 @@ export default function ProfileView({
     }
   };
 
-  const readPfURL = (e) => {
+  const readPfURL = (e: any) => {
     // 업로드한 파일이 있는지 체크
     if (e.target.files.length) {
       // 있으면 FileReader 객체 생성
@@ -116,7 +89,7 @@ export default function ProfileView({
       setProfileImg(e.target.files[0]);
 
       // 읽기 동작이 성공적으로 load됐을때 발생할 이벤트 핸들러
-      reader.onload = function (e) {
+      reader.onload = function (e: any) {
         // state에 담아줌
         // setPreviewImg(e.target.result);
         console.log(e.target.result);
@@ -130,90 +103,101 @@ export default function ProfileView({
     console.log("저장");
     console.log("pf :", profileImg);
     console.log("bg :", backgroundImg);
-    try {
-      console.log("upload==", profileImg);
-      const profileName = `${Date.now().toString()}_${profileImg.name}`;
-      console.log("upload==", backgroundImg);
-      const backgroundName = `${Date.now().toString()}_${backgroundImg.name}`;
-      console.log("profilename==: ", profileName);
-      console.log("backgroundname==: ", backgroundName);
-      const profileStorageRef = ref(storage, `images/profile/${profileName}`);
-      console.log("profileStorageRef", profileStorageRef);
-      const backgroundStorageRef = ref(
-        storage,
-        `images/profile/${backgroundName}`
-      );
-      console.log("backgroundStorageRef", backgroundStorageRef);
-      const profileImageFile = new File([profileImg], profileName, {
-        type: "image/jpeg",
-      });
-      const backgroundImageFile = new File([backgroundImg], backgroundName, {
-        type: "image/jpeg",
-      });
-      console.log("profileImageFile", profileImageFile);
-      console.log("backgroundImageFile", backgroundImageFile);
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true,
-      };
-      const profileCompressdFile = await imageCompression(
-        profileImageFile,
-        options
-      );
-      console.log("profileCompressedFile", profileCompressdFile);
-      const backgroundCompressdFile = await imageCompression(
-        backgroundImageFile,
-        options
-      );
-      console.log("backgroundCompressedFile", backgroundCompressdFile);
-      const profileSnapshot = await uploadBytes(
-        profileStorageRef,
-        profileCompressdFile
-      );
-      console.log("profileSnapshot", profileSnapshot);
-      const backgroundSnapshot = await uploadBytes(
-        backgroundStorageRef,
-        backgroundCompressdFile
-      );
-      console.log("backgroundSnapshot", backgroundSnapshot);
-      const profileUrl = await getDownloadURL(profileSnapshot.ref);
-      const backgroundUrl = await getDownloadURL(backgroundSnapshot.ref);
-      console.log("profileUrl:", profileUrl);
-      console.log("backgroundUrl:", backgroundUrl);
+    if (
+      (profileImg !== null && backgroundImg !== null) ||
+      (profileImg !== undefined && backgroundImg !== undefined)
+    ) {
+      try {
+        console.log("upload==", profileImg);
+        const profileName = `${Date.now().toString()}_${profileImg!.name}`;
+        console.log("upload==", backgroundImg);
+        const backgroundName = `${Date.now().toString()}_${
+          backgroundImg!.name
+        }`;
+        console.log("profilename==: ", profileName);
+        console.log("backgroundname==: ", backgroundName);
+        const profileStorageRef = ref(storage, `images/profile/${profileName}`);
+        console.log("profileStorageRef", profileStorageRef);
+        const backgroundStorageRef = ref(
+          storage,
+          `images/profile/${backgroundName}`
+        );
+        console.log("backgroundStorageRef", backgroundStorageRef);
+        const profileImageFile = new File([profileImg!], profileName, {
+          type: "image/jpeg",
+        });
+        const backgroundImageFile = new File([backgroundImg!], backgroundName, {
+          type: "image/jpeg",
+        });
+        console.log("profileImageFile", profileImageFile);
+        console.log("backgroundImageFile", backgroundImageFile);
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        };
+        const profileCompressdFile = await imageCompression(
+          profileImageFile,
+          options
+        );
+        console.log("profileCompressedFile", profileCompressdFile);
+        const backgroundCompressdFile = await imageCompression(
+          backgroundImageFile,
+          options
+        );
+        console.log("backgroundCompressedFile", backgroundCompressdFile);
+        const profileSnapshot = await uploadBytes(
+          profileStorageRef,
+          profileCompressdFile
+        );
+        console.log("profileSnapshot", profileSnapshot);
+        const backgroundSnapshot = await uploadBytes(
+          backgroundStorageRef,
+          backgroundCompressdFile
+        );
+        console.log("backgroundSnapshot", backgroundSnapshot);
+        const profileUrl = await getDownloadURL(profileSnapshot.ref);
+        const backgroundUrl = await getDownloadURL(backgroundSnapshot.ref);
+        console.log("profileUrl:", profileUrl);
+        console.log("backgroundUrl:", backgroundUrl);
 
-      console.log("session:", session);
-      const userInfo = session.data?.user?.email;
-      console.log("userInfo", userInfo);
+        console.log("session:", session);
+        const userInfo = session.data?.user?.email;
+        console.log("userInfo", userInfo);
 
-      console.log("before response");
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE}/api/profile`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            profileUrl,
-            backgroundUrl,
-            userInfo,
-          }),
+        console.log("before response");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE}/api/profile`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              profileUrl,
+              backgroundUrl,
+              userInfo,
+            }),
+          }
+        );
+        console.log(response);
+        const res = await response.json(); // await 해야 제대로 볼 수 있음
+        console.log(res);
+        alert("저장 완료");
+        // router.replace("/");
+        // router.refresh();
+
+        if (
+          (profileImg === null && backgroundImg === null) ||
+          (profileImg === undefined && backgroundImg === undefined)
+        ) {
+          console.log("pforileImage && backgroundImage 업로드 되지 않음");
+          alert("업로드 되지 않음");
         }
-      );
-      console.log(response);
-      const res = await response.json(); // 이렇게 해야 내가 원하는 response를 받을수 있구나
-      console.log(res);
-      // router.replace("/");
-
-      if (profileImg === null && backgroundImg === null) {
-        console.log("pforileImage && backgroundImage 업로드 되지 않음");
+      } catch (error) {
+        console.error(error);
+        alert("업로드 에러");
       }
-
-      // router.refresh();
-    } catch (error) {
-      console.error(error);
-      alert("업로드 or db 에러");
     }
   };
 
@@ -263,8 +247,12 @@ export default function ProfileView({
               // blurDataURL={blurDataURL}
             />
           )
-        ) : previewBg === null || previewBg === undefined ? (
-          backgroundImage === null || backgroundImage === undefined ? (
+        ) : previewBg === null ||
+          previewBg === undefined ||
+          previewBg === "" ? (
+          backgroundImage === null ||
+          backgroundImage === undefined ||
+          backgroundImage === "" ? (
             <></>
           ) : (
             <Image
@@ -291,18 +279,6 @@ export default function ProfileView({
       </div>
       <div className={styles.profileBackground}>
         <div className={styles.profileImage}>
-          {/* <svg viewBox="0 0 24 24" aria-hidden="true">
-            <g>
-              <path d="M5.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C15.318 13.65 13.838 13 12 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zM12 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM8 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4z"></path>
-            </g>
-          </svg> */}
-          {/* <Image
-            src={url}
-            alt="elon musk"
-            fill
-            placeholder="blur"
-            blurDataURL={blurDataURL}
-          /> */}
           {session.data === null || session.data === undefined ? (
             profileImage === null || profileImage === undefined ? (
               <></>
