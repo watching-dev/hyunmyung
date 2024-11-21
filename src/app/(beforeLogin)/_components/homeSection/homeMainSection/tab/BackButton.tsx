@@ -3,11 +3,13 @@
 import { useRouter } from "next/navigation";
 import style from "./backButton.module.css";
 
-type Props = { page: string };
+interface Props {
+  page: string;
+}
 export default function BackButton({ page }: Props) {
   const router = useRouter();
   const onClick = () => {
-    // router.back();
+    // router.back(); replace하면 다시 앞으로 갈 수가 없는데 상황에 따라 back or replace 로 정리
     router.replace(page);
   };
   return (
