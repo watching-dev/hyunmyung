@@ -1,16 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
-import RightSectionMain from "../../page";
 import styles from "./homeRightSection.module.css";
 import RightSectionRecommend from "./homeRightSection/RightSectionRecommend";
 import RightSectionSearch from "./homeRightSection/RightSectionSearch";
-import {
-  usePathname,
-  useRouter,
-  useSelectedLayoutSegments,
-} from "next/navigation";
-import HomeRightSectionProfileImage from "../profileSection/HomeRightSectionProfileImage";
+import { usePathname, useSelectedLayoutSegments } from "next/navigation";
 import Contact from "./homeRightSection/Contact";
 
 export default function HomeRightSection({
