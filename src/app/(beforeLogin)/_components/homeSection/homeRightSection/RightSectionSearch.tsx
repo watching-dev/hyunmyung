@@ -4,7 +4,9 @@ import { useRouter } from "next/navigation";
 import styles from "./rightSectionSearch.module.css";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 
-type Props = { q?: string };
+interface Props {
+  q?: string;
+}
 export default function RightSectionSearch({ q }: Props) {
   const [inputValue, setInputValue] = useState(q);
   const router = useRouter();
