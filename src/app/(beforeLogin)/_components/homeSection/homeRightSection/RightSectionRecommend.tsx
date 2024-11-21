@@ -11,8 +11,8 @@ export default function RightSectionRecommend() {
     staleTime: 1000 * 60 * 60 * 24 * 1,
     gcTime: 1000 * 10 * 60 * 60 * 24 * 1,
   });
-  console.log("rQ", data?.length); // length를 사용항려면 useQuery옆에 타입 <[]> 이렇게 지정해줘야 length 사용 가능, 그리고 data 뿌려주는 타입을 넣어야 지 <[타입]>
-  console.log("recommend data:", data);
+  // console.log("rQ", data?.length); // length를 사용항려면 useQuery옆에 타입 <[]> 이렇게 지정해줘야 length 사용 가능, 그리고 data 뿌려주는 타입을 넣어야 지 <[타입]>
+
   const slice = data?.filter(
     (post) =>
       post.postImage !== "" &&
@@ -25,7 +25,6 @@ export default function RightSectionRecommend() {
   //     post.postImage !== undefined;
   // });
 
-  console.log("----", slice);
   return (
     <div className={styles.postRecommend}>
       <h3>이달의 매거진</h3>
