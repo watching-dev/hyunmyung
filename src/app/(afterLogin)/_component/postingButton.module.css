@@ -13,6 +13,7 @@
   justify-content: center;
   width: inherit;
 }
+
 .postingButton:hover {
   background-color: rgb(57, 61, 45);
 }
