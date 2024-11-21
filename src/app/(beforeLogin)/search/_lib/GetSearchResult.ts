@@ -1,8 +1,8 @@
 import { QueryFunction } from "@tanstack/query-core";
-import { Post } from "@/app/model/Post";
+import { IList } from "@/app/api/posts/route";
 
 export const getSearchResult: QueryFunction<
-  Post[],
+  IList[],
   [_1: string, _2: string, searchParams: { q: string; pf?: string; f?: string }]
 > = async ({ queryKey }) => {
   const [_1, _2, searchParams] = queryKey;
@@ -17,11 +17,8 @@ export const getSearchResult: QueryFunction<
       cache: "no-store",
     }
   );
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
 
