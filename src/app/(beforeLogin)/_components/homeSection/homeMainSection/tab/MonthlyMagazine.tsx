@@ -24,18 +24,11 @@ interface Props {
 
 export default function MonthlyMagazine({ children, post }: Props) {
   const router = useRouter();
-  console.log("postId", post.postId);
-  console.log("title:", post.title);
   const slug2 = post.title.replace(/(\s*)/g, ""); // 공백제거
-  console.log("slug:", slug2);
   const slug = post.title.replace(/ /gi, "-"); // 공백을 -로 치환
-  console.log("slug2", slug);
   const flag = post.postId.replace(/[\D]/gi, ""); // 문자 아닌것 제거
-  console.log("flag", flag);
   const split = post.postId.split("_"); // _로 구분해서 각 배열에 담음
-  console.log("split:", split);
   const base64Flag = btoa(post.postId); // bas64로 인코딩
-  console.log("send", base64Flag);
 
   const onClick = () => {
     // router.push(`/${post.User.id}/status/${post.postId}`);
