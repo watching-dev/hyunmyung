@@ -28,6 +28,7 @@ export default function RecommendPost({ data }: Props) {
                 width={600}
                 height={400}
                 className={styles.thumbnail}
+                priority
               />
             </div>
             <div className={styles.info}>

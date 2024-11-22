@@ -287,7 +287,7 @@ export default function ProfileView({
                 alt="profile image"
                 fill
                 sizes="100px"
-                priority
+                // priority
                 // placeholder="blur"
                 // blurDataURL={blurDataURL}
               />
@@ -301,7 +301,7 @@ export default function ProfileView({
                 alt="profile image"
                 fill
                 sizes="100px"
-                priority
+                // priority
                 // placeholder="blur"
                 // blurDataURL={blurDataURL}
               />

@@ -29,6 +29,7 @@ export default function Banner() {
               width={600}
               height={400}
               alt="banner"
+              priority
             ></Image>
           </div>
         </>

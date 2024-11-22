@@ -28,7 +28,11 @@ export default function Post({ post }: Props) {
   ).fromNow(true);
 
   const noImage: boolean =
-    data.postImage === "" || data.postImage === undefined ? true : false;
+    data.postImage === "" ||
+    data.postImage === null ||
+    data.postImage === undefined
+      ? true
+      : false;
 
   return (
     <PostArticle post={data}>
@@ -55,6 +59,7 @@ export default function Post({ post }: Props) {
               alt="profile image"
               width={500}
               height={500}
+              priority
             />
           )}
         </div>
@@ -82,6 +87,7 @@ export default function Post({ post }: Props) {
                       width={600}
                       height={400}
                       alt={data.title}
+                      priority={true}
                     />
                   </>
                 )}
