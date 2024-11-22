@@ -18,7 +18,7 @@ export default function RightSectionSearch({ q }: Props) {
     // console.log("search", e.currentTarget.search);
     router.push(`/search?q=${e.currentTarget.search.value}`);
   };
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = (/* e */) => {
     setInputValue(q);
   };
 
