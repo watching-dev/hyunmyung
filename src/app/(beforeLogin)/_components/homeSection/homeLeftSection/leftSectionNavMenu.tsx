@@ -47,7 +47,7 @@ export default function LeftSectionMenu() {
         </Link>
       </li>
       <li>
-        <Link href="/explore">
+        <Link href="/explore" scroll={false}>
           <div className={styles.navItem}>
             {segment === "explore" || segment === "search" ? (
               <>
@@ -82,7 +82,7 @@ export default function LeftSectionMenu() {
         </Link>
       </li>
       <li>
-        <Link href={`/${profile.id}`}>
+        <Link href={`/${profile.id}`} scroll={false}>
           <div className={styles.navItem}>
             {segment === profile.id ? (
               <>
