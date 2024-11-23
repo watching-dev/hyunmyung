@@ -38,7 +38,7 @@ export default function PostArticle({ children, post }: Props) {
     // 일단 섞어서 해보자, 그리고 flag를 @hm 이렇게 태그로 가는것도 생각
     // router.push(`/post/${flag}/${slug}`);
     // router.push 에서 쿼리 날리는게 불가능해 져서 포스트아이디를 인코딩한 값으로 사용하기로 결정
-    router.push(`/post/${base64Flag}/${slug}`);
+    router.push(`/post/${base64Flag}/${slug}`, { scroll: false });
   };
 
   return (
