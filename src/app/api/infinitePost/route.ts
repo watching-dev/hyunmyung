@@ -1,6 +1,7 @@
 import dbConnect from "@/app/_lib/dbConnect";
 import PostingAPIS from "@/app/model/posting";
 import { NextRequest, NextResponse } from "next/server";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   try {

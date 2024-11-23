@@ -2,16 +2,18 @@
 
 import BackButton from "@/app/(beforeLogin)/_components/homeSection/homeMainSection/tab/BackButton";
 import styles from "./posting.module.css";
-import QuillNoSSRWrapper from "../_component/QuillEditor";
 import { useMemo, useRef, useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebase/config";
 import imageCompression from "browser-image-compression";
-import { ImageActions } from "@xeger/quill-image-actions";
+import Image from "next/image";
+import DynamicQuillEditor from "../_component/QuillEditor";
+import "react-quill/dist/quill.snow.css";
+// export const dynamic = "force-dynamic";
 
 /*
  * Quill editor formats
@@ -39,10 +41,8 @@ const formats = [
 ];
 
 export default function Posting() {
-  Quill.register("modules/imageActions", ImageActions);
   const [content, setContent] = useState("");
   const router = useRouter();
-  const session = useSession();
 
   const quillInstance = useRef<ReactQuill>(null);
   const sanitizer = DOMPurify.sanitize;
@@ -170,21 +170,30 @@ export default function Posting() {
       };
 
       const recommended = false;
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content, title, params, thumbURL, recommended }),
-      });
-      const res = await response.json(); // awati 해야 제대로 볼 수 있음
+      const __response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE}/api/post`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content,
+            title,
+            params,
+            thumbURL,
+            recommended,
+          }),
+        }
+      );
+      // const res = await response.json(); // awati 해야 제대로 볼 수 있음
       router.replace("/");
     } catch (error: unknown) {
       console.error(error);
     }
   };
 
-  const uploadThumbnail = async (formData: FormData) => {
+  const uploadThumbnail = async (__formData: FormData) => {
     if (thumb !== null || thumb !== undefined) {
       const current = new Date();
       const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
@@ -264,7 +273,7 @@ export default function Posting() {
           type="text"
           placeholder="제목"
         />
-        <QuillNoSSRWrapper
+        {/* <QuillNoSSRWrapper
           className={styles.editor}
           forwardedRef={quillInstance}
           modules={modules}
@@ -274,6 +283,17 @@ export default function Posting() {
           value={content}
           onChange={setContent}
           // style={{ width: "100%", height: "80%" }}
+        /> */}
+        <DynamicQuillEditor
+          className={styles.editor}
+          // forwardedRef={quillInstance}
+          reactQuillRef={quillInstance}
+          modules={modules}
+          formats={formats}
+          theme="snow"
+          placeholder={"여기에서 입력하세요."}
+          value={content}
+          onChange={setContent}
         />
       </div>
       <div className={styles.section}>
@@ -284,7 +304,8 @@ export default function Posting() {
           </div>
           <button
             type="submit"
-            className={styles.logOutButton} /* onClick={handleSubmit}*/
+            className={styles.logOutButton}
+            // onClick={handleSubmit}
           >
             <div className={styles.navItem}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -312,7 +333,7 @@ export default function Posting() {
             <></>
           ) : (
             <>
-              <img src={preview} width={100} height={50} />
+              <Image src={preview} width={100} height={50} alt="preview" />
               <button type="submit">업로드</button>
             </>
           )}

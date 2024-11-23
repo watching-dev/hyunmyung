@@ -1,5 +1,6 @@
 import ProfileView from "../_components/homeSection/homeMainSection/tab/profileView";
 import { auth } from "@/auth";
+export const dynamic = "force-dynamic";
 
 export default async function Profile() {
   try {
