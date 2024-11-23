@@ -10,7 +10,11 @@ export default async function Profile() {
     const defaultId = process.env.NEXT_PUBLIC_DEFAULT_ID; // id checker 함수 만들기
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE}/api/profile/id`,
+      `${
+        process.env.NEXT_PUBLIC_SITE_URL ??
+        process.env.NEXT_PUBLIC_VERCEL_URL ??
+        process.env.NEXT_PUBLIC_BASE
+      }/api/profile/id`,
       {
         method: "POST",
         headers: {

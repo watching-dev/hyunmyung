@@ -14,7 +14,11 @@ export const {
       async authorize(credentials) {
         // console.log("auth#1===");
         const authResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE}/api/login`,
+          `${
+            process.env.NEXT_PUBLIC_SITE_URL ??
+            process.env.NEXT_PUBLIC_VERCEL_URL ??
+            process.env.NEXT_PUBLIC_BASE
+          }/api/login`,
           {
             method: "POST",
             headers: {

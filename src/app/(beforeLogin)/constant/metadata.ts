@@ -2,9 +2,19 @@ import { Metadata } from "next";
 
 export const META = {
   hyunMyung: "HyunMyung",
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_BASE}`),
+  metadataBase: new URL(
+    `${
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      process.env.NEXT_PUBLIC_BASE
+    }`
+  ),
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_BASE}`,
+    canonical: `${
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      process.env.NEXT_PUBLIC_BASE
+    }`,
   },
   title: "Magazine / HyunMyung",
   description: "HyunMyung 블로그",
@@ -29,7 +39,14 @@ export const META = {
     "ios",
     "react-native",
   ],
-  authors: { name: "HyunMyung", url: `${process.env.NEXT_PUBLIC_BASE}` },
+  authors: {
+    name: "HyunMyung",
+    url: `${
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      process.env.NEXT_PUBLIC_BASE
+    }`,
+  },
   creator: "HyunMyung",
   publisher: "HyunMyung",
   openGraph: {
@@ -38,7 +55,11 @@ export const META = {
     siteName: "Magazine / HyunMyung",
     locale: "ko_KR",
     type: "website",
-    url: `${process.env.NEXT_PUBLIC_BASE}`,
+    url: `${
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      process.env.NEXT_PUBLIC_BASE
+    }`,
     // images: {
     //   url: OG_IMAGE,
     // },

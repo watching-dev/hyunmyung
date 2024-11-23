@@ -9,7 +9,11 @@ export default function Join() {
       description: formData.get("userDesc"),
     };
     const __response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE}/api/user/join`,
+      `${
+        process.env.NEXT_PUBLIC_SITE_URL ??
+        process.env.NEXT_PUBLIC_VERCEL_URL ??
+        process.env.NEXT_PUBLIC_BASE
+      }/api/user/join`,
       {
         method: "POST",
         headers: {

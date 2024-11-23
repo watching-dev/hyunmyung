@@ -8,7 +8,11 @@ export const getSearchResult: QueryFunction<
   const [__1, __2, searchParams] = queryKey;
   const __urlSearchParams = new URLSearchParams(searchParams);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE}/api/search?q=${searchParams.q}`,
+    `${
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      process.env.NEXT_PUBLIC_BASE
+    }/api/search?q=${searchParams.q}`,
     {
       next: {
         tags: ["posts", "search", searchParams.q],

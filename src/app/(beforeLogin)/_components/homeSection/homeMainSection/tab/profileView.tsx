@@ -172,7 +172,11 @@ export default function ProfileView({
         const userInfo = session.data?.user?.email;
 
         const __response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE}/api/profile`,
+          `${
+            process.env.NEXT_PUBLIC_SITE_URL ??
+            process.env.NEXT_PUBLIC_VERCEL_URL ??
+            process.env.NEXT_PUBLIC_BASE
+          }/api/profile`,
           {
             method: "POST",
             headers: {

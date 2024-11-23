@@ -53,7 +53,11 @@ export default function UploadBanner() {
         const snapshot = await uploadBytes(storageRef, compressdFile);
         const url = await getDownloadURL(snapshot.ref);
         const __response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE}/api/banner`,
+          `${
+            process.env.NEXT_PUBLIC_SITE_URL ??
+            process.env.NEXT_PUBLIC_VERCEL_URL ??
+            process.env.NEXT_PUBLIC_BASE
+          }/api/banner`,
           {
             method: "POST",
             headers: {

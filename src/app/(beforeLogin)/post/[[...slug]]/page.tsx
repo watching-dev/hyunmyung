@@ -33,7 +33,11 @@ export default async function PostSlug(props: any) {
     const slug = decodeSlug.replace(/-/gi, " "); // -를 공백으로 치환
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE}/api/post/detail`,
+      `${
+        process.env.NEXT_PUBLIC_SITE_URL ??
+        process.env.NEXT_PUBLIC_VERCEL_URL ??
+        process.env.NEXT_PUBLIC_BASE
+      }/api/post/detail`,
       {
         method: "POST",
         headers: {
