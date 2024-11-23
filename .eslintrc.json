@@ -32,7 +32,8 @@
     "no-unused-vars": "off",
     // ㄴunused-imports 기본 세팅 1 >> 사용되지 않은 변수에 대한 경고를 비활성화합니다. - lint와 충돌하기 때문에 기본 설정은 끄고 타입 스크립트 린트에서 설정
     "no-var": "warn",
-    "no-console": "warn",
+    "no-console": "off", // 배포할때 error 로 설정해서 제거하고 off 로 설정
+
     // "unused-imports/no-unused-imports": "warn",
     // ㄴunused-imports 기본 세팅 2 >> 사용되지 않은 import에 대한 경고를 활성화합니다.
     "import/no-unresolved": "error"
