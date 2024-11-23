@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./profileView.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebase/config";
@@ -41,8 +41,11 @@ export default function ProfileView({
   const [profileImg, setProfileImg] = useState<File>();
   const sessionUse = useSession();
   const [session, setSession] = useState(sessionUse);
-  // const router = useRouter();
-  setSession(sessionUse);
+  // // const router = useRouter();
+  // setSession(sessionUse);
+  useEffect(() => {
+    setSession(sessionUse);
+  }, [sessionUse]);
 
   // console.log("seeeeesion==", session);
   // console.log(
@@ -242,6 +245,7 @@ export default function ProfileView({
               width={600}
               height={400}
               className={styles.previewBg}
+              priority
               // placeholder="blur"
               // blurDataURL={blurDataURL}
             />
@@ -260,6 +264,7 @@ export default function ProfileView({
               width={600}
               height={400}
               className={styles.previewBg}
+              priority
               // placeholder="blur"
               // blurDataURL={blurDataURL}
             />
@@ -271,6 +276,7 @@ export default function ProfileView({
             width={600}
             height={400}
             className={styles.previewBg}
+            priority
             // placeholder="blur"
             // blurDataURL={blurDataURL}
           />
@@ -287,7 +293,7 @@ export default function ProfileView({
                 alt="profile image"
                 fill
                 sizes="100px"
-                // priority
+                priority
                 // placeholder="blur"
                 // blurDataURL={blurDataURL}
               />
@@ -301,7 +307,7 @@ export default function ProfileView({
                 alt="profile image"
                 fill
                 sizes="100px"
-                // priority
+                priority
                 // placeholder="blur"
                 // blurDataURL={blurDataURL}
               />
@@ -311,6 +317,7 @@ export default function ProfileView({
               src={previewPf}
               alt="profile image"
               fill
+              priority
               // placeholder="blur"
               // blurDataURL={blurDataURL}
             />
