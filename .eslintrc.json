@@ -2,8 +2,16 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
 
   "rules": {
-    "@typescript-eslint/no-explicit-any": ["off"],
-    "@typescript-eslint/no-var-requires": 0
-    // @typescript-eslint/no-require-imports
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-require-imports": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^__" // 사용하지 않는 변수는 __를 붙인다.
+      }
+    ],
+    "no-unused-vars": "off",
+    "no-var": "warn"
   }
 }
