@@ -7,6 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebase/config";
 import imageCompression from "browser-image-compression";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export interface IProfile {
   User: {
@@ -41,7 +42,7 @@ export default function ProfileView({
   const [profileImg, setProfileImg] = useState<File>();
   const sessionUse = useSession();
   const [session, setSession] = useState(sessionUse);
-  // // const router = useRouter();
+  const router = useRouter();
   // setSession(sessionUse);
   useEffect(() => {
     setSession(sessionUse);
@@ -187,7 +188,7 @@ export default function ProfileView({
         // const res = await response.json(); // await 해야 제대로 볼 수 있음
         alert("저장 완료");
         // router.replace("/");
-        // router.refresh();
+        router.refresh();
 
         if (
           (profileImg === null && backgroundImg === null) ||
