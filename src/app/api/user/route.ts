@@ -1,17 +1,17 @@
 import dbConnect from "@/app/_lib/dbConnect";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(__req: Request, __res: Response) {
   try {
     await dbConnect();
 
-    const data = await req.json();
+    // const data = await req.json();
     // console.log(data);
 
-    const current = new Date();
-    const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
-    const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+    // const current = new Date();
+    // const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
+    // const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     // const kr_current = new Date(utc + KR_TIME_DIFF) === Date.now() 똑같음_9시간 부족하니까 2배 해줘야 맞음;
-    const kr_current = new Date(utc + KR_TIME_DIFF * 2);
+    // const kr_current = new Date(utc + KR_TIME_DIFF * 2);
     // console.log("time:", kr_current);
 
     // const user = new UserAPIS({

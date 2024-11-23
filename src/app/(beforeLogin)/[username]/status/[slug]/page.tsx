@@ -1,5 +1,3 @@
-import Post from "@/app/(beforeLogin)/_components/homeSection/homeMainSection/tab/Post";
-
 import styles from "./singlePost.module.css";
 import {
   dehydrate,

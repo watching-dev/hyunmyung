@@ -14,7 +14,7 @@ export default function SearchResult({ searchParams }: Props) {
   const { ref } = useInView({ threshold: 0, delay: 0 });
   const { data, isFetching, isPending } = useQuery<
     IList[],
-    Object,
+    object,
     IList[],
     [_1: string, _2: string, Props["searchParams"]]
     // 아직도 여긴 왜 이렇게 타입을 지정하는 건지 모르겠네

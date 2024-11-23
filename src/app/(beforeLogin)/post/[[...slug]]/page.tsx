@@ -2,23 +2,23 @@ import styles from "./postSlug.module.css";
 import BackButton from "../../_components/homeSection/homeMainSection/tab/BackButton";
 import sanitizeHtml from "../../_lib/sanitizeHTML";
 
-interface Props {
-  post: {
-    title: string;
-    postId: string;
-    Profile: {
-      User: {
-        userId: string;
-        userName: string;
-      };
-      description: string;
-      profileImage: string;
-    };
-    postImage: string;
-    createdAt: Date;
-    updatedAt: Date;
-  };
-}
+// interface Props {
+//   post: {
+//     title: string;
+//     postId: string;
+//     Profile: {
+//       User: {
+//         userId: string;
+//         userName: string;
+//       };
+//       description: string;
+//       profileImage: string;
+//     };
+//     postImage: string;
+//     createdAt: Date;
+//     updatedAt: Date;
+//   };
+// }
 export default async function PostSlug(props: any) {
   try {
     // props.params.slug[0](postId)가 인코딩 된 값이 MTFfY1hkbGNnPT1fMQ== 인데 특수문자 인코딩문제로 MTFfY1hkbGNnPT1fMQ%3D%3D 이렇게 변환되어 넘어옴

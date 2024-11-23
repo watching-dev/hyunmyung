@@ -6,19 +6,18 @@ import { useSession } from "next-auth/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebase/config";
 import imageCompression from "browser-image-compression";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export interface IProfile {
   User: {
-    user_id: String;
-    userId: String;
-    userName: String;
+    user_id: string;
+    userId: string;
+    userName: string;
   };
 
-  description: String;
-  profileImage: String;
-  backgroundImage: String;
+  description: string;
+  profileImage: string;
+  backgroundImage: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -42,7 +41,8 @@ export default function ProfileView({
   const [profileImg, setProfileImg] = useState<File>();
   const sessionUse = useSession();
   const [session, setSession] = useState(sessionUse);
-  const router = useRouter();
+  // const router = useRouter();
+  setSession(sessionUse);
 
   // console.log("seeeeesion==", session);
   // console.log(
@@ -167,7 +167,7 @@ export default function ProfileView({
         const backgroundUrl = await getDownloadURL(backgroundSnapshot.ref);
         const userInfo = session.data?.user?.email;
 
-        const response = await fetch(
+        const __response = await fetch(
           `${process.env.NEXT_PUBLIC_BASE}/api/profile`,
           {
             method: "POST",
@@ -181,7 +181,7 @@ export default function ProfileView({
             }),
           }
         );
-        const res = await response.json(); // await 해야 제대로 볼 수 있음
+        // const res = await response.json(); // await 해야 제대로 볼 수 있음
         alert("저장 완료");
         // router.replace("/");
         // router.refresh();

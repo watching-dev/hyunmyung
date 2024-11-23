@@ -6,6 +6,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import imageCompression from "browser-image-compression";
 import { storage } from "@/firebase/config";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function UploadBanner() {
   const [banner, setBanner] = useState<File>();
@@ -51,7 +52,7 @@ export default function UploadBanner() {
         const compressdFile = await imageCompression(imageFile, options);
         const snapshot = await uploadBytes(storageRef, compressdFile);
         const url = await getDownloadURL(snapshot.ref);
-        const response = await fetch(
+        const __response = await fetch(
           `${process.env.NEXT_PUBLIC_BASE}/api/banner`,
           {
             method: "POST",
@@ -61,7 +62,7 @@ export default function UploadBanner() {
             body: JSON.stringify({ url }),
           }
         );
-        const res = await response.json(); // await 해야 데이터 제대로 확인 가능
+        // const res = await response.json(); // await 해야 데이터 제대로 확인 가능
         router.replace("/");
       } catch (error) {
         console.error(error);
@@ -110,7 +111,7 @@ export default function UploadBanner() {
           <></>
         ) : (
           <>
-            <img src={preview} width={600} height={400} />
+            <Image src={preview} width={600} height={400} alt="banner" />
             <button type="submit">업로드</button>
           </>
         )}

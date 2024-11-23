@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const saltRounds = 10;
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, __res: Response) {
   try {
     await dbConnect();
 

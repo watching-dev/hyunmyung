@@ -8,7 +8,7 @@ export default function Join() {
       name: formData.get("userName"),
       description: formData.get("userDesc"),
     };
-    const response = await fetch(
+    const __response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE}/api/user/join`,
       {
         method: "POST",
@@ -19,7 +19,7 @@ export default function Join() {
       }
     );
 
-    const data = response.json();
+    // const data = response.json();
     // ...
   }
 

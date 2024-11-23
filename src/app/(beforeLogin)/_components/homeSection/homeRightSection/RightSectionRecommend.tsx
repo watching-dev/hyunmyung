@@ -13,12 +13,12 @@ export default function RightSectionRecommend() {
   });
   // console.log("rQ", data?.length); // length를 사용항려면 useQuery옆에 타입 <[]> 이렇게 지정해줘야 length 사용 가능, 그리고 data 뿌려주는 타입을 넣어야 지 <[타입]>
 
-  const slice = data?.filter(
-    (post) =>
-      post.postImage !== "" &&
-      post.postImage !== null &&
-      post.postImage !== undefined
-  );
+  // const slice = data?.filter(
+  //   (post) =>
+  //     post.postImage !== "" &&
+  //     post.postImage !== null &&
+  //     post.postImage !== undefined
+  // );
   // const slice = data?.filter((post) => { 아니 왜 이렇게 하면 Expected an assignment or function call and instead saw an expression.eslint@typescript-eslint/no-unused-expressions 이렇게 나오냐 ==> 왜 중괄호 {} 이거 했다고 그러지 뭔가 표현이 다른가?
   //   post.postImage !== "" ||
   //     post.postImage !== null || --> 그리고 왜 또는 || 으로 하면 왜 안되는거야..

@@ -9,7 +9,7 @@ import { getPostAll } from "@/app/(afterLogin)/_lib/getPostAll";
 
 export default function PostRecommends() {
   const { ref } = useInView({ threshold: 0, delay: 0 });
-  const { data, isFetching, isLoading, isPending } = useQuery<IList[]>({
+  const { data, isFetching, isPending } = useQuery<IList[]>({
     queryKey: ["posts", "recommends"],
     queryFn: getPostAll,
     staleTime: 1000 * 30,

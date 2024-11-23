@@ -5,8 +5,8 @@ export const getSearchResult: QueryFunction<
   IList[],
   [_1: string, _2: string, searchParams: { q: string; pf?: string; f?: string }]
 > = async ({ queryKey }) => {
-  const [_1, _2, searchParams] = queryKey;
-  const urlSearchParams = new URLSearchParams(searchParams);
+  const [__1, __2, searchParams] = queryKey;
+  const __urlSearchParams = new URLSearchParams(searchParams);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE}/api/search?q=${searchParams.q}`,
     {

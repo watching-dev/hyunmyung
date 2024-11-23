@@ -18,7 +18,7 @@ export interface IList {
   createdAt: Date;
   updatedAt: Date;
 }
-export async function GET(req: Request) {
+export async function GET(__req: Request) {
   try {
     await dbConnect();
     const allPost = await PostingAPIS.find();

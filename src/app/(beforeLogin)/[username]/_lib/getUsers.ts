@@ -4,7 +4,7 @@ import { User } from "@/app/model/User";
 export const getUser: QueryFunction<User, [_1: string, _2: string]> = async ({
   queryKey,
 }) => {
-  const [_1, username] = queryKey;
+  const [__1, username] = queryKey;
   const res = await fetch(
     // `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/profile`,

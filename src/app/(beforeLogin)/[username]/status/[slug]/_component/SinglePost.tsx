@@ -3,16 +3,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getSinglePost } from "../_lib/getSinglePost";
 import { Post as IPost } from "@/app/model/Post";
-import Post from "@/app/(beforeLogin)/_components/homeSection/homeMainSection/tab/Post";
 
 interface Props {
   id: string;
   noImage?: boolean;
 }
-export default function SinglePost({ id, noImage }: Props) {
+export default function SinglePost({ id /* noImage */ }: Props) {
   const { data: post, error } = useQuery<
     IPost,
-    Object,
+    object,
     IPost,
     [_1: string, _2: string]
   >({

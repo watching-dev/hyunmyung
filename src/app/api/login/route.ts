@@ -2,13 +2,13 @@ import dbConnect from "@/app/_lib/dbConnect";
 import JoinAPIS from "@/app/model/join";
 import bcrypt from "bcrypt";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, __res: Response) {
   try {
     await dbConnect();
 
     const data = await req.json();
     // console.log(data);
-    const loginPw: String = data.userPw;
+    const loginPw: string = data.userPw;
     const userInfo = await JoinAPIS.findOne({ userId: data.userId }).exec();
 
     // console.log(loginPw);

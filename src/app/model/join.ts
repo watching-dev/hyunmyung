@@ -1,5 +1,4 @@
 import { InferSchemaType, model, models, Schema } from "mongoose";
-import Default from "../(beforeLogin)/@modal/default";
 
 const JoinSchema = new Schema({
   // _id: Schema.Types.ObjectId, - 이거 하니까 updatedAt, _id 생성이 안되네

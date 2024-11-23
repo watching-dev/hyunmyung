@@ -2,7 +2,7 @@ import dbConnect from "@/app/_lib/dbConnect";
 import BannerAPIS from "@/app/model/Banner";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET(__req: Request) {
   try {
     await dbConnect();
     const banner = await BannerAPIS.findOne().sort({ createdAt: -1 });
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
   }
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, __res: Response) {
   try {
     await dbConnect();
 

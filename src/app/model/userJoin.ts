@@ -1,5 +1,5 @@
 export interface UserJoin {
-  userId: String;
-  userPw: String;
-  name: String;
+  userId: string;
+  userPw: string;
+  name: string;
 }

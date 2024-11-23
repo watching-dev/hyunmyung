@@ -1,7 +1,7 @@
 import dbConnect from "@/app/_lib/dbConnect";
 import ProfileAPIS from "@/app/model/Profile";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, __res: Response) {
   try {
     await dbConnect();
 

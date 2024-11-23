@@ -2,8 +2,9 @@ import dbConnect from "@/app/_lib/dbConnect";
 import PostingAPIS from "@/app/model/posting";
 import ProfileAPIS from "@/app/model/Profile";
 import { auth } from "@/auth";
+export const dynamic = "force-dynamic";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, __res: Response) {
   try {
     await dbConnect();
 
@@ -40,9 +41,9 @@ export async function POST(req: Request, res: Response) {
 
     // 나중에 id를 base64든 뭐든 암호화 해서 저장
     const base64ID = btoa(session?.user?.email as string);
-    const originID = atob(base64ID);
+    // const originID = atob(base64ID);
     // console.log("64: ", base64ID, "origin: ", originID);
-    const postId = `(${countAll})${session?.user?.email}_${count.length + 1}`;
+    // const postId = `(${countAll})${session?.user?.email}_${count.length + 1}`;
     const postId2 = `${countAll}_${base64ID}_${count.length + 1}`;
     // postId니까 어차피 겹치지만 않으면 되는데 postId2 전체를 base64할까..
 

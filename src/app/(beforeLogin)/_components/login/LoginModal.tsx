@@ -44,6 +44,7 @@ export default function LoginModal() {
       }
     } catch (error) {
       setMessage("에러");
+      console.error(error);
     }
   };
   const onClickClose = () => {

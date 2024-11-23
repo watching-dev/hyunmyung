@@ -4,7 +4,7 @@ import { createContext, ReactNode, useState } from "react";
 
 export const TabContext = createContext({
   tab: "all",
-  setTab: (value: "all" | "rec") => {},
+  setTab: (__value: "all" | "rec") => {},
 });
 
 type Props = { children: ReactNode };
