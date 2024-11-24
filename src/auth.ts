@@ -15,8 +15,8 @@ export const {
         // console.log("auth#1===");
         const authResponse = await fetch(
           `${
-            process.env.NEXT_PUBLIC_SITE_URL ??
-            process.env.NEXT_PUBLIC_VERCEL_URL ??
+            // process.env.NEXT_PUBLIC_SITE_URL ??
+            // process.env.NEXT_PUBLIC_VERCEL_URL ??
             process.env.NEXT_PUBLIC_BASE
           }/api/login`,
           {

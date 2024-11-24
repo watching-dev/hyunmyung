@@ -4,15 +4,15 @@ export const META = {
   hyunMyung: "HyunMyung",
   metadataBase: new URL(
     `${
-      process.env.NEXT_PUBLIC_SITE_URL ??
-      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      // process.env.NEXT_PUBLIC_SITE_URL ??
+      // process.env.NEXT_PUBLIC_VERCEL_URL ??
       process.env.NEXT_PUBLIC_BASE
     }`
   ),
   alternates: {
     canonical: `${
-      process.env.NEXT_PUBLIC_SITE_URL ??
-      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      // process.env.NEXT_PUBLIC_SITE_URL ??
+      // process.env.NEXT_PUBLIC_VERCEL_URL ??
       process.env.NEXT_PUBLIC_BASE
     }`,
   },
@@ -42,8 +42,8 @@ export const META = {
   authors: {
     name: "HyunMyung",
     url: `${
-      process.env.NEXT_PUBLIC_SITE_URL ??
-      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      // process.env.NEXT_PUBLIC_SITE_URL ??
+      // process.env.NEXT_PUBLIC_VERCEL_URL ??
       process.env.NEXT_PUBLIC_BASE
     }`,
   },
@@ -56,8 +56,8 @@ export const META = {
     locale: "ko_KR",
     type: "website",
     url: `${
-      process.env.NEXT_PUBLIC_SITE_URL ??
-      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      // process.env.NEXT_PUBLIC_SITE_URL ??
+      // process.env.NEXT_PUBLIC_VERCEL_URL ??
       process.env.NEXT_PUBLIC_BASE
     }`,
     // images: {

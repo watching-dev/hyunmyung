@@ -54,8 +54,8 @@ export default function UploadBanner() {
         const url = await getDownloadURL(snapshot.ref);
         const __response = await fetch(
           `${
-            process.env.NEXT_PUBLIC_SITE_URL ??
-            process.env.NEXT_PUBLIC_VERCEL_URL ??
+            // process.env.NEXT_PUBLIC_SITE_URL ??
+            // process.env.NEXT_PUBLIC_VERCEL_URL ??
             process.env.NEXT_PUBLIC_BASE
           }/api/banner`,
           {

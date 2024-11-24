@@ -9,8 +9,8 @@ export const getSearchResult: QueryFunction<
   const __urlSearchParams = new URLSearchParams(searchParams);
   const res = await fetch(
     `${
-      process.env.NEXT_PUBLIC_SITE_URL ??
-      process.env.NEXT_PUBLIC_VERCEL_URL ??
+      // process.env.NEXT_PUBLIC_SITE_URL ??
+      // process.env.NEXT_PUBLIC_VERCEL_URL ??
       process.env.NEXT_PUBLIC_BASE
     }/api/search?q=${searchParams.q}`,
     {

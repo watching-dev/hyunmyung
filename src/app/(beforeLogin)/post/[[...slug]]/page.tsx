@@ -34,8 +34,8 @@ export default async function PostSlug(props: any) {
 
     const response = await fetch(
       `${
-        process.env.NEXT_PUBLIC_SITE_URL ??
-        process.env.NEXT_PUBLIC_VERCEL_URL ??
+        // process.env.NEXT_PUBLIC_SITE_URL ??
+        // process.env.NEXT_PUBLIC_VERCEL_URL ??
         process.env.NEXT_PUBLIC_BASE
       }/api/post/detail`,
       {

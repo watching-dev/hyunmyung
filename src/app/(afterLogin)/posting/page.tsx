@@ -172,8 +172,8 @@ export default function Posting() {
       const recommended = false;
       const __response = await fetch(
         `${
-          process.env.NEXT_PUBLIC_SITE_URL ??
-          process.env.NEXT_PUBLIC_VERCEL_URL ??
+          // process.env.NEXT_PUBLIC_SITE_URL ??
+          // process.env.NEXT_PUBLIC_VERCEL_URL ??
           process.env.NEXT_PUBLIC_BASE
         }/api/post`,
         {
