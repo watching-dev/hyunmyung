@@ -10,11 +10,7 @@ const nextConfig = {
   // },
 
   images: {
-    domains: [
-      "encrypted-tbn0.gstatic.com",
-      "pbs.twimg.com",
-      "firebasestorage.googleapis.com",
-    ],
+    domains: ["pbs.twimg.com", "firebasestorage.googleapis.com"],
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
