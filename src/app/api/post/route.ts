@@ -13,18 +13,18 @@ export async function POST(req: Request, __res: Response) {
     // console.log("data==", data);
 
     // 로그인 정보 가져오기(id, name)
-    const session = await auth();
+    // const session = await auth();
     // console.log("auth sesion", session);
 
     // 로그인된 정보의 프로필 가져오기
     const profile = await ProfileAPIS.findOne({
-      "User.userId": session?.user?.email,
+      "User.userId": data.session?.data?.user?.email,
     }).sort({ createdAt: -1 });
     // console.log("pf", profile);
 
     // 포스팅 갯수 가쟈와서 postId 계산하기
     const count = await PostingAPIS.find({
-      "Profile.User.userId": session?.user?.email,
+      "Profile.User.userId": data.session?.data?.user?.email,
     }); //.countDocuments
     // console.log("count:", count, "length:", count.length);
 
@@ -36,11 +36,16 @@ export async function POST(req: Request, __res: Response) {
     const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     // const kr_current = new Date(utc + KR_TIME_DIFF) === Date.now() 똑같음_9시간 부족하니까 2배 해줘야 맞음;
-    const kr_current = new Date(utc + KR_TIME_DIFF * 2);
+    const kr_current = new Date(utc + KR_TIME_DIFF); // vercel 배포에서는 또 빼줘야 하네
     // console.log("time:", kr_current);
 
     // 나중에 id를 base64든 뭐든 암호화 해서 저장
-    const base64ID = btoa(session?.user?.email as string);
+    const base64ID = btoa(
+      data.session?.data?.user?.email === null ||
+        data.session?.data?.user?.email === undefined
+        ? "now"
+        : (data.session?.data?.user?.email as string)
+    );
     // const originID = atob(base64ID);
     // console.log("64: ", base64ID, "origin: ", originID);
     // const postId = `(${countAll})${session?.user?.email}_${count.length + 1}`;
