@@ -25,7 +25,7 @@ export async function GET(__req: Request) {
 
     // console.log("posting:", allPost);
 
-    const postList = allPost.reverse().map((post) => {
+    const postList = allPost.map((post) => {
       const list = {
         title: post.title,
         postId: post.postId,

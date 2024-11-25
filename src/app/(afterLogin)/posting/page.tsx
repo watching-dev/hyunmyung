@@ -13,7 +13,7 @@ import imageCompression from "browser-image-compression";
 import Image from "next/image";
 import DynamicQuillEditor from "../_component/QuillEditor";
 import "react-quill/dist/quill.snow.css";
-// export const dynamic = "force-dynamic";
+import { useSession } from "next-auth/react";
 
 /*
  * Quill editor formats
@@ -57,6 +57,8 @@ export default function Posting() {
     // console.log("title:", e.target.value);
     // console.log("setTitle:", title);
   };
+
+  const session = useSession(); // userId auth() -> useSession 으로 변경하여 props로 전달
 
   const imageHandler = () => {
     const input = document.createElement("input");
@@ -187,6 +189,7 @@ export default function Posting() {
             params,
             thumbURL,
             recommended,
+            session,
           }),
         }
       );

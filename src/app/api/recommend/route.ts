@@ -15,7 +15,7 @@ export async function GET() {
     const utc = current.getTime() + current.getTimezoneOffset() * 60 * 1000;
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     // const kr_current = new Date(utc + KR_TIME_DIFF) === Date.now() 똑같음_9시간 부족하니까 2배 해줘야 맞음;
-    const kr_current = new Date(utc + KR_TIME_DIFF * 2);
+    const kr_current = new Date(utc + KR_TIME_DIFF); // vercel 배포에서는 또 빼줘야 하네
     // console.log(
     //   "kr",
     //   kr_current,
