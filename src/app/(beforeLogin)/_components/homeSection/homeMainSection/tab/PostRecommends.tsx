@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import Post from "./Post";
 import { IList } from "@/app/api/posts/route";
 import { HashLoader } from "react-spinners";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 import { getPostAll } from "@/app/(afterLogin)/_lib/getPostAll";
 
 export default function PostRecommends() {
-  const { ref } = useInView({ threshold: 0, delay: 0 });
-  const { data, isFetching, isPending } = useQuery<IList[]>({
+  // const { ref } = useInView({ threshold: 0, delay: 0 });
+  const { data, /* isFetching, */ isPending } = useQuery<IList[]>({
     queryKey: ["posts", "recommends"],
     queryFn: getPostAll,
     staleTime: 1000 * 30,
@@ -48,11 +48,12 @@ export default function PostRecommends() {
         <>
           {data
             ?.filter((post) => post.recommended === true)
+            .reverse()
             .map((post) => (
               <Post key={post.postId} post={post} />
             ))}
-          <div ref={ref} /*style={{ height: 50 }}*/ />
-          <div>
+          {/* <div ref={ref} style={{ height: 50 }} /> */}
+          {/* <div>
             {isFetching ? (
               <>
                 <div
@@ -69,7 +70,7 @@ export default function PostRecommends() {
             ) : (
               <></>
             )}
-          </div>
+          </div> */}
         </>
       )}
     </>
